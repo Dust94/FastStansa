@@ -6,7 +6,7 @@ using namespace FotoLibrary;
 using namespace StansaController;
 
 namespace BossStansaController {
-
+	//adasd
 	public ref class ModStansaDB
 	{
 		public:
