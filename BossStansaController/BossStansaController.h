@@ -44,6 +44,6 @@ namespace BossStansaController {
 			static void DeleteModStansaController(int id);
 			static ModStansaController^ QueryModStansaControllerById(int id);
 			static List<ModStansaController^>^ QueryAllModStansaController();
-			//holi git
+			//holi githhh
 	};
 }
