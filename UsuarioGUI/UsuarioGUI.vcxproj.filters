@@ -18,9 +18,15 @@
     <ClCompile Include="UserForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GUI_StansaForm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UserForm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI_StansaForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

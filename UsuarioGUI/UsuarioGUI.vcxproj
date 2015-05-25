@@ -89,14 +89,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GUI_StansaForm.cpp" />
     <ClCompile Include="UserForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GUI_StansaForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="UserForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="GUI_StansaForm.resx">
+      <DependentUpon>GUI_StansaForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserForm.resx">
       <DependentUpon>UserForm.h</DependentUpon>
     </EmbeddedResource>

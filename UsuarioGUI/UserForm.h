@@ -10,6 +10,8 @@ namespace UsuarioGUI {
 	using namespace System::Drawing;
 	using namespace System::Collections::Generic;
 	using namespace FotoLibrary;
+	using namespace BossStansaController;
+	using namespace StansaController;
 
 	/// <summary>
 	/// Summary for UserForm
@@ -97,9 +99,13 @@ namespace UsuarioGUI {
 
 		Customer^ User = gcnew Customer(); //Creo un objeto Usuario
 		DateTime^ d1 = DateTime::Now; //Creo un objeto DateTime con la hora actual
+		ModStansaController^ Mod1 = gcnew ModStansaController();
 		User->hora_ini = d1;
 		User->estado = "Esperando";
 		lblHora->Text = "" + User->hora_ini;
+		Mod1->AddCustomer(User);
+			
+
 	} //Fin metodo Boton
 	private: System::Void UserForm_Load(System::Object^  sender, System::EventArgs^  e) {
 	}
