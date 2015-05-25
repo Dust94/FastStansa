@@ -18,6 +18,7 @@ namespace BossStansaController {
 			ModStansaController^ QueryById(int id);
 			List<ModStansaController^>^ QueryAll();
 	};
+	//q boni proyecto
 
 	public ref class ReporteBoss
 	{
@@ -28,9 +29,9 @@ namespace BossStansaController {
 	public ref class ReporteUsuario
 	{
 		public:
-			ModStansaDB^ modStansaDB;
+			ModStansaDB^ modStansaDB;//esta boni
 	};
-
+	// dustin haceme un pt duro
 	public ref class BossController
 	{
 		public:
