@@ -109,6 +109,7 @@ namespace StansaGUI {
 			this->actualizarProductosToolStripMenuItem->Name = L"actualizarProductosToolStripMenuItem";
 			this->actualizarProductosToolStripMenuItem->Size = System::Drawing::Size(183, 22);
 			this->actualizarProductosToolStripMenuItem->Text = L"Actualizar Productos";
+			this->actualizarProductosToolStripMenuItem->Click += gcnew System::EventHandler(this, &StansaAPPForm::actualizarProductosToolStripMenuItem_Click);
 			// 
 			// lectorPruebaToolStripMenuItem
 			// 
@@ -144,5 +145,10 @@ private: System::Void realizarVentaToolStripMenuItem_Click(System::Object^  send
 		pForm->MdiParent = this;
 		pForm->Show();
 	}
+private: System::Void actualizarProductosToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	ProductForm^ pForm = gcnew ProductForm();
+	pForm->MdiParent = this;
+	pForm->Show();
+}
 };
 }
