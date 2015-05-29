@@ -98,6 +98,7 @@ namespace StansaGUI {
 		ModStansaController^ Mod1 = gcnew ModStansaController();
 		User->hora_ini = d1;
 		User->estado = "Esperando";
+		User->hora_fin = d1;//En lugar de Null
 		lblHora->Text = "" + User->hora_ini;
 		Mod1->AddCustomer(User);
 
