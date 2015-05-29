@@ -236,6 +236,7 @@ namespace StansaGUI {
 		ModStansaController^ Mod1 = gcnew ModStansaController();
 		Product^ p = gcnew Product();
 		p = Mod1->QueryProductById(Int32::Parse(codigo));
+		//Corridita para Marco
 	}
 };
 }
