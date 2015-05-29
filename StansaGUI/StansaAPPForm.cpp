@@ -1,4 +1,4 @@
-#include "UserForm.h"
+#include "StansaAPPForm.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
@@ -8,6 +8,6 @@ void Main(array<String^>^ args){
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
 
-	UsuarioGUI::UserForm myForm; //Proyecto::WindowsForm::variable_myform
+	StansaGUI::StansaAPPForm myForm;
 	Application::Run(%myForm);
 }

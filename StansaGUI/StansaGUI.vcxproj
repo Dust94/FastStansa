@@ -11,10 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{A2D0F561-ACA9-4262-A41E-B20DA0C88ECF}</ProjectGuid>
+    <ProjectGuid>{FE61FF62-2DAF-4F1E-BF45-5BB792EAC40E}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
-    <RootNamespace>UsuarioGUI</RootNamespace>
+    <RootNamespace>StansaGUI</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -89,23 +89,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GUI_StansaForm.cpp" />
-    <ClCompile Include="UserForm.cpp" />
+    <ClCompile Include="Lector_PruebaForm.cpp" />
+    <ClCompile Include="ProductForm.cpp" />
+    <ClCompile Include="SaleForm.cpp" />
+    <ClCompile Include="StansaAPPForm.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GUI_StansaForm.h">
+    <ClInclude Include="Lector_PruebaForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="UserForm.h">
+    <ClInclude Include="ProductForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="SaleForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="StansaAPPForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="GUI_StansaForm.resx">
-      <DependentUpon>GUI_StansaForm.h</DependentUpon>
+    <EmbeddedResource Include="Lector_PruebaForm.resx">
+      <DependentUpon>Lector_PruebaForm.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserForm.resx">
-      <DependentUpon>UserForm.h</DependentUpon>
+    <EmbeddedResource Include="ProductForm.resx">
+      <DependentUpon>ProductForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaleForm.resx">
+      <DependentUpon>SaleForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StansaAPPForm.resx">
+      <DependentUpon>StansaAPPForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

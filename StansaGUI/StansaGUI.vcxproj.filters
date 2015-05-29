@@ -15,23 +15,35 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="UserForm.cpp">
+    <ClCompile Include="ProductForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GUI_StansaForm.cpp">
+    <ClCompile Include="SaleForm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Lector_PruebaForm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StansaAPPForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="UserForm.h">
+    <ClInclude Include="ProductForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GUI_StansaForm.h">
+    <ClInclude Include="SaleForm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lector_PruebaForm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StansaAPPForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="UserForm.resx">
+    <EmbeddedResource Include="StansaAPPForm.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>
