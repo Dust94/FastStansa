@@ -246,7 +246,6 @@ namespace StansaGUI {
 		p->name = name;
 		p->description = descripcion;
 		p->price = Double::Parse(precio);
-
 		ModStansaController::AddProduct(p);
 		RefreshDGVProducts();
 	}
