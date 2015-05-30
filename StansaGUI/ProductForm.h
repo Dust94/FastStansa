@@ -1,5 +1,5 @@
 #pragma once
-
+#include "ProductForm.h"
 namespace StansaGUI {
 
 	using namespace System;
@@ -8,6 +8,10 @@ namespace StansaGUI {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Collections::Generic;
+	using namespace FotoLibrary;
+	using namespace BossStansaController;
+	using namespace StansaController;
 
 	/// <summary>
 	/// Summary for ProductForm
@@ -38,9 +42,12 @@ namespace StansaGUI {
 	protected:
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  label3;
-	private: System::Windows::Forms::TextBox^  textBox1;
-	private: System::Windows::Forms::TextBox^  textBox2;
-	private: System::Windows::Forms::DataGridView^  dataGridView1;
+	private: System::Windows::Forms::TextBox^  txtId;
+	private: System::Windows::Forms::TextBox^  txtName;
+	private: System::Windows::Forms::DataGridView^  dgvProducts;
+
+
+
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Id;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Name;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Description;
@@ -70,9 +77,9 @@ namespace StansaGUI {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->txtId = (gcnew System::Windows::Forms::TextBox());
+			this->txtName = (gcnew System::Windows::Forms::TextBox());
+			this->dgvProducts = (gcnew System::Windows::Forms::DataGridView());
 			this->Id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Description = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -81,7 +88,7 @@ namespace StansaGUI {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvProducts))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -111,31 +118,31 @@ namespace StansaGUI {
 			this->label3->TabIndex = 2;
 			this->label3->Text = L"Description";
 			// 
-			// textBox1
+			// txtId
 			// 
-			this->textBox1->Location = System::Drawing::Point(149, 28);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(100, 20);
-			this->textBox1->TabIndex = 5;
+			this->txtId->Location = System::Drawing::Point(149, 28);
+			this->txtId->Name = L"txtId";
+			this->txtId->Size = System::Drawing::Size(100, 20);
+			this->txtId->TabIndex = 5;
 			// 
-			// textBox2
+			// txtName
 			// 
-			this->textBox2->Location = System::Drawing::Point(149, 55);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(100, 20);
-			this->textBox2->TabIndex = 6;
+			this->txtName->Location = System::Drawing::Point(149, 55);
+			this->txtName->Name = L"txtName";
+			this->txtName->Size = System::Drawing::Size(100, 20);
+			this->txtName->TabIndex = 6;
 			// 
-			// dataGridView1
+			// dgvProducts
 			// 
-			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
+			this->dgvProducts->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgvProducts->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
 				this->Id, this->Name,
 					this->Description, this->Price, this->Stock
 			});
-			this->dataGridView1->Location = System::Drawing::Point(28, 135);
-			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->Size = System::Drawing::Size(395, 150);
-			this->dataGridView1->TabIndex = 7;
+			this->dgvProducts->Location = System::Drawing::Point(28, 135);
+			this->dgvProducts->Name = L"dgvProducts";
+			this->dgvProducts->Size = System::Drawing::Size(395, 150);
+			this->dgvProducts->TabIndex = 7;
 			// 
 			// Id
 			// 
@@ -172,6 +179,7 @@ namespace StansaGUI {
 			this->button1->TabIndex = 8;
 			this->button1->Text = L"Agregar";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &ProductForm::button1_Click);
 			// 
 			// button2
 			// 
@@ -199,23 +207,43 @@ namespace StansaGUI {
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
-			this->Controls->Add(this->dataGridView1);
-			this->Controls->Add(this->textBox2);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->dgvProducts);
+			this->Controls->Add(this->txtName);
+			this->Controls->Add(this->txtId);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
-			//this->Name = L"ProductForm";
+			this->Name = L"ProductForm";
 			this->Text = L"ProductForm";
 			this->Load += gcnew System::EventHandler(this, &ProductForm::ProductForm_Load);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvProducts))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void ProductForm_Load(System::Object^  sender, System::EventArgs^  e) {
 
+	public: void RefreshDGVProducts(){
+		List<Product^>^ productList = ModStansaController::QueryAllProduct();
+		//lstProducts->Items->Clear();
+		dgvProducts->Rows->Clear();
+		for (int i = 0; i < productList->Count; i++){
+			dgvProducts->Rows->Add(gcnew array<String^>{
+				"" + productList[i]->id,
+					productList[i]->name,
+					"" + productList[i]->description,
+					"" + productList[i]->price});
+		}
 	}
-	};
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+		String^ sId = txtId->Text;
+		String^ name = txtName->Text;
+
+		Product^ p = gcnew Product();
+		p->id = (Int32::Parse(sId));
+		p->name = name;
+		ModStansaController::AddProduct(p);
+		RefreshDGVProducts();
+	}
+};
 }

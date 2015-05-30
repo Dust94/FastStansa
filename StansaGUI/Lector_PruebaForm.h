@@ -87,6 +87,7 @@ namespace StansaGUI {
 			this->Controls->Add(this->btnBuildUser);
 			this->Name = L"Lector_PruebaForm";
 			this->Text = L"Lector_PruebaForm";
+			this->Load += gcnew System::EventHandler(this, &Lector_PruebaForm::Lector_PruebaForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -102,6 +103,8 @@ namespace StansaGUI {
 		lblHora->Text = "" + User->hora_ini;
 		Mod1->AddCustomer(User);
 
+	}
+	private: System::Void Lector_PruebaForm_Load(System::Object^  sender, System::EventArgs^  e) {
 	}
 	};
 }

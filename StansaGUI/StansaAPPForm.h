@@ -90,7 +90,7 @@ namespace StansaGUI {
 			// realizarVentaToolStripMenuItem
 			// 
 			this->realizarVentaToolStripMenuItem->Name = L"realizarVentaToolStripMenuItem";
-			this->realizarVentaToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->realizarVentaToolStripMenuItem->Size = System::Drawing::Size(147, 22);
 			this->realizarVentaToolStripMenuItem->Text = L"Realizar Venta";
 			this->realizarVentaToolStripMenuItem->Click += gcnew System::EventHandler(this, &StansaAPPForm::realizarVentaToolStripMenuItem_Click);
 			// 
@@ -128,6 +128,7 @@ namespace StansaGUI {
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"StansaAPPForm";
 			this->Text = L"StansaAPPForm";
+			this->Load += gcnew System::EventHandler(this, &StansaAPPForm::StansaAPPForm_Load);
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
 			this->ResumeLayout(false);
@@ -149,6 +150,8 @@ private: System::Void actualizarProductosToolStripMenuItem_Click(System::Object^
 	ProductForm^ pForm = gcnew ProductForm();
 	pForm->MdiParent = this;
 	pForm->Show();
+}
+private: System::Void StansaAPPForm_Load(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 }
