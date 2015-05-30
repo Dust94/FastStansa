@@ -1,5 +1,5 @@
 #pragma once
-#include "ProductForm.h"
+
 namespace StansaGUI {
 
 	using namespace System;
@@ -12,6 +12,7 @@ namespace StansaGUI {
 	using namespace FotoLibrary;
 	using namespace BossStansaController;
 	using namespace StansaController;
+
 
 	/// <summary>
 	/// Summary for ProductForm
@@ -38,28 +39,25 @@ namespace StansaGUI {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Label^  label1;
+	private: System::Windows::Forms::Label^  lblName;
+	private: System::Windows::Forms::TextBox^  txtName;
+	private: System::Windows::Forms::TextBox^  txtPrice;
 	protected:
+
+
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  label3;
-	private: System::Windows::Forms::TextBox^  txtId;
-	private: System::Windows::Forms::TextBox^  txtName;
+	private: System::Windows::Forms::TextBox^  txtDescription;
+	private: System::Windows::Forms::Button^  btnUpdate;
+	private: System::Windows::Forms::Button^  btnAdd;
+	private: System::Windows::Forms::Button^  btnDelete;
 	private: System::Windows::Forms::DataGridView^  dgvProducts;
 
-
-
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Id;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Name;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Description;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Price;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Stock;
-	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Nombre;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  description;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  price;
 
-
-
-
-	private: System::Windows::Forms::Button^  button2;
-	private: System::Windows::Forms::Button^  button3;
 
 	private:
 		/// <summary>
@@ -74,145 +72,147 @@ namespace StansaGUI {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->lblName = (gcnew System::Windows::Forms::Label());
+			this->txtName = (gcnew System::Windows::Forms::TextBox());
+			this->txtPrice = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->txtId = (gcnew System::Windows::Forms::TextBox());
-			this->txtName = (gcnew System::Windows::Forms::TextBox());
+			this->txtDescription = (gcnew System::Windows::Forms::TextBox());
+			this->btnUpdate = (gcnew System::Windows::Forms::Button());
+			this->btnAdd = (gcnew System::Windows::Forms::Button());
+			this->btnDelete = (gcnew System::Windows::Forms::Button());
 			this->dgvProducts = (gcnew System::Windows::Forms::DataGridView());
 			this->Id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Description = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Price = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Stock = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->Nombre = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->description = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->price = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvProducts))->BeginInit();
 			this->SuspendLayout();
 			// 
-			// label1
+			// lblName
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(26, 28);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(16, 13);
-			this->label1->TabIndex = 0;
-			this->label1->Text = L"Id";
+			this->lblName->AutoSize = true;
+			this->lblName->Location = System::Drawing::Point(81, 25);
+			this->lblName->Name = L"lblName";
+			this->lblName->Size = System::Drawing::Size(44, 13);
+			this->lblName->TabIndex = 0;
+			this->lblName->Text = L"Nombre";
+			// 
+			// txtName
+			// 
+			this->txtName->Location = System::Drawing::Point(196, 18);
+			this->txtName->Name = L"txtName";
+			this->txtName->Size = System::Drawing::Size(83, 20);
+			this->txtName->TabIndex = 1;
+			// 
+			// txtPrice
+			// 
+			this->txtPrice->Location = System::Drawing::Point(196, 103);
+			this->txtPrice->Name = L"txtPrice";
+			this->txtPrice->Size = System::Drawing::Size(100, 20);
+			this->txtPrice->TabIndex = 2;
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(26, 52);
+			this->label2->Location = System::Drawing::Point(81, 62);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(35, 13);
-			this->label2->TabIndex = 1;
-			this->label2->Text = L"Name";
+			this->label2->Size = System::Drawing::Size(63, 13);
+			this->label2->TabIndex = 3;
+			this->label2->Text = L"Descripcion";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(26, 74);
+			this->label3->Location = System::Drawing::Point(81, 103);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(60, 13);
-			this->label3->TabIndex = 2;
-			this->label3->Text = L"Description";
+			this->label3->Size = System::Drawing::Size(31, 13);
+			this->label3->TabIndex = 4;
+			this->label3->Text = L"Price";
 			// 
-			// txtId
+			// txtDescription
 			// 
-			this->txtId->Location = System::Drawing::Point(149, 28);
-			this->txtId->Name = L"txtId";
-			this->txtId->Size = System::Drawing::Size(100, 20);
-			this->txtId->TabIndex = 5;
+			this->txtDescription->Location = System::Drawing::Point(196, 59);
+			this->txtDescription->Name = L"txtDescription";
+			this->txtDescription->Size = System::Drawing::Size(100, 20);
+			this->txtDescription->TabIndex = 5;
 			// 
-			// txtName
+			// btnUpdate
 			// 
-			this->txtName->Location = System::Drawing::Point(149, 55);
-			this->txtName->Name = L"txtName";
-			this->txtName->Size = System::Drawing::Size(100, 20);
-			this->txtName->TabIndex = 6;
+			this->btnUpdate->Location = System::Drawing::Point(221, 144);
+			this->btnUpdate->Name = L"btnUpdate";
+			this->btnUpdate->Size = System::Drawing::Size(75, 23);
+			this->btnUpdate->TabIndex = 6;
+			this->btnUpdate->Text = L"Actualizar";
+			this->btnUpdate->UseVisualStyleBackColor = true;
+			// 
+			// btnAdd
+			// 
+			this->btnAdd->Location = System::Drawing::Point(69, 144);
+			this->btnAdd->Name = L"btnAdd";
+			this->btnAdd->Size = System::Drawing::Size(75, 23);
+			this->btnAdd->TabIndex = 7;
+			this->btnAdd->Text = L"Agregar";
+			this->btnAdd->UseVisualStyleBackColor = true;
+			this->btnAdd->Click += gcnew System::EventHandler(this, &ProductForm::btnAdd_Click);
+			// 
+			// btnDelete
+			// 
+			this->btnDelete->Location = System::Drawing::Point(349, 144);
+			this->btnDelete->Name = L"btnDelete";
+			this->btnDelete->Size = System::Drawing::Size(75, 23);
+			this->btnDelete->TabIndex = 8;
+			this->btnDelete->Text = L"Eliminar";
+			this->btnDelete->UseVisualStyleBackColor = true;
 			// 
 			// dgvProducts
 			// 
 			this->dgvProducts->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dgvProducts->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
-				this->Id, this->Name,
-					this->Description, this->Price, this->Stock
+			this->dgvProducts->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
+				this->Id, this->Nombre,
+					this->description, this->price
 			});
-			this->dgvProducts->Location = System::Drawing::Point(28, 135);
+			this->dgvProducts->Location = System::Drawing::Point(84, 184);
 			this->dgvProducts->Name = L"dgvProducts";
-			this->dgvProducts->Size = System::Drawing::Size(395, 150);
-			this->dgvProducts->TabIndex = 7;
+			this->dgvProducts->Size = System::Drawing::Size(240, 150);
+			this->dgvProducts->TabIndex = 9;
+			this->dgvProducts->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &ProductForm::dataGridView1_CellContentClick);
 			// 
 			// Id
 			// 
-			this->Id->FillWeight = 25;
 			this->Id->HeaderText = L"Id";
 			this->Id->Name = L"Id";
 			// 
-			// Name
+			// Nombre
 			// 
-			this->Name->HeaderText = L"Nombre";
-			this->Name->Name = L"Name";
+			this->Nombre->HeaderText = L"name";
+			this->Nombre->Name = L"Nombre";
 			// 
-			// Description
+			// description
 			// 
-			this->Description->FillWeight = 200;
-			this->Description->HeaderText = L"Descripcion";
-			this->Description->Name = L"Description";
+			this->description->HeaderText = L"Descripcion";
+			this->description->Name = L"description";
 			// 
-			// Price
+			// price
 			// 
-			this->Price->HeaderText = L"Precio";
-			this->Price->Name = L"Price";
-			// 
-			// Stock
-			// 
-			this->Stock->HeaderText = L"Stock";
-			this->Stock->Name = L"Stock";
-			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(51, 99);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
-			this->button1->TabIndex = 8;
-			this->button1->Text = L"Agregar";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &ProductForm::button1_Click);
-			// 
-			// button2
-			// 
-			this->button2->Location = System::Drawing::Point(158, 99);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(75, 23);
-			this->button2->TabIndex = 9;
-			this->button2->Text = L"Modificar";
-			this->button2->UseVisualStyleBackColor = true;
-			// 
-			// button3
-			// 
-			this->button3->Location = System::Drawing::Point(302, 98);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(75, 23);
-			this->button3->TabIndex = 10;
-			this->button3->Text = L"Eliminar";
-			this->button3->UseVisualStyleBackColor = true;
+			this->price->HeaderText = L"Precio";
+			this->price->Name = L"price";
 			// 
 			// ProductForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(435, 297);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
+			this->ClientSize = System::Drawing::Size(504, 346);
 			this->Controls->Add(this->dgvProducts);
-			this->Controls->Add(this->txtName);
-			this->Controls->Add(this->txtId);
+			this->Controls->Add(this->btnDelete);
+			this->Controls->Add(this->btnAdd);
+			this->Controls->Add(this->btnUpdate);
+			this->Controls->Add(this->txtDescription);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
-			this->Controls->Add(this->label1);
+			this->Controls->Add(this->txtPrice);
+			this->Controls->Add(this->txtName);
+			this->Controls->Add(this->lblName);
 			this->Name = L"ProductForm";
 			this->Text = L"ProductForm";
 			this->Load += gcnew System::EventHandler(this, &ProductForm::ProductForm_Load);
@@ -223,27 +223,36 @@ namespace StansaGUI {
 		}
 #pragma endregion
 
-	public: void RefreshDGVProducts(){
-		List<Product^>^ productList = ModStansaController::QueryAllProduct();
-		//lstProducts->Items->Clear();
-		dgvProducts->Rows->Clear();
-		for (int i = 0; i < productList->Count; i++){
-			dgvProducts->Rows->Add(gcnew array<String^>{
-				"" + productList[i]->id,
-					productList[i]->name,
-					"" + productList[i]->description,
-					"" + productList[i]->price});
+		void RefreshDGVProducts(){
+			List<Product^>^ productList = ModStansaController::QueryAllProduct();
+			//lstProducts->Items->Clear();
+			dgvProducts->Rows->Clear();
+			for (int i = 0; i < productList->Count; i++){
+				dgvProducts->Rows->Add(gcnew array<String^>{
+					"" + productList[i]->id,
+						productList[i]->name,
+						"" + productList[i]->description,
+						"" + productList[i]->price});
+			}
 		}
+	private: System::Void ProductForm_Load(System::Object^  sender, System::EventArgs^  e) {
 	}
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-		String^ sId = txtId->Text;
+	private: System::Void btnAdd_Click(System::Object^  sender, System::EventArgs^  e) {
 		String^ name = txtName->Text;
+		String^ descripcion = txtDescription->Text;
+		String^ precio = txtPrice->Text;
 
 		Product^ p = gcnew Product();
-		p->id = (Int32::Parse(sId));
 		p->name = name;
+		p->description = descripcion;
+		p->price = Double::Parse(precio);
+
 		ModStansaController::AddProduct(p);
 		RefreshDGVProducts();
 	}
+
+	private: System::Void dataGridView1_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
+	}
 };
 }
+
