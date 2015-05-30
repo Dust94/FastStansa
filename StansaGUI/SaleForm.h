@@ -41,18 +41,24 @@ namespace StansaGUI {
 	protected:
 	private: System::Windows::Forms::TextBox^  txtOrdenCustomer;
 	private: System::Windows::Forms::Label^  label3;
-	private: System::Windows::Forms::DataGridView^  dgvProducts;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  id;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Norden;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  name;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  price;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Cantidad;
+	private: System::Windows::Forms::DataGridView^  dgvVenta;
+
+
+
+
+
+
 	private: System::Windows::Forms::Button^  btnSale;
 	private: System::Windows::Forms::Button^  btnProductQuery;
 	private: System::Windows::Forms::TextBox^  txtCantidad;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::TextBox^  txtProduc;
 	private: System::Windows::Forms::Label^  label1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  id;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  name;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  price;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Cantidad;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  totalPrice1Row;
 
 	private:
 		/// <summary>
@@ -70,19 +76,19 @@ namespace StansaGUI {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->txtOrdenCustomer = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->dgvProducts = (gcnew System::Windows::Forms::DataGridView());
-			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Norden = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->price = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Cantidad = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->dgvVenta = (gcnew System::Windows::Forms::DataGridView());
 			this->btnSale = (gcnew System::Windows::Forms::Button());
 			this->btnProductQuery = (gcnew System::Windows::Forms::Button());
 			this->txtCantidad = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->txtProduc = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvProducts))->BeginInit();
+			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->price = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Cantidad = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->totalPrice1Row = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvVenta))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// button1
@@ -110,47 +116,18 @@ namespace StansaGUI {
 			this->label3->TabIndex = 25;
 			this->label3->Text = L"No orden de Customer";
 			// 
-			// dgvProducts
+			// dgvVenta
 			// 
-			this->dgvProducts->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dgvProducts->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
-				this->id, this->Norden,
-					this->name, this->price, this->Cantidad
+			this->dgvVenta->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgvVenta->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
+				this->id, this->name,
+					this->price, this->Cantidad, this->totalPrice1Row
 			});
-			this->dgvProducts->Location = System::Drawing::Point(67, 173);
-			this->dgvProducts->Name = L"dgvProducts";
-			this->dgvProducts->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->dgvProducts->Size = System::Drawing::Size(501, 179);
-			this->dgvProducts->TabIndex = 24;
-			// 
-			// id
-			// 
-			this->id->HeaderText = L"Código";
-			this->id->Name = L"id";
-			this->id->Width = 50;
-			// 
-			// Norden
-			// 
-			this->Norden->HeaderText = L"Customer";
-			this->Norden->Name = L"Norden";
-			// 
-			// name
-			// 
-			this->name->HeaderText = L"Nombre";
-			this->name->Name = L"name";
-			this->name->Width = 150;
-			// 
-			// price
-			// 
-			this->price->HeaderText = L"Precio";
-			this->price->Name = L"price";
-			this->price->Width = 50;
-			// 
-			// Cantidad
-			// 
-			this->Cantidad->HeaderText = L"Cantidad";
-			this->Cantidad->Name = L"Cantidad";
-			this->Cantidad->Width = 50;
+			this->dgvVenta->Location = System::Drawing::Point(67, 173);
+			this->dgvVenta->Name = L"dgvVenta";
+			this->dgvVenta->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
+			this->dgvVenta->Size = System::Drawing::Size(501, 179);
+			this->dgvVenta->TabIndex = 24;
 			// 
 			// btnSale
 			// 
@@ -203,6 +180,35 @@ namespace StansaGUI {
 			this->label1->TabIndex = 18;
 			this->label1->Text = L"Codig del Producto";
 			// 
+			// id
+			// 
+			this->id->HeaderText = L"Código";
+			this->id->Name = L"id";
+			this->id->Width = 50;
+			// 
+			// name
+			// 
+			this->name->HeaderText = L"Nombre";
+			this->name->Name = L"name";
+			this->name->Width = 150;
+			// 
+			// price
+			// 
+			this->price->HeaderText = L"Precio";
+			this->price->Name = L"price";
+			this->price->Width = 50;
+			// 
+			// Cantidad
+			// 
+			this->Cantidad->HeaderText = L"Cantidad";
+			this->Cantidad->Name = L"Cantidad";
+			this->Cantidad->Width = 50;
+			// 
+			// totalPrice1Row
+			// 
+			this->totalPrice1Row->HeaderText = L"SubTotal";
+			this->totalPrice1Row->Name = L"totalPrice1Row";
+			// 
 			// SaleForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -211,7 +217,7 @@ namespace StansaGUI {
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->txtOrdenCustomer);
 			this->Controls->Add(this->label3);
-			this->Controls->Add(this->dgvProducts);
+			this->Controls->Add(this->dgvVenta);
 			this->Controls->Add(this->btnSale);
 			this->Controls->Add(this->btnProductQuery);
 			this->Controls->Add(this->txtCantidad);
@@ -221,7 +227,7 @@ namespace StansaGUI {
 			this->Name = L"SaleForm";
 			this->Text = L"SaleForm";
 			this->Load += gcnew System::EventHandler(this, &SaleForm::SaleForm_Load);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvProducts))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvVenta))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -229,14 +235,25 @@ namespace StansaGUI {
 #pragma endregion
 	private: System::Void SaleForm_Load(System::Object^  sender, System::EventArgs^  e) {
 	}
+
+			 void Add1Row(Product^ p){
+				 String^ cantidad = txtCantidad->Text;
+				 double subtotal = p->price*Double::Parse(cantidad);
+				 dgvVenta->Rows->Add(gcnew array < String^ > {
+					 "" + p->id,
+						 p->name,
+						 "" + p->price,
+						 cantidad,
+						 "" + subtotal});
+	}
 	private: System::Void btnProductQuery_Click(System::Object^  sender, System::EventArgs^  e) {
 		String^ codigo = txtProduc->Text;
-		String^ cantidad = txtCantidad->Text;
-
+		
 		ModStansaController^ Mod1 = gcnew ModStansaController();
 		Product^ p = gcnew Product();
 		p = Mod1->QueryProductById(Int32::Parse(codigo));
-		//Corridita para Marco
+		Add1Row(p);
 	}
+
 };
 }

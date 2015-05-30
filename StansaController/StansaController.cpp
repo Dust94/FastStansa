@@ -645,7 +645,8 @@ Product^ ProductDB::QueryById(int id){
 	if (dr->Read()){
 		p = gcnew Product();
 		p->id = (int)dr["id"];
-		p->name = safe_cast<String^>(dr["name"]);
+		if (dr["name"] != System::DBNull::Value)
+			p->name = safe_cast<String^>(dr["name"]);
 		if (dr["description"] != System::DBNull::Value)
 			p->description = safe_cast<String ^>(dr["description"]);
 		if (dr["price"] != System::DBNull::Value)
