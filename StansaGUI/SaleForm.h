@@ -37,7 +37,9 @@ namespace StansaGUI {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Button^  btnQueryNorden;
+	protected:
+
 	protected:
 	private: System::Windows::Forms::TextBox^  txtOrdenCustomer;
 	private: System::Windows::Forms::Label^  label3;
@@ -59,6 +61,7 @@ namespace StansaGUI {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  price;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Cantidad;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  totalPrice1Row;
+	private: System::Windows::Forms::Label^  lblCustomer;
 
 	private:
 		/// <summary>
@@ -73,7 +76,7 @@ namespace StansaGUI {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->btnQueryNorden = (gcnew System::Windows::Forms::Button());
 			this->txtOrdenCustomer = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->dgvVenta = (gcnew System::Windows::Forms::DataGridView());
@@ -88,29 +91,31 @@ namespace StansaGUI {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->txtProduc = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->lblCustomer = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvVenta))->BeginInit();
 			this->SuspendLayout();
 			// 
-			// button1
+			// btnQueryNorden
 			// 
-			this->button1->Location = System::Drawing::Point(343, 129);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
-			this->button1->TabIndex = 27;
-			this->button1->Text = L"Agregar";
-			this->button1->UseVisualStyleBackColor = true;
+			this->btnQueryNorden->Location = System::Drawing::Point(214, 13);
+			this->btnQueryNorden->Name = L"btnQueryNorden";
+			this->btnQueryNorden->Size = System::Drawing::Size(75, 23);
+			this->btnQueryNorden->TabIndex = 27;
+			this->btnQueryNorden->Text = L"Buscar";
+			this->btnQueryNorden->UseVisualStyleBackColor = true;
+			this->btnQueryNorden->Click += gcnew System::EventHandler(this, &SaleForm::btnQueryNorden_Click);
 			// 
 			// txtOrdenCustomer
 			// 
-			this->txtOrdenCustomer->Location = System::Drawing::Point(205, 129);
+			this->txtOrdenCustomer->Location = System::Drawing::Point(155, 15);
 			this->txtOrdenCustomer->Name = L"txtOrdenCustomer";
-			this->txtOrdenCustomer->Size = System::Drawing::Size(100, 20);
+			this->txtOrdenCustomer->Size = System::Drawing::Size(40, 20);
 			this->txtOrdenCustomer->TabIndex = 26;
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(88, 129);
+			this->label3->Location = System::Drawing::Point(36, 18);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(113, 13);
 			this->label3->TabIndex = 25;
@@ -126,7 +131,7 @@ namespace StansaGUI {
 			this->dgvVenta->Location = System::Drawing::Point(67, 173);
 			this->dgvVenta->Name = L"dgvVenta";
 			this->dgvVenta->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->dgvVenta->Size = System::Drawing::Size(456, 67);
+			this->dgvVenta->Size = System::Drawing::Size(444, 201);
 			this->dgvVenta->TabIndex = 24;
 			// 
 			// id
@@ -160,16 +165,17 @@ namespace StansaGUI {
 			// 
 			// btnSale
 			// 
-			this->btnSale->Location = System::Drawing::Point(493, 129);
+			this->btnSale->Location = System::Drawing::Point(436, 144);
 			this->btnSale->Name = L"btnSale";
 			this->btnSale->Size = System::Drawing::Size(75, 23);
 			this->btnSale->TabIndex = 23;
 			this->btnSale->Text = L"Venta";
 			this->btnSale->UseVisualStyleBackColor = true;
+			this->btnSale->Click += gcnew System::EventHandler(this, &SaleForm::btnSale_Click);
 			// 
 			// btnProductQuery
 			// 
-			this->btnProductQuery->Location = System::Drawing::Point(343, 34);
+			this->btnProductQuery->Location = System::Drawing::Point(307, 88);
 			this->btnProductQuery->Name = L"btnProductQuery";
 			this->btnProductQuery->Size = System::Drawing::Size(75, 23);
 			this->btnProductQuery->TabIndex = 22;
@@ -179,7 +185,7 @@ namespace StansaGUI {
 			// 
 			// txtCantidad
 			// 
-			this->txtCantidad->Location = System::Drawing::Point(204, 79);
+			this->txtCantidad->Location = System::Drawing::Point(168, 133);
 			this->txtCantidad->Name = L"txtCantidad";
 			this->txtCantidad->Size = System::Drawing::Size(100, 20);
 			this->txtCantidad->TabIndex = 21;
@@ -187,7 +193,7 @@ namespace StansaGUI {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(102, 79);
+			this->label2->Location = System::Drawing::Point(66, 133);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(49, 13);
 			this->label2->TabIndex = 20;
@@ -195,7 +201,7 @@ namespace StansaGUI {
 			// 
 			// txtProduc
 			// 
-			this->txtProduc->Location = System::Drawing::Point(205, 38);
+			this->txtProduc->Location = System::Drawing::Point(169, 92);
 			this->txtProduc->Name = L"txtProduc";
 			this->txtProduc->Size = System::Drawing::Size(100, 20);
 			this->txtProduc->TabIndex = 19;
@@ -203,18 +209,28 @@ namespace StansaGUI {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(88, 38);
+			this->label1->Location = System::Drawing::Point(52, 92);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(97, 13);
 			this->label1->TabIndex = 18;
 			this->label1->Text = L"Codig del Producto";
+			// 
+			// lblCustomer
+			// 
+			this->lblCustomer->AutoSize = true;
+			this->lblCustomer->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->lblCustomer->Location = System::Drawing::Point(412, 22);
+			this->lblCustomer->Name = L"lblCustomer";
+			this->lblCustomer->Size = System::Drawing::Size(2, 15);
+			this->lblCustomer->TabIndex = 28;
 			// 
 			// SaleForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(635, 386);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->lblCustomer);
+			this->Controls->Add(this->btnQueryNorden);
 			this->Controls->Add(this->txtOrdenCustomer);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->dgvVenta);
@@ -235,16 +251,15 @@ namespace StansaGUI {
 #pragma endregion
 	private: System::Void SaleForm_Load(System::Object^  sender, System::EventArgs^  e) {
 	}
-
-			 void Add1Row(Product^ p){
-				 String^ cantidad = txtCantidad->Text;
-				 double subtotal = p->price*Double::Parse(cantidad);
-				 dgvVenta->Rows->Add(gcnew array < String^ > {
-					 "" + p->id,
-						 p->name,
-						 "" + p->price,
-						 cantidad,
-						 "" + subtotal});
+	public:  void Add1Row(Product^ p){
+		String^ cantidad = txtCantidad->Text;
+		double subtotal = p->price*Double::Parse(cantidad);
+		dgvVenta->Rows->Add(gcnew array < String^ > {
+			"" + p->id,
+				p->name,
+				"" + p->price,
+				cantidad,
+				"" + subtotal});
 	}
 	private: System::Void btnProductQuery_Click(System::Object^  sender, System::EventArgs^  e) {
 		String^ codigo = txtProduc->Text;
@@ -255,5 +270,14 @@ namespace StansaGUI {
 		Add1Row(p);
 	}
 
+private: System::Void btnSale_Click(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void btnQueryNorden_Click(System::Object^  sender, System::EventArgs^  e) {
+	String^ norden = txtOrdenCustomer->Text;
+	ModStansaController^ Mod1 = gcnew ModStansaController();
+	Customer^ u = gcnew Customer();
+	u = Mod1->QueryCustomerByN_orden(Int32::Parse(norden));
+	lblCustomer->Text = u->name;
+}
 };
 }

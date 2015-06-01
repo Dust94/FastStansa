@@ -100,6 +100,8 @@ namespace StansaGUI {
 		User->hora_ini = d1;
 		User->estado = "Esperando";
 		User->hora_fin = d1;//En lugar de Null
+		User->dni = "para modificar";//En lugar de Null
+		User->name = "para modificar";//En lugar de Null
 		lblHora->Text = "" + User->hora_ini;
 		Mod1->AddCustomer(User);
 

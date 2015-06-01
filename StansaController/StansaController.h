@@ -5,7 +5,7 @@
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace FotoLibrary;
-//esta lindooooo
+
 namespace StansaController {
 	public ref class CustomerDB
 	{
@@ -29,7 +29,7 @@ namespace StansaController {
 			void Update(Staff^);
 			void Delete(int id);
 			Staff^ QueryById(int id);
-			Staff^ QueryByDni(int dni);
+			Staff^ QueryByDni(String^ dni);
 			List<Staff^>^ QueryAll();
 	}; //Fin Clase StaffDB
 
@@ -78,9 +78,5 @@ namespace StansaController {
 			static void DeleteProduct(int id);
 			static Product^ QueryProductById(int id);
 			static List<Product^>^ QueryAllProduct();
-
-			//Serializacion
-			//static void PersistToBinaryFile();
-			//static void LoadFromBinaryFile();
 	}; //Fin Clase ModStansaController
 }

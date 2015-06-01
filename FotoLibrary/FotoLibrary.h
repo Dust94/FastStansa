@@ -5,29 +5,29 @@ using namespace System;
 using namespace System::Collections::Generic;
 
 namespace FotoLibrary {
-	public ref class Customer
+	public ref class Persona
+	{
+		public:
+			int id; // Solo se ingresan los valores de la base de datos. No se reinicia cada dia.
+			String^ estado;
+			String^ dni;
+			String^ name;
+	}; // Fin Clase Persona
+
+	public ref class Customer:Persona
 	{
 		public:
 			int n_orden; //Se setea a 0 cada dia
-			int id; // Solo se ingresan los valores de la base de datos. No se reinicia cada dia.
-			String^ estado;
-			String^ name;
 			DateTime^ hora_ini;
 			DateTime^ hora_fin;
 	}; // Fin Clase Customer
 
-	public ref class Staff
+	public ref class Staff:Persona
 	{
-		public:  //Atributos Privados del Usuario
-			int id; // Solo se ingresan los valores de la base de datos. No se reinicia cada dia.
-			int dni;
-			String^ name;
-			String^ Estado;
+		public:
 			DateTime^ hora_entrada;
 			DateTime^ hora_salida;
 			String^ puesto;
-			//ModStansa^ modStansa;
-
 	}; // Fin Clase Staff
 
 	public ref class Product
@@ -64,6 +64,5 @@ namespace FotoLibrary {
 		Customer^ customer;
 		List<SaleDetail^>^ details; //Varias Boletas en un Proceso de Venta
 	};// Fin Clase Sale
-
 
 }
