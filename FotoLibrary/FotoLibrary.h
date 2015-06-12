@@ -28,6 +28,8 @@ namespace FotoLibrary {
 			DateTime^ hora_entrada;
 			DateTime^ hora_salida;
 			String^ puesto;
+			String^ psw;
+			String^ user;
 	}; // Fin Clase Staff
 
 	public ref class Product
