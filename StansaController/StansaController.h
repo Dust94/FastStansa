@@ -8,7 +8,7 @@ using namespace FotoLibrary;
 
 namespace StansaController {
 	public ref class CustomerDB
-	{//Dasdadasdsdas
+	{//Dasdadasdsdas-pipipi-
 		public:
 			List<Customer^> ^ listCustomer;
 		public:
