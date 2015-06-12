@@ -250,6 +250,7 @@ namespace StansaGUI {
 			this->button4->TabIndex = 12;
 			this->button4->Text = L"Buscar";
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &StaffForm::button4_Click);
 			// 
 			// StaffForm
 			// 
@@ -323,7 +324,7 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 			 Staff^ p = gcnew Staff();
 			 p->name=name;
 			 p->dni=dni;
-			 p->estado=estado;
+			 p->puesto=estado;
 			 p->user=user;
 
 			ModStansaController::UpdateStaff(p);
@@ -343,6 +344,22 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 			 }
 
 
+
+}
+private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
+
+			 String^ dni = textBox2->Text;
+			 int intdni = Int32::Parse(dni);
+			 List<Staff^>^ staff = ModStansaController::QueryStaffByDni(intdni);
+			 dgvStaff->Rows->Clear();
+			 for (int i = 0; i < staff->Count; i++){
+				 dgvStaff->Rows->Add(gcnew array < String^ > {
+					 "" + staff[i]->id,
+						 staff[i]->name,
+						 "" + staff[i]->puesto,
+						 staff[i]->user,
+						 });
+			 }
 
 }
 };
