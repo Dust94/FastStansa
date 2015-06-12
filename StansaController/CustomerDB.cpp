@@ -19,7 +19,7 @@ void CustomerDB::Add(Customer ^ p){
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
 	comm->CommandText = "INSERT INTO CustomerDB " +
-		"(status, dni, name, n_order, reciveTime, leftTime) VALUES (@p1,@p2,@p3,@p4,@p5,@p6)";
+		"(dni, name, sex, n_orden, reciveTime, leftTime, status) VALUES (@p1,@p2,@p3,@p4,@p5,@p6,@p7)";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p2 = gcnew SqlParameter("@p2",
@@ -32,24 +32,16 @@ void CustomerDB::Add(Customer ^ p){
 		System::Data::SqlDbType::DateTime);
 	SqlParameter^ p6 = gcnew SqlParameter("@p6",
 		System::Data::SqlDbType::DateTime);
+	SqlParameter^ p7 = gcnew SqlParameter("@p7",
+		System::Data::SqlDbType::VarChar);
 
-	int id; 
-	String^ dni;
-	String^ name;
-	String^ sexo;
-	int n_orden; //Se setea a 0 cada dia
-	DateTime^ hora_ini; //Setea
-	DateTime^ hora_fin;
-	String^ estado;  //Customer: Esperando o Finalizado. 
-	String^ sexo; // Masculino(M) Femenino(F)
-
-
-	p1->Value = p->estado;
-	p2->Value = p->dni;
-	p3->Value = p->name;
+	p1->Value = p->dni;
+	p2->Value = p->name;
+	p3->Value = p->sexo;
 	p4->Value = p->n_orden;
 	p5->Value = p->hora_ini;
 	p6->Value = p->hora_fin;
+	p7->Value = p->estado;
 
 	comm->Parameters->Add(p1);
 	comm->Parameters->Add(p2);
@@ -57,6 +49,7 @@ void CustomerDB::Add(Customer ^ p){
 	comm->Parameters->Add(p4);
 	comm->Parameters->Add(p5);
 	comm->Parameters->Add(p6);
+	comm->Parameters->Add(p7);
 	//Paso 3: Ejecución de la sentencia
 	comm->ExecuteNonQuery();
 	//Paso 4: Cerramos la conexión con la BD
@@ -74,8 +67,8 @@ void CustomerDB::Update(Customer^ p){
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
 	comm->CommandText = "UPDATE CustomerDB" +
-		"SET status=@p1, dni=@p2,name=@p3, n_order=@p4, reciveTime=@p5, leftTime=@p6  " +
-		"WHERE id=@p7";
+		"SET dni=@p1, name=@p2, sex=@p3, n_order=@p4, reciveTime=@p5, leftTime=@p6, status=@p7 " +
+		"WHERE id=@p8"; 
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p2 = gcnew SqlParameter("@p2",
@@ -89,15 +82,18 @@ void CustomerDB::Update(Customer^ p){
 	SqlParameter^ p6 = gcnew SqlParameter("@p6",
 		System::Data::SqlDbType::DateTime);
 	SqlParameter^ p7 = gcnew SqlParameter("@p7",
+		System::Data::SqlDbType::VarChar);
+	SqlParameter^ p8 = gcnew SqlParameter("@p8",
 		System::Data::SqlDbType::Int);
 
-	p1->Value = p->estado;
-	p2->Value = p->dni;
-	p3->Value = p->name;
+	p1->Value = p->dni;
+	p2->Value = p->name;
+	p3->Value = p->sexo;
 	p4->Value = p->n_orden;
 	p5->Value = p->hora_ini;
 	p6->Value = p->hora_fin;
-	p7->Value = p->id;
+	p7->Value = p->estado;
+	p8->Value = p->id;
 
 	comm->Parameters->Add(p1);
 	comm->Parameters->Add(p2);
@@ -106,6 +102,7 @@ void CustomerDB::Update(Customer^ p){
 	comm->Parameters->Add(p5);
 	comm->Parameters->Add(p6);
 	comm->Parameters->Add(p7);
+	comm->Parameters->Add(p8);
 
 	//Paso 3: Ejecución de la sentencia
 	comm->ExecuteNonQuery();
