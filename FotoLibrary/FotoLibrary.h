@@ -9,7 +9,7 @@ namespace FotoLibrary {
 	{
 		public:
 			int id; // Solo se ingresan los valores de la base de datos. No se reinicia cada dia.
-			String^ estado;
+			String^ estado;  //Customer: Esperando o  Finalizando. Staff: Ocupado o Libre
 			String^ dni;
 			String^ name;
 	}; // Fin Clase Persona
@@ -18,19 +18,19 @@ namespace FotoLibrary {
 	{
 		public:
 			int n_orden; //Se setea a 0 cada dia
-			DateTime^ hora_ini;
+			DateTime^ hora_ini; //Setea
 			DateTime^ hora_fin;
 	}; // Fin Clase Customer
+
 	public ref class Staff:Persona
 	{
 		public:
-			DateTime^ hora_entrada;
-			DateTime^ hora_salida;
+			DateTime^ hora_entrada; //Hora de Entrada al Trabajo
+			DateTime^ hora_salida; //Hora de Salida del Trabajo
 			String^ puesto;
-			String^ psw;
+			String^ password;
 			String^ user;
 	}; // Fin Clase Staff
-	//HOLA
 
 	public ref class Product
 	{
@@ -54,8 +54,9 @@ namespace FotoLibrary {
 		int quantity;
 		double subTotal;
 		Product^ product;
-		Staff^ Staff;
-	};// Fin Clase SaleDetail
+		Staff^ staff; //Quien ejecuto la venta
+		Customer^ customer; //Para Obtener el Numero de Orden del Usuario
+	}; // Fin Clase SaleDetail
 
 	public ref class Sale {
 	public:
