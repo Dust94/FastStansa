@@ -1,6 +1,10 @@
 //StaffDB
 #pragma once
 
+#include "StaffDB.h"
+#include "CustomerDB.h"
+#include "ProductDB.h"
+
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace FotoLibrary;
