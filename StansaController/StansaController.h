@@ -1,4 +1,5 @@
 // StansaController.h
+////sesy Dustin
 
 #pragma once
 
@@ -19,8 +20,7 @@ namespace StansaController {
 			Customer^ QueryByN_orden(int n_orden);
 			List<Customer^>^ QueryAll();
 	}; //Fin Clase CustomerDB
-	//MARCO AURELIO ES FELIZ ESTANDO AKL ALDO DE DUSTIN 
-	//dustin es webon
+	
 	public ref class StaffDB
 	{
 		public:
