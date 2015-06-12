@@ -30,6 +30,7 @@ namespace FotoLibrary {
 			String^ psw;
 			String^ user;
 	}; // Fin Clase Staff
+	//HOLA
 
 	public ref class Product
 	{
