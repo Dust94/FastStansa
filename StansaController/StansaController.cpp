@@ -257,7 +257,7 @@ void StaffDB::Add(Staff^p){
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
 		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
-	//Paso 2: Preparamos la sentenciafffff
+	//Paso 2: Preparamos la sentenciafffffdasdas
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
 	comm->CommandText = "INSERT INTO StaffDB" +
