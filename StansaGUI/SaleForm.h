@@ -269,7 +269,9 @@ namespace StansaGUI {
 		p = Mod1->QueryProductById(Int32::Parse(codigo));
 		Add1Row(p);
 	}
-
+//dustin se la come enterita3edsfdr
+			 //sdcdecsdcscsdcs
+			 //calla mierda
 private: System::Void btnSale_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 private: System::Void btnQueryNorden_Click(System::Object^  sender, System::EventArgs^  e) {
