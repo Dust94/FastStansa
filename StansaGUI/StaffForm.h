@@ -52,13 +52,13 @@ namespace StansaGUI {
 	private: System::Windows::Forms::TextBox^  textBox4;
 	private: System::Windows::Forms::DataGridView^  dgvStaff;
 
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Id;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Nombre;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  DNI;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Estado;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  User;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  HoraInicio;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Horasalida;
+
+
+
+
+
+
+
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::Button^  button3;
@@ -66,6 +66,14 @@ namespace StansaGUI {
 	private: System::Windows::Forms::Label^  label5;
 	private: System::Windows::Forms::RadioButton^  radioButton1;
 	private: System::Windows::Forms::RadioButton^  radioButton2;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Id;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Sexo;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Nombre;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  DNI;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Estado;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  User;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  HoraInicio;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Horasalida;
 
 
 
@@ -91,13 +99,6 @@ namespace StansaGUI {
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->dgvStaff = (gcnew System::Windows::Forms::DataGridView());
-			this->Id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Nombre = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->DNI = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Estado = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->User = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->HoraInicio = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Horasalida = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
@@ -105,6 +106,14 @@ namespace StansaGUI {
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
+			this->Id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Sexo = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Nombre = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->DNI = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Estado = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->User = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->HoraInicio = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Horasalida = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvStaff))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -176,49 +185,15 @@ namespace StansaGUI {
 			// 
 			this->dgvStaff->AccessibleName = L"dgvStaff";
 			this->dgvStaff->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dgvStaff->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(7) {
-				this->Id, this->Nombre,
-					this->DNI, this->Estado, this->User, this->HoraInicio, this->Horasalida
+			this->dgvStaff->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(8) {
+				this->Id, this->Sexo,
+					this->Nombre, this->DNI, this->Estado, this->User, this->HoraInicio, this->Horasalida
 			});
-			this->dgvStaff->Location = System::Drawing::Point(46, 270);
+			this->dgvStaff->Location = System::Drawing::Point(36, 270);
 			this->dgvStaff->Name = L"dgvStaff";
 			this->dgvStaff->Size = System::Drawing::Size(740, 150);
 			this->dgvStaff->TabIndex = 8;
-			// 
-			// Id
-			// 
-			this->Id->HeaderText = L"Id";
-			this->Id->Name = L"Id";
-			// 
-			// Nombre
-			// 
-			this->Nombre->HeaderText = L"Nombre";
-			this->Nombre->Name = L"Nombre";
-			// 
-			// DNI
-			// 
-			this->DNI->HeaderText = L"DNI";
-			this->DNI->Name = L"DNI";
-			// 
-			// Estado
-			// 
-			this->Estado->HeaderText = L"Estado";
-			this->Estado->Name = L"Estado";
-			// 
-			// User
-			// 
-			this->User->HeaderText = L"User";
-			this->User->Name = L"User";
-			// 
-			// HoraInicio
-			// 
-			this->HoraInicio->HeaderText = L"Hora Inicio";
-			this->HoraInicio->Name = L"HoraInicio";
-			// 
-			// Horasalida
-			// 
-			this->Horasalida->HeaderText = L"Hora salida";
-			this->Horasalida->Name = L"Horasalida";
+			this->dgvStaff->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &StaffForm::dgvStaff_CellContentClick);
 			// 
 			// button1
 			// 
@@ -290,6 +265,47 @@ namespace StansaGUI {
 			this->radioButton2->TabStop = true;
 			this->radioButton2->Text = L"femenino";
 			this->radioButton2->UseVisualStyleBackColor = true;
+			this->radioButton2->CheckedChanged += gcnew System::EventHandler(this, &StaffForm::radioButton2_CheckedChanged);
+			// 
+			// Id
+			// 
+			this->Id->HeaderText = L"Id";
+			this->Id->Name = L"Id";
+			// 
+			// Sexo
+			// 
+			this->Sexo->HeaderText = L"Sexo";
+			this->Sexo->Name = L"Sexo";
+			// 
+			// Nombre
+			// 
+			this->Nombre->HeaderText = L"Nombre";
+			this->Nombre->Name = L"Nombre";
+			// 
+			// DNI
+			// 
+			this->DNI->HeaderText = L"DNI";
+			this->DNI->Name = L"DNI";
+			// 
+			// Estado
+			// 
+			this->Estado->HeaderText = L"Estado";
+			this->Estado->Name = L"Estado";
+			// 
+			// User
+			// 
+			this->User->HeaderText = L"User";
+			this->User->Name = L"User";
+			// 
+			// HoraInicio
+			// 
+			this->HoraInicio->HeaderText = L"Hora Inicio";
+			this->HoraInicio->Name = L"HoraInicio";
+			// 
+			// Horasalida
+			// 
+			this->Horasalida->HeaderText = L"Hora salida";
+			this->Horasalida->Name = L"Horasalida";
 			// 
 			// StaffForm
 			// 
@@ -332,7 +348,8 @@ namespace StansaGUI {
 						staffList[i]->name,
 						"" + staffList[i]->name,
 						"" + staffList[i]->dni,
-						"" + staffList[i]->estado,
+						"" + staffList[i]->puesto,
+						"" + staffList[i]->sexo,
 						"" + staffList[i]->user});
 			}
 		}
@@ -341,14 +358,18 @@ namespace StansaGUI {
 				 String^ dni=textBox2->Text;
 				 String^ estado = textBox3->Text;
 				 String^ user = textBox4->Text;
-
+				 String^ sexo;
+				 Staff^ s = gcnew Staff();
+				 
+				 if (radioButton1->Checked) s->sexo = "M";
+				 else s->sexo = "F";
 
 				 Staff^ p = gcnew Staff();
 				 p->name = name;
 				 p->dni = dni;
-				 p->estado = estado;
+				 p->puesto = estado;
 				 p->user = user;
-				 
+				 p->sexo = sexo;
 				 
 				 ModStansaController::AddStaff(p);
 				 RefreshDGVStaff();
@@ -400,9 +421,14 @@ private: System::Void button4_Click(System::Object^  sender, System::EventArgs^ 
 						 staff[i]->name,
 						 "" + staff[i]->puesto,
 						 staff[i]->user,
+						 staff[i]->sexo,
 						 });
 			 }
 
+}
+private: System::Void radioButton2_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void dgvStaff_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
 }
 };
 }
