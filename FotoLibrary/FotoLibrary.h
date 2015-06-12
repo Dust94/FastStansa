@@ -21,7 +21,6 @@ namespace FotoLibrary {
 			DateTime^ hora_ini; //Setea
 			DateTime^ hora_fin;
 			String^ estado;  //Customer: Esperando o Finalizado. 
-			String^ sexo; // Masculino(M) Femenino(F)
 	}; // Fin Clase Customer
 
 	public ref class Staff:Persona
