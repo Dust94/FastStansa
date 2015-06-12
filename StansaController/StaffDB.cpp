@@ -19,32 +19,33 @@ void StaffDB::Add(Staff^p){
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
 	comm->CommandText = "INSERT INTO StaffDB" +
-		"(status, dni, name, inTime, outTime, position, user, password	) VALUES (@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8)";
+		"(inTime, outTime, position, user, password, sex, dni, name) VALUES (@p1,@p2,@p3,@p4,@p5,@p6,@p7, p@8)";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::Time);
 	SqlParameter^ p2 = gcnew SqlParameter("@p2",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::Time);
 	SqlParameter^ p3 = gcnew SqlParameter("@p3",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p4 = gcnew SqlParameter("@p4",
-		System::Data::SqlDbType::DateTime);
-	SqlParameter^ p5 = gcnew SqlParameter("@p5",
-		System::Data::SqlDbType::DateTime);
-	SqlParameter^ p6 = gcnew SqlParameter("@p6",
 		System::Data::SqlDbType::VarChar);
+	SqlParameter^ p5 = gcnew SqlParameter("@p5",
+		System::Data::SqlDbType::VarChar);
+	SqlParameter^ p6 = gcnew SqlParameter("@p6",
+		System::Data::SqlDbType::Char);
 	SqlParameter^ p7 = gcnew SqlParameter("@p7",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p8 = gcnew SqlParameter("@p8",
 		System::Data::SqlDbType::VarChar);
+	
 
-	p1->Value = p->estado;
-	p2->Value = p->dni;
-	p3->Value = p->name;
-	p4->Value = p->hora_entrada;
-	p5->Value = p->hora_salida;
-	p6->Value = p->puesto;
-	p7->Value = p->user;
-	p8->Value = p->psw;
+	p1->Value = p->hora_entrada;
+	p2->Value = p->hora_salida;
+	p3->Value = p->puesto;
+	p4->Value = p->user;
+	p5->Value = p->password;
+	p6->Value = p->sexo;
+	p7->Value = p->dni;
+	p8->Value = p->name;
 
 	comm->Parameters->Add(p1);
 	comm->Parameters->Add(p2);
@@ -73,37 +74,37 @@ void StaffDB::Update(Staff^p){
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
 	comm->CommandText = "UPDATE StaffDB" +
-		"SET status=@p1, dni=@p2, name=@p3 ,inTime=@p4, outTime=@p5, position=@p6, user=@p8, password=@p9" +
-		"WHERE id=@p7";
+		"SET inTime=@p1, outTime=@p2, position=@p3 , user=@p4, password=@p5, sex=@p6, dni=@p7, dni=@p8" +
+		"WHERE id=@p9";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::Time);
 	SqlParameter^ p2 = gcnew SqlParameter("@p2",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::Time);
 	SqlParameter^ p3 = gcnew SqlParameter("@p3",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p4 = gcnew SqlParameter("@p4",
-		System::Data::SqlDbType::DateTime);
-	SqlParameter^ p5 = gcnew SqlParameter("@p5",
-		System::Data::SqlDbType::DateTime);
-	SqlParameter^ p6 = gcnew SqlParameter("@p6",
 		System::Data::SqlDbType::VarChar);
+	SqlParameter^ p5 = gcnew SqlParameter("@p5",
+		System::Data::SqlDbType::VarChar);
+	SqlParameter^ p6 = gcnew SqlParameter("@p6",
+		System::Data::SqlDbType::Char);
 	SqlParameter^ p7 = gcnew SqlParameter("@p7",
-		System::Data::SqlDbType::Int);
+		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p8 = gcnew SqlParameter("@p8",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p9 = gcnew SqlParameter("@p9",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::Int);
 
 
-	p1->Value = p->estado;
-	p2->Value = p->dni;
-	p3->Value = p->name;
-	p4->Value = p->hora_entrada;
-	p5->Value = p->hora_salida;
-	p6->Value = p->puesto;
-	p7->Value = p->id;
-	p8->Value = p->user;
-	p9->Value = p->psw;
+	p1->Value = p->hora_entrada;
+	p2->Value = p->hora_salida;
+	p3->Value = p->puesto;
+	p4->Value = p->user;
+	p5->Value = p->password;
+	p6->Value = p->sexo;
+	p7->Value = p->dni;
+	p8->Value = p->name;
+	p9->Value = p->id;
 
 	comm->Parameters->Add(p1);
 	comm->Parameters->Add(p2);
@@ -114,7 +115,6 @@ void StaffDB::Update(Staff^p){
 	comm->Parameters->Add(p7);
 	comm->Parameters->Add(p8);
 	comm->Parameters->Add(p9);
-
 
 
 	//Paso 3: Ejecución de la sentencia
@@ -171,8 +171,8 @@ Staff^ StaffDB::QueryById(int id){
 	if (dr->Read()){
 		p = gcnew Staff();
 		p->id = (int)dr["id"];
-		if (dr["status"] != System::DBNull::Value)
-			p->estado = safe_cast<String^>(dr["status"]);
+		if (dr["sex"] != System::DBNull::Value)
+			p->sexo = safe_cast<String^>(dr["status"]);
 		if (dr["dni"] != System::DBNull::Value)
 			p->dni = safe_cast<String^>(dr["dni"]);
 		if (dr["name"] != System::DBNull::Value)
@@ -218,8 +218,8 @@ Staff^ StaffDB::QueryByDni(String^ dni){
 	if (dr->Read()){
 		p = gcnew Staff();
 		p->id = (int)dr["id"];
-		if (dr["status"] != System::DBNull::Value)
-			p->estado = safe_cast<String^>(dr["status"]);
+		if (dr["sex"] != System::DBNull::Value)
+			p->sexo = safe_cast<String^>(dr["status"]);
 		if (dr["dni"] != System::DBNull::Value)
 			p->dni = safe_cast<String^>(dr["dni"]);
 		if (dr["name"] != System::DBNull::Value)
@@ -260,8 +260,8 @@ List<Staff^>^ StaffDB::QueryAll(){
 	while (dr->Read()){
 		Staff^p = gcnew Staff();
 		p->id = (int)dr["id"];
-		if (dr["status"] != System::DBNull::Value)
-			p->estado = safe_cast<String^>(dr["status"]);
+		if (dr["sex"] != System::DBNull::Value)
+			p->sexo = safe_cast<String^>(dr["status"]);
 		if (dr["dni"] != System::DBNull::Value)
 			p->dni = safe_cast<String^>(dr["dni"]);
 		if (dr["name"] != System::DBNull::Value)
