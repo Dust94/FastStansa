@@ -26,6 +26,8 @@ namespace StansaGUI {
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			RefreshDGVStaff();
+		
 		}
 
 	protected:
@@ -61,6 +63,9 @@ namespace StansaGUI {
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::Button^  button3;
 	private: System::Windows::Forms::Button^  button4;
+	private: System::Windows::Forms::Label^  label5;
+	private: System::Windows::Forms::RadioButton^  radioButton1;
+	private: System::Windows::Forms::RadioButton^  radioButton2;
 
 
 
@@ -97,6 +102,9 @@ namespace StansaGUI {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvStaff))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -252,11 +260,45 @@ namespace StansaGUI {
 			this->button4->UseVisualStyleBackColor = true;
 			this->button4->Click += gcnew System::EventHandler(this, &StaffForm::button4_Click);
 			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(57, 202);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(29, 13);
+			this->label5->TabIndex = 13;
+			this->label5->Text = L"sexo";
+			// 
+			// radioButton1
+			// 
+			this->radioButton1->AutoSize = true;
+			this->radioButton1->Location = System::Drawing::Point(156, 202);
+			this->radioButton1->Name = L"radioButton1";
+			this->radioButton1->Size = System::Drawing::Size(72, 17);
+			this->radioButton1->TabIndex = 14;
+			this->radioButton1->TabStop = true;
+			this->radioButton1->Text = L"masculino";
+			this->radioButton1->UseVisualStyleBackColor = true;
+			// 
+			// radioButton2
+			// 
+			this->radioButton2->AutoSize = true;
+			this->radioButton2->Location = System::Drawing::Point(244, 202);
+			this->radioButton2->Name = L"radioButton2";
+			this->radioButton2->Size = System::Drawing::Size(68, 17);
+			this->radioButton2->TabIndex = 15;
+			this->radioButton2->TabStop = true;
+			this->radioButton2->Text = L"femenino";
+			this->radioButton2->UseVisualStyleBackColor = true;
+			// 
 			// StaffForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(811, 432);
+			this->Controls->Add(this->radioButton2);
+			this->Controls->Add(this->radioButton1);
+			this->Controls->Add(this->label5);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
