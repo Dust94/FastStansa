@@ -26,6 +26,7 @@ namespace StansaGUI {
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			//
 		
 		}
 
