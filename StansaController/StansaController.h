@@ -19,7 +19,7 @@ namespace StansaController {
 			Customer^ QueryByN_orden(int n_orden);
 			List<Customer^>^ QueryAll();
 	}; //Fin Clase CustomerDB
-
+	//MARCO AURELIO ES FELIZ ESTANDO AKL ALDO DE DUSTIN 
 	public ref class StaffDB
 	{
 		public:

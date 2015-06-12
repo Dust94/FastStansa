@@ -21,7 +21,6 @@ namespace FotoLibrary {
 			DateTime^ hora_ini;
 			DateTime^ hora_fin;
 	}; // Fin Clase Customer
-	//dUSTIN ERES UN GAY
 	public ref class Staff:Persona
 	{
 		public:
