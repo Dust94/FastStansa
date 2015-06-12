@@ -278,7 +278,7 @@ void StaffDB::Add(Staff^p){
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p8 = gcnew SqlParameter("@p8",
 		System::Data::SqlDbType::VarChar);
-	//6+26+56+5JCGHKCGYKC
+	//6+26+56+5JCGHKCGYKCHUKV
 	p1->Value = p->estado;
 	p2->Value = p->dni;
 	p3->Value = p->name;
