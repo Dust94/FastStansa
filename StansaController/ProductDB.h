@@ -5,6 +5,7 @@ using namespace System;
 using namespace System::Collections::Generic;
 using namespace FotoLibrary;
 
+
 namespace StansaController {
 	public ref class ProductDB
 	{

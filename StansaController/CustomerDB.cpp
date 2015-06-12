@@ -33,6 +33,17 @@ void CustomerDB::Add(Customer ^ p){
 	SqlParameter^ p6 = gcnew SqlParameter("@p6",
 		System::Data::SqlDbType::DateTime);
 
+	int id; 
+	String^ dni;
+	String^ name;
+	String^ sexo;
+	int n_orden; //Se setea a 0 cada dia
+	DateTime^ hora_ini; //Setea
+	DateTime^ hora_fin;
+	String^ estado;  //Customer: Esperando o Finalizado. 
+	String^ sexo; // Masculino(M) Femenino(F)
+
+
 	p1->Value = p->estado;
 	p2->Value = p->dni;
 	p3->Value = p->name;
