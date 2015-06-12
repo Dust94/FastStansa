@@ -171,8 +171,8 @@ Staff^ StaffDB::QueryById(int id){
 	if (dr->Read()){
 		p = gcnew Staff();
 		p->id = (int)dr["id"];
-		if (dr["status"] != System::DBNull::Value)
-			p->estado = safe_cast<String^>(dr["status"]);
+		if (dr["sex"] != System::DBNull::Value)
+			p->sexo = safe_cast<String^>(dr["status"]);
 		if (dr["dni"] != System::DBNull::Value)
 			p->dni = safe_cast<String^>(dr["dni"]);
 		if (dr["name"] != System::DBNull::Value)
@@ -218,8 +218,8 @@ Staff^ StaffDB::QueryByDni(String^ dni){
 	if (dr->Read()){
 		p = gcnew Staff();
 		p->id = (int)dr["id"];
-		if (dr["status"] != System::DBNull::Value)
-			p->estado = safe_cast<String^>(dr["status"]);
+		if (dr["sex"] != System::DBNull::Value)
+			p->sexo = safe_cast<String^>(dr["status"]);
 		if (dr["dni"] != System::DBNull::Value)
 			p->dni = safe_cast<String^>(dr["dni"]);
 		if (dr["name"] != System::DBNull::Value)
@@ -260,8 +260,8 @@ List<Staff^>^ StaffDB::QueryAll(){
 	while (dr->Read()){
 		Staff^p = gcnew Staff();
 		p->id = (int)dr["id"];
-		if (dr["status"] != System::DBNull::Value)
-			p->estado = safe_cast<String^>(dr["status"]);
+		if (dr["sex"] != System::DBNull::Value)
+			p->sexo = safe_cast<String^>(dr["status"]);
 		if (dr["dni"] != System::DBNull::Value)
 			p->dni = safe_cast<String^>(dr["dni"]);
 		if (dr["name"] != System::DBNull::Value)
