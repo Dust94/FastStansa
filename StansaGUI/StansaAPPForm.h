@@ -13,12 +13,14 @@ namespace StansaGUI {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-
+	using namespace System::Threading;
 	/// <summary>
 	/// Summary for StansaAPPForm
 	/// </summary>
 	public ref class StansaAPPForm : public System::Windows::Forms::Form
 	{
+	private:
+		Thread ^ myThread;
 	public:
 		StansaAPPForm(void)
 		{
@@ -26,7 +28,27 @@ namespace StansaGUI {
 			//
 			//TODO: Add the constructor code here
 			//
+			myThread = gcnew Thread(gcnew ThreadStart(this, &StansaAPPForm::MyRun));
+			myThread->Start();
 		}
+		void MyRun(){
+			while (true) {
+
+				DateTime^ now = DateTime::Now;
+				Invoke(gcnew delegateUpdateTitle(this, &StansaAPPForm::UpdateTitle),
+					gcnew array<String^>{"Sistema de Ventas " + now->ToString("hh:mm:ss")});
+				Thread::Sleep(1000);
+				if (!this->Visible)
+					return;
+			}
+		}
+
+		delegate void delegateUpdateTitle(String^);
+
+		void UpdateTitle(String ^newTitle){
+			this->Text = newTitle;
+		}
+
 
 	protected:
 		/// <summary>
