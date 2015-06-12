@@ -1,6 +1,4 @@
 // StansaController.h
-////sesy Dustin
-
 #pragma once
 
 using namespace System;
@@ -9,7 +7,7 @@ using namespace FotoLibrary;
 
 namespace StansaController {
 	public ref class CustomerDB
-	{//Dasdadasdsdas-pipipi-
+	{
 		public:
 			List<Customer^> ^ listCustomer;
 		public:

@@ -11,6 +11,7 @@ namespace FotoLibrary {
 			int id; // Solo se ingresan los valores de la base de datos. No se reinicia cada dia.
 			String^ dni;
 			String^ name;
+			String^ sexo; // Masculino(M) Femenino(F) sera luego un char
 	}; // Fin Clase Persona
 
 	public ref class Customer:Persona
