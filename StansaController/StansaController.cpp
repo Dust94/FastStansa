@@ -274,6 +274,10 @@ void StaffDB::Add(Staff^p){
 		System::Data::SqlDbType::DateTime);
 	SqlParameter^ p6 = gcnew SqlParameter("@p6",
 		System::Data::SqlDbType::VarChar);
+	SqlParameter^ p7 = gcnew SqlParameter("@p7",
+		System::Data::SqlDbType::VarChar);
+	SqlParameter^ p8 = gcnew SqlParameter("@p8",
+		System::Data::SqlDbType::VarChar);
 
 	p1->Value = p->estado;
 	p2->Value = p->dni;
