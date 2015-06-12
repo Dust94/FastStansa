@@ -133,6 +133,7 @@ namespace StansaGUI {
 			this->dgvVenta->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
 			this->dgvVenta->Size = System::Drawing::Size(444, 201);
 			this->dgvVenta->TabIndex = 24;
+			this->dgvVenta->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &SaleForm::dgvVenta_CellContentClick);
 			// 
 			// id
 			// 
@@ -280,6 +281,8 @@ private: System::Void btnQueryNorden_Click(System::Object^  sender, System::Even
 	Customer^ u = gcnew Customer();
 	u = Mod1->QueryCustomerByN_orden(Int32::Parse(norden));
 	lblCustomer->Text = u->name;
+}
+private: System::Void dgvVenta_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
 }
 };
 }
