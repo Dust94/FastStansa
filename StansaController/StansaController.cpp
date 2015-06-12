@@ -261,7 +261,7 @@ void StaffDB::Add(Staff^p){
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
 	comm->CommandText = "INSERT INTO StaffDB" +
-		"(status, dni, name, inTime, outTime, position) VALUES (@p1,@p2,@p3,@p4,@p5,@p6)";
+		"(status, dni, name, inTime, outTime, position) VALUES (@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8)";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p2 = gcnew SqlParameter("@p2",
@@ -278,13 +278,15 @@ void StaffDB::Add(Staff^p){
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p8 = gcnew SqlParameter("@p8",
 		System::Data::SqlDbType::VarChar);
-	//6+XC
+	
 	p1->Value = p->estado;
 	p2->Value = p->dni;
 	p3->Value = p->name;
 	p4->Value = p->hora_entrada;
 	p5->Value = p->hora_salida;
 	p6->Value = p->puesto;
+	p7->Value = p->user;
+	p8->Value = p->psw;
 
 	comm->Parameters->Add(p1);
 	comm->Parameters->Add(p2);
