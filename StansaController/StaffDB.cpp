@@ -44,7 +44,7 @@ void StaffDB::Add(Staff^p){
 	p5->Value = p->hora_salida;
 	p6->Value = p->puesto;
 	p7->Value = p->user;
-	p8->Value = p->psw;
+	p8->Value = p->password; //pullse
 
 	comm->Parameters->Add(p1);
 	comm->Parameters->Add(p2);
