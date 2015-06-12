@@ -111,6 +111,7 @@ namespace StansaGUI {
 			this->txtOrdenCustomer->Name = L"txtOrdenCustomer";
 			this->txtOrdenCustomer->Size = System::Drawing::Size(40, 20);
 			this->txtOrdenCustomer->TabIndex = 26;
+			this->txtOrdenCustomer->TextChanged += gcnew System::EventHandler(this, &SaleForm::txtOrdenCustomer_TextChanged);
 			// 
 			// label3
 			// 
@@ -128,10 +129,10 @@ namespace StansaGUI {
 				this->id, this->name,
 					this->price, this->Cantidad, this->totalPrice1Row
 			});
-			this->dgvVenta->Location = System::Drawing::Point(67, 173);
+			this->dgvVenta->Location = System::Drawing::Point(39, 173);
 			this->dgvVenta->Name = L"dgvVenta";
 			this->dgvVenta->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->dgvVenta->Size = System::Drawing::Size(444, 201);
+			this->dgvVenta->Size = System::Drawing::Size(562, 201);
 			this->dgvVenta->TabIndex = 24;
 			this->dgvVenta->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &SaleForm::dgvVenta_CellContentClick);
 			// 
@@ -270,9 +271,7 @@ namespace StansaGUI {
 		p = Mod1->QueryProductById(Int32::Parse(codigo));
 		Add1Row(p);
 	}
-//dustin se la come enterita3edsfdr
-			 //sdcdecsdcscsdcs
-			 //calla mierda
+
 private: System::Void btnSale_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 private: System::Void btnQueryNorden_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -283,6 +282,8 @@ private: System::Void btnQueryNorden_Click(System::Object^  sender, System::Even
 	lblCustomer->Text = u->name;
 }
 private: System::Void dgvVenta_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
+}
+private: System::Void txtOrdenCustomer_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 }

@@ -1,4 +1,5 @@
 // StansaController.h
+////sesy Dustin
 
 #pragma once
 
@@ -8,7 +9,7 @@ using namespace FotoLibrary;
 
 namespace StansaController {
 	public ref class CustomerDB
-	{
+	{//Dasdadasdsdas-pipipi-
 		public:
 			List<Customer^> ^ listCustomer;
 		public:
@@ -19,6 +20,7 @@ namespace StansaController {
 			Customer^ QueryByN_orden(int n_orden);
 			List<Customer^>^ QueryAll();
 	}; //Fin Clase CustomerDB
+	
 	public ref class StaffDB
 	{
 		public:

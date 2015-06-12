@@ -92,6 +92,7 @@
     <ClCompile Include="Lector_PruebaForm.cpp" />
     <ClCompile Include="ProductForm.cpp" />
     <ClCompile Include="SaleForm.cpp" />
+    <ClCompile Include="StaffForm.cpp" />
     <ClCompile Include="StansaAPPForm.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +103,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="SaleForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="StaffForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="StansaAPPForm.h">
@@ -117,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SaleForm.resx">
       <DependentUpon>SaleForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StaffForm.resx">
+      <DependentUpon>StaffForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StansaAPPForm.resx">
       <DependentUpon>StansaAPPForm.h</DependentUpon>
