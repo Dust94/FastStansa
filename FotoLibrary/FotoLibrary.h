@@ -66,6 +66,6 @@ namespace FotoLibrary {
 		DateTime^ date; // Dia de la Venta
 		Customer^ customer;
 		List<SaleDetail^>^ details; //Varias Boletas en un Proceso de Venta
-	};// Fin Clase Sale
+	};// Fin Clase Sale.
 
 }
