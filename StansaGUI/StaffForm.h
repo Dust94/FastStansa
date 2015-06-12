@@ -224,12 +224,13 @@ namespace StansaGUI {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(518, 88);
+			this->button2->Location = System::Drawing::Point(518, 93);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);
 			this->button2->TabIndex = 10;
 			this->button2->Text = L"Actualizar";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &StaffForm::button2_Click);
 			// 
 			// button3
 			// 
@@ -239,6 +240,7 @@ namespace StansaGUI {
 			this->button3->TabIndex = 11;
 			this->button3->Text = L"Eliminar";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &StaffForm::button3_Click);
 			// 
 			// button4
 			// 
@@ -248,6 +250,7 @@ namespace StansaGUI {
 			this->button4->TabIndex = 12;
 			this->button4->Text = L"Buscar";
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &StaffForm::button4_Click);
 			// 
 			// StaffForm
 			// 
@@ -311,5 +314,53 @@ namespace StansaGUI {
 	
 	
 	
+private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+			 String^ name = textBox1->Text;
+			 String^ dni = textBox2->Text;
+			 String^ estado = textBox3->Text;
+			 String^ user = textBox4->Text;
+		
+
+			 Staff^ p = gcnew Staff();
+			 p->name=name;
+			 p->dni=dni;
+			 p->puesto=estado;
+			 p->user=user;
+
+			ModStansaController::UpdateStaff(p);
+			 RefreshDGVStaff();
+
+
+}
+private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
+			 if (dgvStaff->CurrentCell != nullptr &&
+				 dgvStaff->CurrentCell->Value != nullptr &&
+				 dgvStaff->CurrentCell->Value->ToString() != "") {
+				 String^ idStaff = dgvStaff->SelectedRows[0]->
+					 Cells[1]->Value->ToString();
+
+				 ModStansaController::DeleteStaff(Int32::Parse(idStaff));
+				 RefreshDGVStaff();
+			 }
+
+
+
+}
+private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
+
+			 String^ dni = textBox2->Text;
+			 int intdni = Int32::Parse(dni);
+			 List<Staff^>^ staff = ModStansaController::QueryStaffByDni(intdni);
+			 dgvStaff->Rows->Clear();
+			 for (int i = 0; i < staff->Count; i++){
+				 dgvStaff->Rows->Add(gcnew array < String^ > {
+					 "" + staff[i]->id,
+						 staff[i]->name,
+						 "" + staff[i]->puesto,
+						 staff[i]->user,
+						 });
+			 }
+
+}
 };
 }
