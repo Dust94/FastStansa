@@ -227,6 +227,7 @@ namespace StansaGUI {
 			this->btnQueryNorden->TabIndex = 33;
 			this->btnQueryNorden->Text = L"Buscar";
 			this->btnQueryNorden->UseVisualStyleBackColor = true;
+			this->btnQueryNorden->Click += gcnew System::EventHandler(this, &SaleForm::btnQueryNorden_Click);
 			// 
 			// txtOrdenCustomer
 			// 
@@ -288,7 +289,7 @@ namespace StansaGUI {
 		}
 #pragma endregion
 public: void RefreshDGVProducts(){
-			List< Product^ >^ productList = ModStansaController::QueryAllProduct();
+			List<Product^>^ ModStansaController::QueryAllProduct();
 			//lstProducts->Items->Clear();
 			ProductDGV->Rows->Clear();
 			for (int i = 0; i < productList->Count; i++){
@@ -307,7 +308,7 @@ public: void RefreshDGVProducts(){
 					for (int i = 0; i < productList->Count; i++){
 						ProductDGV->Rows->Add(gcnew array<String^>{
 							"" + productList[i]->id,
-								productList[i]->GetName(),
+								productList[i]->costumer,
 								"" + productList[i]->GetStock(),
 								"" + productList[i]->GetPrice()});
 					}
@@ -323,5 +324,13 @@ public: void RefreshDGVProducts(){
 	
 	}
 				 
+private: System::Void btnQueryNorden_Click(System::Object^  sender, System::EventArgs^  e) {
+
+			 String^ idorden = txtOrdenCustomer->Text;
+			 int orden = Int32::Parse(idorden);
+			String^ costumer = ModStansaController::QueryCustomerById(orden);
+			 RefreshDGVVenta();
+
+}
 };
 }
