@@ -7,7 +7,7 @@ using namespace System::Runtime::Serialization;
 using namespace System::Runtime::Serialization::Formatters::Binary;
 using namespace System::Data::SqlClient;
 
-
+//hola amigo estoy haciendo una prueba
 void ModStansaDB::Add(ModStansaController ^ p){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
