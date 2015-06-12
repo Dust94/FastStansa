@@ -21,14 +21,16 @@ namespace FotoLibrary {
 			DateTime^ hora_ini;
 			DateTime^ hora_fin;
 	}; // Fin Clase Customer
-
 	public ref class Staff:Persona
 	{
 		public:
 			DateTime^ hora_entrada;
 			DateTime^ hora_salida;
 			String^ puesto;
+			String^ psw;
+			String^ user;
 	}; // Fin Clase Staff
+	//HOLA
 
 	public ref class Product
 	{
