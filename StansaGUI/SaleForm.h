@@ -1,4 +1,5 @@
 #pragma once
+//#include "ProductDB.h"
 
 namespace StansaGUI {
 
@@ -12,6 +13,7 @@ namespace StansaGUI {
 	using namespace StansaController;
 	using namespace BossStansaController;
 	using namespace System::Collections::Generic;
+
 	/// <summary>
 	/// Summary for SaleForm
 	/// </summary>
@@ -289,7 +291,7 @@ namespace StansaGUI {
 		}
 #pragma endregion
 public: void RefreshDGVProducts(){
-			List<Product^>^ productList =  ModStansaController::QueryAllProduct();
+			List<FotoLibrary::Product^>^ productList =  ModStansaController::QueryAllProduct();
 			//lstProducts->Items->Clear();
 			ProductDGV->Rows->Clear();
 			for (int i = 0; i < productList->Count; i++){
@@ -297,22 +299,22 @@ public: void RefreshDGVProducts(){
 					"" + productList[i]->id,
 						productList[i]->name,
 						"" + productList[i]->stock,
-						"" + productList[i]->GetPrice()});
+						"" + productList[i]->price});
 			}
 }
 		
-		public: void RefreshDGVVenta(){
-					List< Product^ >^ productList = ModStansaController::();
+		/* public: void RefreshDGVVenta(){
+					List< FotoLibrary::Product^ >^ productList = ModStansaController::QueryAllProduct();
 					//lstProducts->Items->Clear();
 					ProductDGV->Rows->Clear();
 					for (int i = 0; i < productList->Count; i++){
-						ProductDGV->Rows->Add(gcnew array<String^>{
-							"" + productList[i]->id,
-								productList[i]->costumer,
-								"" + productList[i]->GetStock(),
-								"" + productList[i]->GetPrice()});
+				ProductDGV->Rows->Add(gcnew array<String^>{
+					"" + productList[i]->id,
+						productList[i]->name,
+						"" + productList[i]->stock,
+						"" + productList[i]->price});
 					}
-		}
+		}*/
 
 
 //dustin gay
@@ -326,10 +328,10 @@ public: void RefreshDGVProducts(){
 				 
 private: System::Void btnQueryNorden_Click(System::Object^  sender, System::EventArgs^  e) {
 
-			 String^ idorden = txtOrdenCustomer->Text;
-			 int orden = Int32::Parse(idorden);
-			String^ costumer = ModStansaController::QueryCustomerById(orden);
-			 RefreshDGVVenta();
+			 String^ orden = txtOrdenCustomer->Text;
+			 int intorden = Int32::Parse(orden);
+			 Customer^ costumer = ModStansaController::QueryCustomerByN_orden(intorden);
+			 
 
 }
 };

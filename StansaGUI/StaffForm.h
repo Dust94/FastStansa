@@ -1,5 +1,4 @@
 #pragma once
-
 namespace StansaGUI {
 
 
@@ -413,8 +412,7 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
 
 			 String^ dni = textBox2->Text;
-			 int intdni = Int32::Parse(dni);
-			 List<Staff^>^ staff = ModStansaController::QueryStaffByDni(intdni);
+			 List<FotoLibrary::Staff^>^ staff = ModStansaController::QueryStaffByDni(dni);
 			 dgvStaff->Rows->Clear();
 			 for (int i = 0; i < staff->Count; i++){
 				 dgvStaff->Rows->Add(gcnew array < String^ > {
