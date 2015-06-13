@@ -289,14 +289,14 @@ namespace StansaGUI {
 		}
 #pragma endregion
 public: void RefreshDGVProducts(){
-			List<Product^>^ ModStansaController::QueryAllProduct();
+			List<Product^>^ productList =  ModStansaController::QueryAllProduct();
 			//lstProducts->Items->Clear();
 			ProductDGV->Rows->Clear();
 			for (int i = 0; i < productList->Count; i++){
 				ProductDGV->Rows->Add(gcnew array<String^>{
 					"" + productList[i]->id,
-						productList[i]->GetName(),
-						"" + productList[i]->GetStock(),
+						productList[i]->name,
+						"" + productList[i]->stock,
 						"" + productList[i]->GetPrice()});
 			}
 }

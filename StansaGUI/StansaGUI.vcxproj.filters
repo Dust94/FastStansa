@@ -30,6 +30,9 @@
     <ClCompile Include="StaffForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AcessFormh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SaleForm.h">
@@ -47,6 +50,9 @@
     <ClInclude Include="StaffForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AcessFormh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="StansaAPPForm.resx">
@@ -59,6 +65,9 @@
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="SaleForm.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StaffForm.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>
