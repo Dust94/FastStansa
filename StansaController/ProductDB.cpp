@@ -31,7 +31,7 @@ void ProductDB::Add(Product ^ p){
 		System::Data::SqlDbType::Int);
 	p1->Value = p->name;
 	p2->Value = p->description;
-	p3->Value = p->price;
+	p3->Value = safe_cast<float>(p->price);
 	p4->Value = p->stock;
 
 	comm->Parameters->Add(p1);
@@ -41,7 +41,6 @@ void ProductDB::Add(Product ^ p){
 
 	//Paso 3: Ejecución de la sentencia
 	comm->ExecuteNonQuery();
-
 	//Paso 4: Cerramos la conexión con la BD
 	conn->Close();
 }
@@ -71,7 +70,7 @@ void ProductDB::Update(Product^p){
 
 	p1->Value = p->name;
 	p2->Value = p->description;
-	p3->Value = p->price;
+	p3->Value = safe_cast<float>(p->price);
 	p4->Value = p->stock;
 	p5->Value = p->id;
 
@@ -136,11 +135,11 @@ Product^ ProductDB::QueryById(int id){
 		if (dr["name"] != System::DBNull::Value)
 			p->name = safe_cast<String^>(dr["name"]);
 		if (dr["description"] != System::DBNull::Value)
-			p->description = safe_cast<String ^>(dr["description"]);
+			p->description = safe_cast<String^>(dr["description"]);
 		if (dr["price"] != System::DBNull::Value)
 			p->price = safe_cast<double>(dr["price"]);
 		if (dr["stock"] != System::DBNull::Value)
-			p->stock = safe_cast<int>(dr["stock"]);
+			p->stock = (int)dr["stock"];
 	}
 	//Paso 4: Cerramos el dataReader y la conexión con la BD
 	dr->Close();
@@ -169,11 +168,11 @@ List<Product^>^ ProductDB::QueryAll(){
 		if (dr["name"] != System::DBNull::Value)
 			p->name = safe_cast<String^>(dr["name"]);
 		if (dr["description"] != System::DBNull::Value)
-			p->description = safe_cast<String ^>(dr["description"]);
+			p->description = safe_cast<String^>(dr["description"]);
 		if (dr["price"] != System::DBNull::Value)
 			p->price = safe_cast<double>(dr["price"]);
 		if (dr["stock"] != System::DBNull::Value)
-			p->stock = safe_cast<int>(dr["stock"]);
+			p->stock = (int)dr["stock"];
 		productList->Add(p);
 	}
 
