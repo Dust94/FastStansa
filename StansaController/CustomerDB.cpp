@@ -158,19 +158,22 @@ Customer^ CustomerDB::QueryById(int id){
 	if (dr->Read()){
 		p = gcnew Customer();
 		p->id = (int)dr["id"];
-		if (dr["status"] != System::DBNull::Value)
-			p->estado = safe_cast<String^>(dr["status"]);
 		if (dr["dni"] != System::DBNull::Value)
 			p->dni = safe_cast<String^>(dr["dni"]);
 		if (dr["name"] != System::DBNull::Value)
 			p->name = safe_cast<String^>(dr["name"]);
-		if (dr["n_order"] != System::DBNull::Value)
-			p->n_orden = (int)dr["n_order"];
+		if (dr["sex"] != System::DBNull::Value)
+			p->sexo = safe_cast<String^>(dr["sex"]);
+		if (dr["n_orden"] != System::DBNull::Value)
+			p->n_orden = (int)dr["n_orden"];
 		if (dr["reciveTime"] != System::DBNull::Value)
 			p->hora_ini = safe_cast<DateTime^>(dr["reciveTime"]);
 		if (dr["leftTime"] != System::DBNull::Value)
 			p->hora_fin = safe_cast<DateTime^>(dr["leftTime"]);
+		if (dr["status"] != System::DBNull::Value)
+			p->estado = safe_cast<String^>(dr["status"]);
 	}
+
 	//Paso 4: Cerramos el dataReader y la conexión con la BD
 	dr->Close();
 	conn->Close();
@@ -187,7 +190,7 @@ Customer^ CustomerDB::QueryByN_orden(int n_orden){
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
 	comm->CommandText = "SELECT * FROM CustomerDB " +
-		"WHERE n_order=@p1";
+		"WHERE n_orden=@p1";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::Int);
 	p1->Value = n_orden;
@@ -200,18 +203,20 @@ Customer^ CustomerDB::QueryByN_orden(int n_orden){
 	if (dr->Read()){
 		p = gcnew Customer();
 		p->id = (int)dr["id"];
-		if (dr["status"] != System::DBNull::Value)
-			p->estado = safe_cast<String^>(dr["status"]);
 		if (dr["dni"] != System::DBNull::Value)
 			p->dni = safe_cast<String^>(dr["dni"]);
 		if (dr["name"] != System::DBNull::Value)
 			p->name = safe_cast<String^>(dr["name"]);
-		if (dr["n_order"] != System::DBNull::Value)
-			p->n_orden = (int)dr["n_order"];
+		if (dr["sex"] != System::DBNull::Value)
+			p->sexo = safe_cast<String^>(dr["sex"]);
+		if (dr["n_orden"] != System::DBNull::Value)
+			p->n_orden = (int)dr["n_orden"];
 		if (dr["reciveTime"] != System::DBNull::Value)
 			p->hora_ini = safe_cast<DateTime^>(dr["reciveTime"]);
 		if (dr["leftTime"] != System::DBNull::Value)
 			p->hora_fin = safe_cast<DateTime^>(dr["leftTime"]);
+		if (dr["status"] != System::DBNull::Value)
+			p->estado = safe_cast<String^>(dr["status"]);
 	}
 	//Paso 4: Cerramos el dataReader y la conexión con la BD
 	dr->Close();
@@ -236,18 +241,20 @@ List<Customer^>^ CustomerDB::QueryAll(){
 	while (dr->Read()){
 		Customer^ p = gcnew Customer();
 		p->id = (int)dr["id"];
-		if (dr["status"] != System::DBNull::Value)
-			p->estado = safe_cast<String^>(dr["status"]);
 		if (dr["dni"] != System::DBNull::Value)
 			p->dni = safe_cast<String^>(dr["dni"]);
 		if (dr["name"] != System::DBNull::Value)
 			p->name = safe_cast<String^>(dr["name"]);
-		if (dr["n_order"] != System::DBNull::Value)
-			p->n_orden = (int)dr["n_order"];
+		if (dr["sex"] != System::DBNull::Value)
+			p->sexo = safe_cast<String^>(dr["sex"]);
+		if (dr["n_orden"] != System::DBNull::Value)
+			p->n_orden = (int)dr["n_orden"];
 		if (dr["reciveTime"] != System::DBNull::Value)
 			p->hora_ini = safe_cast<DateTime^>(dr["reciveTime"]);
 		if (dr["leftTime"] != System::DBNull::Value)
 			p->hora_fin = safe_cast<DateTime^>(dr["leftTime"]);
+		if (dr["status"] != System::DBNull::Value)
+			p->estado = safe_cast<String^>(dr["status"]);
 		costumerList->Add(p);
 	}
 	//Paso 4: Cerramos el dataReader y la conexión con la BD
