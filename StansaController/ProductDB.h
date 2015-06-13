@@ -10,12 +10,12 @@ namespace StansaController {
 	public ref class ProductDB
 	{
 	public:
-		static List<Product^> ^ listProduct;
+		 List<Product^> ^ listProduct;
 	public:
-		static void Add(Product ^);
-		static void Update(Product^);
-		static void Delete(int id);
-		static Product^ QueryById(int id);
-		static List<Product^>^ QueryAll();
+		 void Add(Product ^);
+		 void Update(Product^);
+		 void Delete(int id);
+		 Product^ QueryById(int id);
+		 List<Product^>^ QueryAll();
 	}; //Fin Clase ProductDB
 }
