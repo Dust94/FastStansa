@@ -1,9 +1,9 @@
 //StaffDB
-#pragma once
-
 #include "StaffDB.h"
 #include "CustomerDB.h"
 #include "ProductDB.h"
+
+#pragma once
 
 using namespace System;
 using namespace System::Collections::Generic;
