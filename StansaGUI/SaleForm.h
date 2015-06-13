@@ -1,4 +1,5 @@
 #pragma once
+//#include "ProductDB.h"
 
 namespace StansaGUI {
 
@@ -12,6 +13,7 @@ namespace StansaGUI {
 	using namespace StansaController;
 	using namespace BossStansaController;
 	using namespace System::Collections::Generic;
+
 	/// <summary>
 	/// Summary for SaleForm
 	/// </summary>
@@ -289,7 +291,7 @@ namespace StansaGUI {
 		}
 #pragma endregion
 public: void RefreshDGVProducts(){
-			List<Product^>^ ModStansaController::QueryAllProduct();
+			List<Product^>^ //ModStansaController::QueryAllProduct();
 			//lstProducts->Items->Clear();
 			ProductDGV->Rows->Clear();
 			for (int i = 0; i < productList->Count; i++){

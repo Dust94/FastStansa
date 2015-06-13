@@ -41,6 +41,7 @@ namespace FotoLibrary {
 			String^ description;
 			double price;
 			int stock;
+		
 	};// Fin Clase Product
 
 	public ref class SaleDetail { //Boleta

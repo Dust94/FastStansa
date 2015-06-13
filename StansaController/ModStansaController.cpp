@@ -41,8 +41,8 @@ void ModStansaController::DeleteStaff(int id){
 Staff^ ModStansaController::QueryStaffById(int id){
 	return staffDB->QueryById(id);
 }
-Staff^ ModStansaController::QueryStaffByDni(int dni){
-	return staffDB->QueryById(dni);
+Staff^ ModStansaController::QueryStaffByDni(String^ dni){
+	return staffDB->QueryByDni(dni);
 }
 List<Staff^>^ ModStansaController::QueryAllStaff(){
 	return staffDB->QueryAll();

@@ -34,7 +34,7 @@ namespace StansaController {
 		static void UpdateStaff(Staff^);
 		static void DeleteStaff(int id);
 		static Staff^ QueryStaffById(int id);
-		static Staff^ QueryStaffByDni(int dni);
+		static Staff^ QueryStaffByDni(String^ dni);
 		static List<Staff^>^ QueryAllStaff();
 
 		//metodos de clase globlales para Product
