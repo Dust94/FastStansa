@@ -19,9 +19,9 @@ void StaffDB::Add(Staff^p){
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
 	comm->CommandText = "INSERT INTO StaffDB" +
-		"(status, dni, name, inTime, outTime, position, user, password	) VALUES (@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8)";
+		"(sex, dni, name, inTime, outTime, position, user, password	) VALUES (@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8)";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::Char);
 	SqlParameter^ p2 = gcnew SqlParameter("@p2",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p3 = gcnew SqlParameter("@p3",
@@ -37,7 +37,7 @@ void StaffDB::Add(Staff^p){
 	SqlParameter^ p8 = gcnew SqlParameter("@p8",
 		System::Data::SqlDbType::VarChar);
 
-	p1->Value = p->estado;
+	p1->Value = p->sexo;
 	p2->Value = p->dni;
 	p3->Value = p->name;
 	p4->Value = p->hora_entrada;
@@ -73,10 +73,10 @@ void StaffDB::Update(Staff^p){
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
 	comm->CommandText = "UPDATE StaffDB" +
-		"SET status=@p1, dni=@p2, name=@p3 ,inTime=@p4, outTime=@p5, position=@p6, user=@p8, password=@p9" +
+		"SET sex=@p1, dni=@p2, name=@p3 ,inTime=@p4, outTime=@p5, position=@p6, user=@p8, password=@p9" +
 		"WHERE id=@p7";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::Char);
 	SqlParameter^ p2 = gcnew SqlParameter("@p2",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p3 = gcnew SqlParameter("@p3",
@@ -95,7 +95,7 @@ void StaffDB::Update(Staff^p){
 		System::Data::SqlDbType::VarChar);
 
 
-	p1->Value = p->estado;
+	p1->Value = p->sexo;
 	p2->Value = p->dni;
 	p3->Value = p->name;
 	p4->Value = p->hora_entrada;
@@ -103,7 +103,7 @@ void StaffDB::Update(Staff^p){
 	p6->Value = p->puesto;
 	p7->Value = p->id;
 	p8->Value = p->user;
-	p9->Value = p->psw;
+	p9->Value = p->password;
 
 	comm->Parameters->Add(p1);
 	comm->Parameters->Add(p2);
