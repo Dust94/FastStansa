@@ -1,6 +1,9 @@
 
 #include "stdafx.h"
 #include "ModStansaController.h"
+#include "StaffDB.h"
+#include "CustomerDB.h"
+#include "ProductDB.h"
 
 using namespace StansaController;
 using namespace System::IO;

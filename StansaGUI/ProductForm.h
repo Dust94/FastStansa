@@ -26,6 +26,7 @@ namespace StansaGUI {
 			//
 			//TODO: Add the constructor code here
 			//
+			RefreshDGVProducts();
 		}
 
 	protected:

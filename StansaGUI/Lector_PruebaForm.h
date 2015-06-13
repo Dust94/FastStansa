@@ -96,15 +96,13 @@ namespace StansaGUI {
 	private: System::Void btnBuildUser_Click(System::Object^  sender, System::EventArgs^  e) {
 		Customer^ User = gcnew Customer(); //Creo un objeto Usuario
 		DateTime^ d1 = DateTime::Now; //Creo un objeto DateTime con la hora actual
-		ModStansaController^ Mod1 = gcnew ModStansaController();
-		User->hora_ini = d1;
+				User->hora_ini = d1;
 		User->estado = "Esperando";
 		User->hora_fin = d1;//En lugar de Null
 		User->dni = "para modificar";//En lugar de Null
 		User->name = "para modificar";//En lugar de Null
 		lblHora->Text = "" + User->hora_ini;
-		Mod1->AddCustomer(User);
-
+		ModStansaController::AddCustomer(User);
 	}
 	private: System::Void Lector_PruebaForm_Load(System::Object^  sender, System::EventArgs^  e) {
 	}
