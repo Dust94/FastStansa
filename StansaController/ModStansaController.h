@@ -1,10 +1,6 @@
-
-
-
 #include "StaffDB.h"
 #include "CustomerDB.h"
 #include "ProductDB.h"
-#pragma once
 
 #pragma once
 
@@ -48,6 +44,3 @@ namespace StansaController {
 		static List<Product^>^ QueryAllProduct();
 	}; //Fin Clase ModStansaController
 }
-//dustin se la come
-
-//italo travestilllh
