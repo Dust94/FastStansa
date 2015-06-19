@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-//ModStansaController
-=======
-//
 
->>>>>>> 08efadc6c9e4bb19d62bf8e9fb83971e26182047
+
+
 #include "StaffDB.h"
 #include "CustomerDB.h"
 #include "ProductDB.h"
@@ -51,3 +48,4 @@ namespace StansaController {
 		static List<Product^>^ QueryAllProduct();
 	}; //Fin Clase ModStansaController
 }
+//dustin se la come
