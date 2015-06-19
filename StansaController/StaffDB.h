@@ -11,11 +11,11 @@ namespace StansaController {
 	public:
 		List<Staff^> ^ listStaff;
 	public:
-		void Add(Staff ^);
-		void Update(Staff^);
-		void Delete(int id);
-		Staff^ QueryById(int id);
-		Staff^ QueryByDni(String^ dni);
-		List<Staff^>^ QueryAll();
+		 void Add(Staff ^);
+		 void Update(Staff^);
+		 void Delete(int id);
+		 Staff^ QueryById(int id);
+		 Staff^ QueryByDni(String^ dni);
+		 List<Staff^>^ QueryAll();
 	}; //Fin Clase StaffDB
 }

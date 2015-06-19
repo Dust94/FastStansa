@@ -3,6 +3,7 @@
 
 using namespace System;
 using namespace System::Collections::Generic;
+using namespace System::Collections;
 
 namespace FotoLibrary {
 	public ref class Persona
@@ -41,6 +42,7 @@ namespace FotoLibrary {
 			String^ description;
 			double price;
 			int stock;
+		
 	};// Fin Clase Product
 
 	public ref class SaleDetail { //Boleta

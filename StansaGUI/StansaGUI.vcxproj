@@ -89,6 +89,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AcessFormh.cpp" />
     <ClCompile Include="Lector_PruebaForm.cpp" />
     <ClCompile Include="ProductForm.cpp" />
     <ClCompile Include="SaleForm.cpp" />
@@ -96,6 +97,9 @@
     <ClCompile Include="StansaAPPForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AcessFormh.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Lector_PruebaForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -113,6 +117,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AcessFormh.resx">
+      <DependentUpon>AcessFormh.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Lector_PruebaForm.resx">
       <DependentUpon>Lector_PruebaForm.h</DependentUpon>
     </EmbeddedResource>

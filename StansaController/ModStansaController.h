@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 //ModStansaController
+=======
+//
+
+>>>>>>> 08efadc6c9e4bb19d62bf8e9fb83971e26182047
 #include "StaffDB.h"
 #include "CustomerDB.h"
 #include "ProductDB.h"
+#pragma once
 
 #pragma once
 
@@ -34,7 +40,7 @@ namespace StansaController {
 		static void UpdateStaff(Staff^);
 		static void DeleteStaff(int id);
 		static Staff^ QueryStaffById(int id);
-		static Staff^ QueryStaffByDni(int dni);
+		static Staff^ QueryStaffByDni(String^ dni);
 		static List<Staff^>^ QueryAllStaff();
 
 		//metodos de clase globlales para Product

@@ -153,7 +153,7 @@ ModStansaController^ ModStansaDB::QueryById(int id){
 		if (dr["ubicacion"] != System::DBNull::Value)
 			p->ubicacion = safe_cast<String ^>(dr["ubicacion"]);
 		if (dr["operatingMachines"] != System::DBNull::Value)
-			p->operatingMachines = safe_cast<double>(dr["operatingMachines"]);
+			p->operatingMachines = safe_cast<int>(dr["operatingMachines"]);
 
 	}
 	//Paso 4: Cerramos el dataReader y la conexión con la BD
@@ -185,7 +185,7 @@ List<ModStansaController^>^ ModStansaDB::QueryAll(){
 		if (dr["ubicacion"] != System::DBNull::Value)
 			p->ubicacion = safe_cast<String ^>(dr["ubicacion"]);
 		if (dr["operatingMachines"] != System::DBNull::Value)
-			p->operatingMachines = safe_cast<double>(dr["operatingMachines"]);
+			p->operatingMachines = safe_cast<int>(dr["operatingMachines"]);
 
 		productList->Add(p);
 	}

@@ -1,6 +1,9 @@
 
 #include "stdafx.h"
 #include "ModStansaController.h"
+#include "StaffDB.h"
+#include "CustomerDB.h"
+#include "ProductDB.h"
 
 using namespace StansaController;
 using namespace System::IO;
@@ -41,8 +44,8 @@ void ModStansaController::DeleteStaff(int id){
 Staff^ ModStansaController::QueryStaffById(int id){
 	return staffDB->QueryById(id);
 }
-Staff^ ModStansaController::QueryStaffByDni(int dni){
-	return staffDB->QueryById(dni);
+Staff^ ModStansaController::QueryStaffByDni(String^ dni){
+	return staffDB->QueryByDni(dni);
 }
 List<Staff^>^ ModStansaController::QueryAllStaff(){
 	return staffDB->QueryAll();

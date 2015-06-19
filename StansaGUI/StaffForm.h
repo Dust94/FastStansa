@@ -1,5 +1,4 @@
 #pragma once
-
 namespace StansaGUI {
 
 
@@ -356,23 +355,21 @@ namespace StansaGUI {
 		}
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 				 String^ name = textBox1->Text;
-				 String^ dni=textBox2->Text;
+				 String^ dni = textBox2->Text;
 				 String^ estado = textBox3->Text;
-				 String^ user = textBox4->Text;
-				 String^ sexo;
+				 String^ muser = textBox4->Text;
 				 Staff^ s = gcnew Staff();
 				 
 				 if (radioButton1->Checked) s->sexo = "M";
 				 else s->sexo = "F";
-
-				 Staff^ p = gcnew Staff();
-				 p->name = name;
-				 p->dni = dni;
-				 p->puesto = estado;
-				 p->user = user;
-				 p->sexo = sexo;
-				 
-				 ModStansaController::AddStaff(p);
+				 s->name = name;
+				 s->dni = dni;
+				 s->puesto = estado;
+				 s->user = muser;
+				 s->hora_entrada = DateTime::Now;
+				 s->hora_salida = DateTime::Now;
+				 s->password = muser;
+				 ModStansaController::AddStaff(s);
 				 RefreshDGVStaff();
 	}
 	
@@ -413,18 +410,7 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
 
 			 String^ dni = textBox2->Text;
-			 int intdni = Int32::Parse(dni);
-			 List<Staff^>^ staff = ModStansaController::QueryStaffByDni(intdni);
-			 dgvStaff->Rows->Clear();
-			 for (int i = 0; i < staff->Count; i++){
-				 dgvStaff->Rows->Add(gcnew array < String^ > {
-					 "" + staff[i]->id,
-						 staff[i]->name,
-						 "" + staff[i]->puesto,
-						 staff[i]->user,
-						 staff[i]->sexo,
-						 });
-			 }
+			 Staff^ staff = ModStansaController::QueryStaffByDni(dni);
 
 }
 private: System::Void radioButton2_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {

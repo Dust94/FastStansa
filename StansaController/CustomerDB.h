@@ -11,11 +11,11 @@ namespace StansaController {
 	public:
 		List<Customer^> ^ listCustomer;
 	public:
-		void Add(Customer ^);
-		void Update(Customer^);
-		void Delete(int);
-		Customer^ QueryById(int);
-		Customer^ QueryByN_orden(int n_orden);
-		List<Customer^>^ QueryAll();
+		 void Add(Customer ^);
+		 void Update(Customer^);
+		 void Delete(int);
+		 Customer^ QueryById(int);
+		 Customer^ QueryByN_orden(int n_orden);
+		 List<Customer^>^ QueryAll();
 	}; //Fin Clase CustomerDB
 }

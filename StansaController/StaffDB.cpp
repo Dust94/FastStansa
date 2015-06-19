@@ -18,7 +18,7 @@ void StaffDB::Add(Staff^p){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "INSERT INTO StaffDB" +
+	comm->CommandText = "INSERT INTO StaffDB " +
 		"(sex, dni, name, inTime, outTime, position, user, password	) VALUES (@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8)";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::Char);
@@ -44,7 +44,7 @@ void StaffDB::Add(Staff^p){
 	p5->Value = p->hora_salida;
 	p6->Value = p->puesto;
 	p7->Value = p->user;
-	p8->Value = p->password; //pullse
+	p8->Value = p->password; 
 
 	comm->Parameters->Add(p1);
 	comm->Parameters->Add(p2);
@@ -54,7 +54,6 @@ void StaffDB::Add(Staff^p){
 	comm->Parameters->Add(p6);
 	comm->Parameters->Add(p7);
 	comm->Parameters->Add(p8);
-
 
 
 	//Paso 3: Ejecución de la sentencia
@@ -73,8 +72,8 @@ void StaffDB::Update(Staff^p){
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
 	comm->CommandText = "UPDATE StaffDB" +
-		"SET sex=@p1, dni=@p2, name=@p3 ,inTime=@p4, outTime=@p5, position=@p6, user=@p8, password=@p9" +
-		"WHERE id=@p7";
+		"SET sex=@p1, dni=@p2, name=@p3 ,inTime=@p4, outTime=@p5, position=@p6, user=@p7, password=@p8" +
+		"WHERE id=@p9";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::Char);
 	SqlParameter^ p2 = gcnew SqlParameter("@p2",
@@ -88,11 +87,11 @@ void StaffDB::Update(Staff^p){
 	SqlParameter^ p6 = gcnew SqlParameter("@p6",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p7 = gcnew SqlParameter("@p7",
-		System::Data::SqlDbType::Int);
+		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p8 = gcnew SqlParameter("@p8",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p9 = gcnew SqlParameter("@p9",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::Int);
 
 
 	p1->Value = p->sexo;
@@ -204,7 +203,7 @@ Staff^ StaffDB::QueryByDni(String^ dni){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "SELECT * FROM StaffDB" +
+	comm->CommandText = "SELECT * FROM StaffDB " +
 		"WHERE dni=@p1";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::VarChar);
