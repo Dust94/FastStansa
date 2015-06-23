@@ -7,8 +7,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FotoLibrary", "FotoLibrary\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StansaController", "StansaController\StansaController.vcxproj", "{AF7D6EC8-82F8-4D90-89E2-0F1A985BB910}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BossStansaController", "BossStansaController\BossStansaController.vcxproj", "{BE3B7A50-3BB7-47F0-A51F-FF50706CC8F0}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StansaGUI", "StansaGUI\StansaGUI.vcxproj", "{FE61FF62-2DAF-4F1E-BF45-5BB792EAC40E}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{AF7D6EC8-82F8-4D90-89E2-0F1A985BB910}.Debug|Win32.Build.0 = Debug|Win32
 		{AF7D6EC8-82F8-4D90-89E2-0F1A985BB910}.Release|Win32.ActiveCfg = Release|Win32
 		{AF7D6EC8-82F8-4D90-89E2-0F1A985BB910}.Release|Win32.Build.0 = Release|Win32
-		{BE3B7A50-3BB7-47F0-A51F-FF50706CC8F0}.Debug|Win32.ActiveCfg = Debug|Win32
-		{BE3B7A50-3BB7-47F0-A51F-FF50706CC8F0}.Debug|Win32.Build.0 = Debug|Win32
-		{BE3B7A50-3BB7-47F0-A51F-FF50706CC8F0}.Release|Win32.ActiveCfg = Release|Win32
-		{BE3B7A50-3BB7-47F0-A51F-FF50706CC8F0}.Release|Win32.Build.0 = Release|Win32
 		{FE61FF62-2DAF-4F1E-BF45-5BB792EAC40E}.Debug|Win32.ActiveCfg = Debug|Win32
 		{FE61FF62-2DAF-4F1E-BF45-5BB792EAC40E}.Debug|Win32.Build.0 = Debug|Win32
 		{FE61FF62-2DAF-4F1E-BF45-5BB792EAC40E}.Release|Win32.ActiveCfg = Release|Win32

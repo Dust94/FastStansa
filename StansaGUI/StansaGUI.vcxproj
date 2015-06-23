@@ -71,9 +71,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BossStansaController\BossStansaController.vcxproj">
-      <Project>{be3b7a50-3bb7-47f0-a51f-ff50706cc8f0}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\FotoLibrary\FotoLibrary.vcxproj">
       <Project>{87713fc9-4edb-45e8-a71a-fc6d6acc0d13}</Project>
     </ProjectReference>

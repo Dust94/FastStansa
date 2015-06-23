@@ -21,16 +21,7 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CustomerDB.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ProductDB.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StaffDB.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ModStansaController.h">
+    <ClInclude Include="StansaController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -50,7 +41,13 @@
     <ClCompile Include="StaffDB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ModStansaController.cpp">
+    <ClCompile Include="ModuloStansaDB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AttentionDB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StansaManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

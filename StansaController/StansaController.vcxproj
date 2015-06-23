@@ -76,19 +76,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CustomerDB.h" />
-    <ClInclude Include="ModStansaController.h" />
-    <ClInclude Include="ProductDB.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="StaffDB.h" />
+    <ClInclude Include="StansaController.h" />
     <ClInclude Include="Stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="AttentionDB.cpp" />
     <ClCompile Include="CustomerDB.cpp" />
-    <ClCompile Include="ModStansaController.cpp" />
+    <ClCompile Include="ModuloStansaDB.cpp" />
     <ClCompile Include="ProductDB.cpp" />
     <ClCompile Include="StaffDB.cpp" />
+    <ClCompile Include="StansaManager.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
