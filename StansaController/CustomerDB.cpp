@@ -18,7 +18,7 @@ void CustomerDB::Add(Customer^ c){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "INSERT INTO CustomerDB" +
+	comm->CommandText = "INSERT INTO CustomerDB " +
 		" (dni, name, apellido_Paterno, apellido_Materno, sexo, username, password, codigoPUCP, facultad)" +
 		" VALUES (@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9)";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
@@ -301,7 +301,7 @@ List<Customer^>^ CustomerDB::QueryAll(){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "SELECT * FROM CustomerDB";
+	comm->CommandText = "SELECT * FROM CustomerDB ";
 
 	//Paso 3: Ejecución de la sentencia
 	SqlDataReader^ dr = comm->ExecuteReader();
