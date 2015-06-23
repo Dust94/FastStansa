@@ -19,7 +19,7 @@ void ProductDB::Add(Product^ p){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "INSERT INTO CustomerDB " +
+	comm->CommandText = "INSERT INTO ProductDB " +
 		" (name, description, price, stock)" +
 		" VALUES (@p1,@p2,@p3,@p4)";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
@@ -62,7 +62,7 @@ void ProductDB::Update(Product^ p){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "UPDATE CustomerDB " +
+	comm->CommandText = "UPDATE ProductDB " +
 		"SET name=@p1, description=@p2, price=@p3, stock=@p4 " +
 		" WHERE id=@p5";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
@@ -107,7 +107,7 @@ void ProductDB::Delete(int id){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "DELETE FROM CustomerDB " +
+	comm->CommandText = "DELETE FROM ProductDB " +
 		"WHERE id=@p1";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::Int);
@@ -131,7 +131,7 @@ Product^ ProductDB::QueryById(int id){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "SELECT * FROM CustomerDB " +
+	comm->CommandText = "SELECT * FROM ProductDB " +
 		"WHERE id=@p1";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::Int);
@@ -172,7 +172,7 @@ List<Product^>^ ProductDB::QueryAll(){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "SELECT * FROM CustomerDB ";
+	comm->CommandText = "SELECT * FROM ProductDB ";
 
 	//Paso 3: Ejecución de la sentencia
 	SqlDataReader^ dr = comm->ExecuteReader();

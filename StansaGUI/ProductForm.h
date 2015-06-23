@@ -10,7 +10,6 @@ namespace StansaGUI {
 	using namespace System::Drawing;
 	using namespace System::Collections::Generic;
 	using namespace FotoLibrary;
-	using namespace BossStansaController;
 	using namespace StansaController;
 
 
@@ -53,11 +52,19 @@ namespace StansaGUI {
 	private: System::Windows::Forms::Button^  btnAdd;
 	private: System::Windows::Forms::Button^  btnDelete;
 	private: System::Windows::Forms::DataGridView^  dgvProducts;
-
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Id;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Nombre;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  description;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  price;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  stock;
+	private: System::Windows::Forms::Label^  label1;
+	private: System::Windows::Forms::TextBox^  txtstock;
+
+
+
+
+
+
 
 
 	private:
@@ -87,6 +94,9 @@ namespace StansaGUI {
 			this->Nombre = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->description = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->price = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->stock = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->txtstock = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvProducts))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -103,14 +113,14 @@ namespace StansaGUI {
 			// 
 			this->txtName->Location = System::Drawing::Point(196, 18);
 			this->txtName->Name = L"txtName";
-			this->txtName->Size = System::Drawing::Size(83, 20);
+			this->txtName->Size = System::Drawing::Size(178, 20);
 			this->txtName->TabIndex = 1;
 			// 
 			// txtPrice
 			// 
-			this->txtPrice->Location = System::Drawing::Point(196, 103);
+			this->txtPrice->Location = System::Drawing::Point(196, 100);
 			this->txtPrice->Name = L"txtPrice";
-			this->txtPrice->Size = System::Drawing::Size(100, 20);
+			this->txtPrice->Size = System::Drawing::Size(70, 20);
 			this->txtPrice->TabIndex = 2;
 			// 
 			// label2
@@ -135,12 +145,12 @@ namespace StansaGUI {
 			// 
 			this->txtDescription->Location = System::Drawing::Point(196, 59);
 			this->txtDescription->Name = L"txtDescription";
-			this->txtDescription->Size = System::Drawing::Size(100, 20);
+			this->txtDescription->Size = System::Drawing::Size(178, 20);
 			this->txtDescription->TabIndex = 5;
 			// 
 			// btnUpdate
 			// 
-			this->btnUpdate->Location = System::Drawing::Point(221, 144);
+			this->btnUpdate->Location = System::Drawing::Point(239, 170);
 			this->btnUpdate->Name = L"btnUpdate";
 			this->btnUpdate->Size = System::Drawing::Size(75, 23);
 			this->btnUpdate->TabIndex = 6;
@@ -150,7 +160,7 @@ namespace StansaGUI {
 			// 
 			// btnAdd
 			// 
-			this->btnAdd->Location = System::Drawing::Point(69, 144);
+			this->btnAdd->Location = System::Drawing::Point(69, 170);
 			this->btnAdd->Name = L"btnAdd";
 			this->btnAdd->Size = System::Drawing::Size(75, 23);
 			this->btnAdd->TabIndex = 7;
@@ -160,7 +170,7 @@ namespace StansaGUI {
 			// 
 			// btnDelete
 			// 
-			this->btnDelete->Location = System::Drawing::Point(349, 144);
+			this->btnDelete->Location = System::Drawing::Point(403, 170);
 			this->btnDelete->Name = L"btnDelete";
 			this->btnDelete->Size = System::Drawing::Size(75, 23);
 			this->btnDelete->TabIndex = 8;
@@ -171,13 +181,14 @@ namespace StansaGUI {
 			// dgvProducts
 			// 
 			this->dgvProducts->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dgvProducts->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
+			this->dgvProducts->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
 				this->Id, this->Nombre,
-					this->description, this->price
+					this->description, this->price, this->stock
 			});
-			this->dgvProducts->Location = System::Drawing::Point(84, 184);
+			this->dgvProducts->Location = System::Drawing::Point(27, 219);
 			this->dgvProducts->Name = L"dgvProducts";
-			this->dgvProducts->Size = System::Drawing::Size(240, 150);
+			this->dgvProducts->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
+			this->dgvProducts->Size = System::Drawing::Size(558, 150);
 			this->dgvProducts->TabIndex = 9;
 			this->dgvProducts->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &ProductForm::dataGridView1_CellContentClick);
 			// 
@@ -185,6 +196,7 @@ namespace StansaGUI {
 			// 
 			this->Id->HeaderText = L"Id";
 			this->Id->Name = L"Id";
+			this->Id->Width = 50;
 			// 
 			// Nombre
 			// 
@@ -201,11 +213,34 @@ namespace StansaGUI {
 			this->price->HeaderText = L"Precio";
 			this->price->Name = L"price";
 			// 
+			// stock
+			// 
+			this->stock->HeaderText = L"Stock";
+			this->stock->Name = L"stock";
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(81, 143);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(35, 13);
+			this->label1->TabIndex = 10;
+			this->label1->Text = L"Stock";
+			// 
+			// txtstock
+			// 
+			this->txtstock->Location = System::Drawing::Point(196, 143);
+			this->txtstock->Name = L"txtstock";
+			this->txtstock->Size = System::Drawing::Size(70, 20);
+			this->txtstock->TabIndex = 11;
+			// 
 			// ProductForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(504, 346);
+			this->ClientSize = System::Drawing::Size(597, 390);
+			this->Controls->Add(this->txtstock);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->dgvProducts);
 			this->Controls->Add(this->btnDelete);
 			this->Controls->Add(this->btnAdd);
@@ -227,37 +262,76 @@ namespace StansaGUI {
 #pragma endregion
 
 		void RefreshDGVProducts(){
-			List<Product^>^ productList = ModStansaController::QueryAllProduct();
-			//lstProducts->Items->Clear();
+			List<Product^>^ productList = StansaManager::QueryAllProduct();
 			dgvProducts->Rows->Clear();
 			for (int i = 0; i < productList->Count; i++){
 				dgvProducts->Rows->Add(gcnew array<String^>{
 					"" + productList[i]->id,
 						productList[i]->name,
 						"" + productList[i]->description,
-						"" + productList[i]->price});
+						"" + productList[i]->price,
+						"" + productList[i]->stock});
 			}
 		}
 	private: System::Void ProductForm_Load(System::Object^  sender, System::EventArgs^  e) {
+
+		RefreshDGVProducts();
 	}
 	private: System::Void btnAdd_Click(System::Object^  sender, System::EventArgs^  e) {
 		String^ name = txtName->Text;
 		String^ descripcion = txtDescription->Text;
 		String^ precio = txtPrice->Text;
+		String^ stock = txtstock->Text;
 
 		Product^ p = gcnew Product();
 		p->name = name;
 		p->description = descripcion;
 		p->price = Double::Parse(precio);
-		ModStansaController::AddProduct(p);
+		p->stock = Int32::Parse(stock);
+		StansaManager::AddProduct(p);
 		RefreshDGVProducts();
 	}
-
-	private: System::Void dataGridView1_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
+		
+			public:  int idProd;
+public:	System::Void dataGridView1_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
+	
+	
+		
+		if (dgvProducts->CurrentCell != nullptr &&
+			dgvProducts->CurrentCell->Value != nullptr &&
+			dgvProducts->CurrentCell->Value->ToString() != "") {
+	        idProd = Int32::Parse(
+				dgvProducts->SelectedRows[0]->
+				Cells[0]->Value->ToString());
+			Product ^ p = StansaManager::QueryProductById(idProd);
+			txtName->Text = p->name;
+			txtDescription->Text = p->description;
+			txtPrice->Text = Convert::ToString(p->price);
+			txtstock->Text = Convert::ToString(p->stock);
+		}
+				
 	}
 private: System::Void btnUpdate_Click(System::Object^  sender, System::EventArgs^  e) {
+
+	String^ name = txtName->Text;
+	String^ descripcion = txtDescription->Text;
+	String^ precio = txtPrice->Text;
+	String^ stock = txtstock->Text;
+
+	Product^ p = gcnew Product();
+	p->name = name;
+	p->description = descripcion;
+	p->price = Double::Parse(precio);
+	p->stock = Int32::Parse(stock);
+	StansaManager::UpdateProduct(p);
+	RefreshDGVProducts();
+
 }
 private: System::Void btnDelete_Click(System::Object^  sender, System::EventArgs^  e) {
+
+	
+	StansaManager::DeleteProduct(idProd);
+
 }
 };
 }
