@@ -331,7 +331,7 @@ private: System::Void btnDelete_Click(System::Object^  sender, System::EventArgs
 
 	
 	StansaManager::DeleteProduct(idProd);
-
+//entregaa
 }
 };
 }
