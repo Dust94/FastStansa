@@ -265,7 +265,7 @@ List<Staff^>^ StaffDB::QueryAll(){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "SELECT * FROM CustomerDB";
+	comm->CommandText = "SELECT * FROM StaffDB";
 
 	//Paso 3: Ejecución de la sentencia
 	SqlDataReader^ dr = comm->ExecuteReader();

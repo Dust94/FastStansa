@@ -98,7 +98,7 @@ void ProductDB::Delete(int id){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "DELETE FROM CustomerDB " +
+	comm->CommandText = "DELETE FROM ProductDB " +
 		"WHERE id=@p1";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::Int);
