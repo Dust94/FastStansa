@@ -71,9 +71,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BossStansaController\BossStansaController.vcxproj">
-      <Project>{be3b7a50-3bb7-47f0-a51f-ff50706cc8f0}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\FotoLibrary\FotoLibrary.vcxproj">
       <Project>{87713fc9-4edb-45e8-a71a-fc6d6acc0d13}</Project>
     </ProjectReference>
@@ -89,12 +86,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AcessFormh.cpp" />
     <ClCompile Include="Lector_PruebaForm.cpp" />
     <ClCompile Include="ProductForm.cpp" />
     <ClCompile Include="SaleForm.cpp" />
+    <ClCompile Include="StaffForm.cpp" />
     <ClCompile Include="StansaAPPForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AcessFormh.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Lector_PruebaForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -104,11 +106,17 @@
     <ClInclude Include="SaleForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="StaffForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="StansaAPPForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AcessFormh.resx">
+      <DependentUpon>AcessFormh.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Lector_PruebaForm.resx">
       <DependentUpon>Lector_PruebaForm.h</DependentUpon>
     </EmbeddedResource>
@@ -117,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SaleForm.resx">
       <DependentUpon>SaleForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StaffForm.resx">
+      <DependentUpon>StaffForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StansaAPPForm.resx">
       <DependentUpon>StansaAPPForm.h</DependentUpon>

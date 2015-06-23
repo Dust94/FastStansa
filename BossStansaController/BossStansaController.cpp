@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "BossStansaController.h"
-
+//dUSTIN ERES GAY
 using namespace BossStansaController;
 using namespace System::IO;
 using namespace System::Runtime::Serialization;
@@ -34,10 +34,10 @@ void ModStansaDB::Add(ModStansaController ^ p){
 	comm->Parameters->Add(p2);
 	comm->Parameters->Add(p3);
 
-	//Paso 3: Ejecuci髇 de la sentencia
+	//Paso 3: Ejecuci贸n de la sentencia
 	comm->ExecuteNonQuery();
 
-	//Paso 4: Cerramos la conexi髇 con la BD
+	//Paso 4: Cerramos la conexi贸n con la BD
 	conn->Close();
 }
 void ModStansaDB::Update(ModStansaController^ p){
@@ -51,7 +51,7 @@ void ModStansaDB::Update(ModStansaController^ p){
 	}
 	}*/
 	//PersistToBinaryFile();
-	//Paso 1: Se abre la conexi髇
+	//Paso 1: Se abre la conexi贸n
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
@@ -80,10 +80,10 @@ void ModStansaDB::Update(ModStansaController^ p){
 	comm->Parameters->Add(p3);
 
 
-	//Paso 3: Ejecuci髇 de la sentencia
+	//Paso 3: Ejecuci贸n de la sentencia
 	comm->ExecuteNonQuery();
 
-	//Paso 4: Cerramos la conexi髇 con la BD
+	//Paso 4: Cerramos la conexi贸n con la BD
 	conn->Close();
 }
 void ModStansaDB::Delete(int id){
@@ -112,10 +112,10 @@ void ModStansaDB::Delete(int id){
 
 	comm->Parameters->Add(p1);
 
-	//Paso 3: Ejecuci髇 de la sentencia
+	//Paso 3: Ejecuci贸n de la sentencia
 	comm->ExecuteNonQuery();
 
-	//Paso 4: Cerramos la conexi髇 con la BD
+	//Paso 4: Cerramos la conexi贸n con la BD
 	conn->Close();
 }
 ModStansaController^ ModStansaDB::QueryById(int id){
@@ -142,7 +142,7 @@ ModStansaController^ ModStansaDB::QueryById(int id){
 	p1->Value = id;
 	comm->Parameters->Add(p1);
 
-	//Paso 3: Ejecuci髇 de la sentencia
+	//Paso 3: Ejecuci贸n de la sentencia
 	SqlDataReader^ dr = comm->ExecuteReader();
 
 	//Paso 3.1: Procesamos los resultados	
@@ -153,10 +153,10 @@ ModStansaController^ ModStansaDB::QueryById(int id){
 		if (dr["ubicacion"] != System::DBNull::Value)
 			p->ubicacion = safe_cast<String ^>(dr["ubicacion"]);
 		if (dr["operatingMachines"] != System::DBNull::Value)
-			p->operatingMachines = safe_cast<double>(dr["operatingMachines"]);
+			p->operatingMachines = safe_cast<int>(dr["operatingMachines"]);
 
 	}
-	//Paso 4: Cerramos el dataReader y la conexi髇 con la BD
+	//Paso 4: Cerramos el dataReader y la conexi贸n con la BD
 	dr->Close();
 	conn->Close();
 	return p;
@@ -174,7 +174,7 @@ List<ModStansaController^>^ ModStansaDB::QueryAll(){
 	comm->Connection = conn;
 	comm->CommandText = "SELECT * FROM ModStansaDB";
 
-	//Paso 3: Ejecuci髇 de la sentencia
+	//Paso 3: Ejecuci贸n de la sentencia
 	SqlDataReader^ dr = comm->ExecuteReader();
 
 	//Paso 3.1: Procesamos los resultados
@@ -185,12 +185,12 @@ List<ModStansaController^>^ ModStansaDB::QueryAll(){
 		if (dr["ubicacion"] != System::DBNull::Value)
 			p->ubicacion = safe_cast<String ^>(dr["ubicacion"]);
 		if (dr["operatingMachines"] != System::DBNull::Value)
-			p->operatingMachines = safe_cast<double>(dr["operatingMachines"]);
+			p->operatingMachines = safe_cast<int>(dr["operatingMachines"]);
 
 		productList->Add(p);
 	}
 
-	//Paso 4: Cerramos el dataReader y la conexi髇 con la BD
+	//Paso 4: Cerramos el dataReader y la conexi贸n con la BD
 	dr->Close();
 	conn->Close();
 

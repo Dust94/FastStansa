@@ -26,6 +26,7 @@ namespace StansaGUI {
 			//
 			//TODO: Add the constructor code here
 			//
+			RefreshDGVProducts();
 		}
 
 	protected:
@@ -145,6 +146,7 @@ namespace StansaGUI {
 			this->btnUpdate->TabIndex = 6;
 			this->btnUpdate->Text = L"Actualizar";
 			this->btnUpdate->UseVisualStyleBackColor = true;
+			this->btnUpdate->Click += gcnew System::EventHandler(this, &ProductForm::btnUpdate_Click);
 			// 
 			// btnAdd
 			// 
@@ -164,6 +166,7 @@ namespace StansaGUI {
 			this->btnDelete->TabIndex = 8;
 			this->btnDelete->Text = L"Eliminar";
 			this->btnDelete->UseVisualStyleBackColor = true;
+			this->btnDelete->Click += gcnew System::EventHandler(this, &ProductForm::btnDelete_Click);
 			// 
 			// dgvProducts
 			// 
@@ -252,6 +255,10 @@ namespace StansaGUI {
 
 	private: System::Void dataGridView1_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
 	}
+private: System::Void btnUpdate_Click(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void btnDelete_Click(System::Object^  sender, System::EventArgs^  e) {
+}
 };
 }
 

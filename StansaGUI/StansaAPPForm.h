@@ -3,6 +3,7 @@
 #include "Lector_PruebaForm.h"
 #include "ProductForm.h"
 #include "SaleForm.h"
+#include "StaffForm.h"
 
 namespace StansaGUI {
 
@@ -12,12 +13,14 @@ namespace StansaGUI {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-
+	using namespace System::Threading;
 	/// <summary>
 	/// Summary for StansaAPPForm
 	/// </summary>
 	public ref class StansaAPPForm : public System::Windows::Forms::Form
 	{
+	private:
+		Thread ^ myThread;
 	public:
 		StansaAPPForm(void)
 		{
@@ -25,7 +28,27 @@ namespace StansaGUI {
 			//
 			//TODO: Add the constructor code here
 			//
+			myThread = gcnew Thread(gcnew ThreadStart(this, &StansaAPPForm::MyRun));
+			myThread->Start();
 		}
+		void MyRun(){
+			while (true) {
+
+				DateTime^ now = DateTime::Now;
+				Invoke(gcnew delegateUpdateTitle(this, &StansaAPPForm::UpdateTitle),
+					gcnew array<String^>{"Sistema de Ventas " + now->ToString("hh:mm:ss")});
+				Thread::Sleep(1000);
+				if (!this->Visible)
+					return;
+			}
+		}
+
+		delegate void delegateUpdateTitle(String^);
+
+		void UpdateTitle(String ^newTitle){
+			this->Text = newTitle;
+		}
+
 
 	protected:
 		/// <summary>
@@ -45,6 +68,9 @@ namespace StansaGUI {
 	private: System::Windows::Forms::ToolStripMenuItem^  mantenimientoToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  actualizarProductosToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  lectorPruebaToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  toolStripMenuItem1;
+	private: System::Windows::Forms::ToolStripMenuItem^  toolStripMenuItem2;
+	private: System::Windows::Forms::ToolStripMenuItem^  staffToolStripMenuItem;
 
 	private:
 		/// <summary>
@@ -65,20 +91,24 @@ namespace StansaGUI {
 			this->mantenimientoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->actualizarProductosToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->lectorPruebaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->toolStripMenuItem2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->toolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->staffToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// menuStrip1
 			// 
-			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
 				this->operacionesToolStripMenuItem,
-					this->mantenimientoToolStripMenuItem
+					this->mantenimientoToolStripMenuItem, this->toolStripMenuItem2, this->toolStripMenuItem1
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
 			this->menuStrip1->Size = System::Drawing::Size(284, 24);
 			this->menuStrip1->TabIndex = 1;
 			this->menuStrip1->Text = L"menuStrip1";
+			this->menuStrip1->ItemClicked += gcnew System::Windows::Forms::ToolStripItemClickedEventHandler(this, &StansaAPPForm::menuStrip1_ItemClicked);
 			// 
 			// operacionesToolStripMenuItem
 			// 
@@ -96,9 +126,9 @@ namespace StansaGUI {
 			// 
 			// mantenimientoToolStripMenuItem
 			// 
-			this->mantenimientoToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+			this->mantenimientoToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
 				this->actualizarProductosToolStripMenuItem,
-					this->lectorPruebaToolStripMenuItem
+					this->lectorPruebaToolStripMenuItem, this->staffToolStripMenuItem
 			});
 			this->mantenimientoToolStripMenuItem->Name = L"mantenimientoToolStripMenuItem";
 			this->mantenimientoToolStripMenuItem->Size = System::Drawing::Size(101, 20);
@@ -117,6 +147,24 @@ namespace StansaGUI {
 			this->lectorPruebaToolStripMenuItem->Size = System::Drawing::Size(183, 22);
 			this->lectorPruebaToolStripMenuItem->Text = L"Lector Prueba";
 			this->lectorPruebaToolStripMenuItem->Click += gcnew System::EventHandler(this, &StansaAPPForm::lectorPruebaToolStripMenuItem_Click);
+			// 
+			// toolStripMenuItem2
+			// 
+			this->toolStripMenuItem2->Name = L"toolStripMenuItem2";
+			this->toolStripMenuItem2->Size = System::Drawing::Size(125, 20);
+			this->toolStripMenuItem2->Text = L"toolStripMenuItem2";
+			// 
+			// toolStripMenuItem1
+			// 
+			this->toolStripMenuItem1->Name = L"toolStripMenuItem1";
+			this->toolStripMenuItem1->Size = System::Drawing::Size(12, 20);
+			// 
+			// staffToolStripMenuItem
+			// 
+			this->staffToolStripMenuItem->Name = L"staffToolStripMenuItem";
+			this->staffToolStripMenuItem->Size = System::Drawing::Size(183, 22);
+			this->staffToolStripMenuItem->Text = L"Staff";
+			this->staffToolStripMenuItem->Click += gcnew System::EventHandler(this, &StansaAPPForm::staffToolStripMenuItem_Click);
 			// 
 			// StansaAPPForm
 			// 
@@ -152,6 +200,14 @@ private: System::Void actualizarProductosToolStripMenuItem_Click(System::Object^
 	pForm->Show();
 }
 private: System::Void StansaAPPForm_Load(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void menuStrip1_ItemClicked(System::Object^  sender, System::Windows::Forms::ToolStripItemClickedEventArgs^  e) {
+}
+private: System::Void staffToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+			 StaffForm^ pForm = gcnew StaffForm();
+			 pForm->MdiParent = this;
+			 pForm->Show();
+
 }
 };
 }
