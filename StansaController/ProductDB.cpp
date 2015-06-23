@@ -89,7 +89,6 @@ void ProductDB::Update(Product^ p){
 	conn->Close();
 }
 void ProductDB::Delete(int id){
-
 	//Paso 1: Se abre la conexión
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
