@@ -41,6 +41,7 @@ namespace StansaController {
 			void Delete(int id);
 			Product^ QueryById(int id);
 			List<Product^>^ QueryAll();
+			List<Product^>^ QueryLikeName(String^);
 	}; //Fin Clase ProductDB
 
 	public ref class ModuloStansaDB
@@ -106,6 +107,7 @@ namespace StansaController {
 			static void DeleteProduct(int id);
 			static Product^ QueryProductById(int id);
 			static List<Product^>^ QueryAllProduct();
+			static List<Product^> ^ QueryProductsLikeName(String ^name);
 
 			//metodos de clase globlales para ModuloStansa
 			static void AddModuloStansa(ModuloStansa^ m);

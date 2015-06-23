@@ -67,6 +67,11 @@ List<Product^>^ StansaManager::QueryAllProduct(){
 	return productDB->QueryAll();
 }
 
+List <Product^> ^ StansaManager::QueryProductsLikeName(String ^name){
+	return productDB->QueryLikeName(name);
+}
+
+
 //metodos de clase globlales para ModuloStansa
 void StansaManager::AddModuloStansa(ModuloStansa^ m){
 	moduloStansaDB->Add(m);

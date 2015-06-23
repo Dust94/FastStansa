@@ -54,8 +54,8 @@ namespace StansaGUI {
 
 	private: System::Windows::Forms::Button^  btnSale;
 
-	private: System::Windows::Forms::TextBox^  txtCantidad;
-	private: System::Windows::Forms::Label^  label2;
+
+
 
 
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  id;
@@ -64,17 +64,27 @@ namespace StansaGUI {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Cantidad;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  totalPrice1Row;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Total;
-	private: System::Windows::Forms::DataGridView^  ProductDGV;
 
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  IdProduct;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Product;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Stock;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  UnitPrice;
-	private: System::Windows::Forms::Button^  btnQueryNorden;
-	private: System::Windows::Forms::TextBox^  txtOrdenCustomer;
-	private: System::Windows::Forms::Label^  label3;
-	private: System::Windows::Forms::Label^  label1;
+
+
+
+
+
+
+
+
 	private: System::Windows::Forms::Label^  label4;
+	private: System::Windows::Forms::DateTimePicker^  dateTimePicker1;
+	private: System::Windows::Forms::Label^  label1;
+	private: System::Windows::Forms::ComboBox^  comboBox1;
+	private: System::Windows::Forms::Label^  label5;
+	private: System::Windows::Forms::ComboBox^  comboBox2;
+	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Button^  button2;
+	private: System::Windows::Forms::Label^  label2;
+	private: System::Windows::Forms::TextBox^  textBox1;
+
+
 
 
 
@@ -100,20 +110,17 @@ namespace StansaGUI {
 			this->totalPrice1Row = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Total = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->btnSale = (gcnew System::Windows::Forms::Button());
-			this->txtCantidad = (gcnew System::Windows::Forms::TextBox());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->ProductDGV = (gcnew System::Windows::Forms::DataGridView());
-			this->IdProduct = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Product = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Stock = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->UnitPrice = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->btnQueryNorden = (gcnew System::Windows::Forms::Button());
-			this->txtOrdenCustomer = (gcnew System::Windows::Forms::TextBox());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvVenta))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ProductDGV))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// dgvVenta
@@ -123,7 +130,7 @@ namespace StansaGUI {
 				this->id, this->name,
 					this->price, this->Cantidad, this->totalPrice1Row, this->Total
 			});
-			this->dgvVenta->Location = System::Drawing::Point(43, 253);
+			this->dgvVenta->Location = System::Drawing::Point(43, 185);
 			this->dgvVenta->Name = L"dgvVenta";
 			this->dgvVenta->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
 			this->dgvVenta->Size = System::Drawing::Size(547, 98);
@@ -165,126 +172,118 @@ namespace StansaGUI {
 			// 
 			// btnSale
 			// 
-			this->btnSale->Location = System::Drawing::Point(216, 382);
+			this->btnSale->Location = System::Drawing::Point(43, 306);
 			this->btnSale->Name = L"btnSale";
 			this->btnSale->Size = System::Drawing::Size(180, 23);
 			this->btnSale->TabIndex = 23;
 			this->btnSale->Text = L"Realizar Venta";
 			this->btnSale->UseVisualStyleBackColor = true;
 			// 
-			// txtCantidad
+			// label4
 			// 
-			this->txtCantidad->Location = System::Drawing::Point(114, 175);
-			this->txtCantidad->Name = L"txtCantidad";
-			this->txtCantidad->Size = System::Drawing::Size(100, 20);
-			this->txtCantidad->TabIndex = 21;
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(40, 25);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(37, 13);
+			this->label4->TabIndex = 35;
+			this->label4->Text = L"Fecha";
 			// 
-			// label2
+			// dateTimePicker1
 			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(40, 178);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(49, 13);
-			this->label2->TabIndex = 20;
-			this->label2->Text = L"Cantidad";
-			// 
-			// ProductDGV
-			// 
-			this->ProductDGV->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->ProductDGV->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
-				this->IdProduct,
-					this->Product, this->Stock, this->UnitPrice
-			});
-			this->ProductDGV->Location = System::Drawing::Point(32, 39);
-			this->ProductDGV->Name = L"ProductDGV";
-			this->ProductDGV->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->ProductDGV->Size = System::Drawing::Size(480, 81);
-			this->ProductDGV->TabIndex = 30;
-			// 
-			// IdProduct
-			// 
-			this->IdProduct->HeaderText = L"Id";
-			this->IdProduct->Name = L"IdProduct";
-			// 
-			// Product
-			// 
-			this->Product->HeaderText = L"Producto";
-			this->Product->Name = L"Product";
-			// 
-			// Stock
-			// 
-			this->Stock->HeaderText = L"Stock";
-			this->Stock->Name = L"Stock";
-			// 
-			// UnitPrice
-			// 
-			this->UnitPrice->HeaderText = L"Precio Unitario";
-			this->UnitPrice->Name = L"UnitPrice";
-			// 
-			// btnQueryNorden
-			// 
-			this->btnQueryNorden->Location = System::Drawing::Point(233, 204);
-			this->btnQueryNorden->Name = L"btnQueryNorden";
-			this->btnQueryNorden->Size = System::Drawing::Size(75, 23);
-			this->btnQueryNorden->TabIndex = 33;
-			this->btnQueryNorden->Text = L"Buscar";
-			this->btnQueryNorden->UseVisualStyleBackColor = true;
-			this->btnQueryNorden->Click += gcnew System::EventHandler(this, &SaleForm::btnQueryNorden_Click);
-			// 
-			// txtOrdenCustomer
-			// 
-			this->txtOrdenCustomer->Location = System::Drawing::Point(165, 206);
-			this->txtOrdenCustomer->Name = L"txtOrdenCustomer";
-			this->txtOrdenCustomer->Size = System::Drawing::Size(40, 20);
-			this->txtOrdenCustomer->TabIndex = 32;
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(40, 209);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(100, 13);
-			this->label3->TabIndex = 31;
-			this->label3->Text = L"No orden de cliente";
+			this->dateTimePicker1->Location = System::Drawing::Point(128, 18);
+			this->dateTimePicker1->Name = L"dateTimePicker1";
+			this->dateTimePicker1->Size = System::Drawing::Size(200, 20);
+			this->dateTimePicker1->TabIndex = 36;
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(29, 9);
+			this->label1->Location = System::Drawing::Point(40, 58);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(94, 13);
-			this->label1->TabIndex = 34;
-			this->label1->Text = L"Lista de productos";
+			this->label1->Size = System::Drawing::Size(67, 13);
+			this->label1->TabIndex = 37;
+			this->label1->Text = L"Atendido por";
 			// 
-			// label4
+			// comboBox1
 			// 
-			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(40, 148);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(100, 13);
-			this->label4->TabIndex = 35;
-			this->label4->Text = L"Formulario de venta";
+			this->comboBox1->FormattingEnabled = true;
+			this->comboBox1->Location = System::Drawing::Point(128, 55);
+			this->comboBox1->Name = L"comboBox1";
+			this->comboBox1->Size = System::Drawing::Size(200, 21);
+			this->comboBox1->TabIndex = 38;
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(40, 98);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(39, 13);
+			this->label5->TabIndex = 39;
+			this->label5->Text = L"Cliente";
+			// 
+			// comboBox2
+			// 
+			this->comboBox2->FormattingEnabled = true;
+			this->comboBox2->Location = System::Drawing::Point(128, 98);
+			this->comboBox2->Name = L"comboBox2";
+			this->comboBox2->Size = System::Drawing::Size(200, 21);
+			this->comboBox2->TabIndex = 40;
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(83, 139);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(129, 23);
+			this->button1->TabIndex = 41;
+			this->button1->Text = L"Agregar producto";
+			this->button1->UseVisualStyleBackColor = true;
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(380, 139);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(129, 23);
+			this->button2->TabIndex = 42;
+			this->button2->Text = L"Eliminar producto";
+			this->button2->UseVisualStyleBackColor = true;
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(412, 312);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(60, 13);
+			this->label2->TabIndex = 43;
+			this->label2->Text = L"Monto total";
+			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(478, 309);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(100, 20);
+			this->textBox1->TabIndex = 44;
 			// 
 			// SaleForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(662, 437);
-			this->Controls->Add(this->label4);
+			this->ClientSize = System::Drawing::Size(620, 355);
+			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->button2);
+			this->Controls->Add(this->button1);
+			this->Controls->Add(this->comboBox2);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->comboBox1);
 			this->Controls->Add(this->label1);
-			this->Controls->Add(this->btnQueryNorden);
-			this->Controls->Add(this->txtOrdenCustomer);
-			this->Controls->Add(this->label3);
-			this->Controls->Add(this->ProductDGV);
+			this->Controls->Add(this->dateTimePicker1);
+			this->Controls->Add(this->label4);
 			this->Controls->Add(this->dgvVenta);
 			this->Controls->Add(this->btnSale);
-			this->Controls->Add(this->txtCantidad);
-			this->Controls->Add(this->label2);
 			this->Name = L"SaleForm";
-			this->Text = L"SaleForm";
+			this->Text = L"Formulario de venta";
 			this->Load += gcnew System::EventHandler(this, &SaleForm::SaleForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvVenta))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ProductDGV))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

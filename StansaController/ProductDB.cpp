@@ -186,3 +186,45 @@ List<Product^>^ ProductDB::QueryAll(){
 	conn->Close();
 	return ProductList;
 }
+
+
+List<Product^>^ ProductDB::QueryLikeName(String ^name){
+	SqlConnection^ conn;
+	conn = gcnew SqlConnection();
+	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
+		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+	conn->Open();
+	//Paso 2: Preparamos la sentencia
+	SqlCommand^ comm = gcnew SqlCommand();
+	comm->Connection = conn;
+	comm->CommandText = "SELECT * FROM ProductDB " +
+		"WHERE name LIKE @p1";
+	SqlParameter^ p1 = gcnew SqlParameter("@p1",
+		System::Data::SqlDbType::VarChar);
+	p1->Value = "%" + name + "%";
+	comm->Parameters->Add(p1);
+
+	//Paso 3: Ejecución de la sentencia
+	SqlDataReader^ dr = comm->ExecuteReader();
+
+	//Paso 3.1: Procesamos los resultados
+	List<Product^> ^productList = gcnew List<Product^>();
+	while (dr->Read()){
+		Product ^p = gcnew Product();
+		p->id = (int)dr["id"];
+		p->name = safe_cast<String^>(dr["name"]);
+		if (dr["description"] != System::DBNull::Value)
+			p->description = safe_cast<String ^>(dr["description"]);
+		if (dr["price"] != System::DBNull::Value)
+			p->price = safe_cast<double>(dr["price"]);
+		if (dr["stock"] != System::DBNull::Value)
+			p->stock = safe_cast<int>(dr["stock"]);
+		productList->Add(p);
+	}
+
+	//Paso 4: Cerramos el dataReader y la conexión con la BD
+	dr->Close();
+	conn->Close();
+
+	return productList;
+}
