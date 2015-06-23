@@ -11,7 +11,6 @@ namespace StansaGUI {
 	using namespace System::Drawing;
 	using namespace FotoLibrary;
 	using namespace StansaController;
-	using namespace BossStansaController;
 	using namespace System::Collections::Generic;
 
 	/// <summary>
@@ -44,9 +43,16 @@ namespace StansaGUI {
 	protected:
 
 	private: System::Windows::Forms::Label^  label1;
-	private: System::Windows::Forms::Label^  label2;
-	private: System::Windows::Forms::TextBox^  textBox1;
-	private: System::Windows::Forms::TextBox^  txtpsw;
+	private: System::Windows::Forms::TextBox^  txtStaffDni;
+
+
+
+
+
+
+	private: System::Windows::Forms::ComboBox^  combModuloStansa;
+	private: System::Windows::Forms::Label^  label3;
+
 
 
 	protected:
@@ -67,14 +73,14 @@ namespace StansaGUI {
 			this->btnCancel = (gcnew System::Windows::Forms::Button());
 			this->btnOk = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->txtpsw = (gcnew System::Windows::Forms::TextBox());
+			this->txtStaffDni = (gcnew System::Windows::Forms::TextBox());
+			this->combModuloStansa = (gcnew System::Windows::Forms::ComboBox());
+			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// btnCancel
 			// 
-			this->btnCancel->Location = System::Drawing::Point(43, 182);
+			this->btnCancel->Location = System::Drawing::Point(89, 129);
 			this->btnCancel->Name = L"btnCancel";
 			this->btnCancel->Size = System::Drawing::Size(75, 23);
 			this->btnCancel->TabIndex = 0;
@@ -84,7 +90,7 @@ namespace StansaGUI {
 			// 
 			// btnOk
 			// 
-			this->btnOk->Location = System::Drawing::Point(158, 182);
+			this->btnOk->Location = System::Drawing::Point(204, 129);
 			this->btnOk->Name = L"btnOk";
 			this->btnOk->Size = System::Drawing::Size(75, 23);
 			this->btnOk->TabIndex = 1;
@@ -95,44 +101,45 @@ namespace StansaGUI {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(64, 28);
+			this->label1->Location = System::Drawing::Point(50, 82);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(43, 13);
+			this->label1->Size = System::Drawing::Size(67, 13);
 			this->label1->TabIndex = 2;
-			this->label1->Text = L"Usuario";
+			this->label1->Text = L"Ingresar DNI";
 			// 
-			// label2
+			// txtStaffDni
 			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(64, 95);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(61, 13);
-			this->label2->TabIndex = 3;
-			this->label2->Text = L"Contraseña";
+			this->txtStaffDni->Location = System::Drawing::Point(136, 82);
+			this->txtStaffDni->Name = L"txtStaffDni";
+			this->txtStaffDni->Size = System::Drawing::Size(153, 20);
+			this->txtStaffDni->TabIndex = 4;
 			// 
-			// textBox1
+			// combModuloStansa
 			// 
-			this->textBox1->Location = System::Drawing::Point(67, 62);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(153, 20);
-			this->textBox1->TabIndex = 4;
+			this->combModuloStansa->FormattingEnabled = true;
+			this->combModuloStansa->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Arquitectura", L"Arte", L"Ciencias" });
+			this->combModuloStansa->Location = System::Drawing::Point(149, 25);
+			this->combModuloStansa->Name = L"combModuloStansa";
+			this->combModuloStansa->Size = System::Drawing::Size(121, 21);
+			this->combModuloStansa->TabIndex = 9;
 			// 
-			// txtpsw
+			// label3
 			// 
-			this->txtpsw->Location = System::Drawing::Point(67, 126);
-			this->txtpsw->Name = L"txtpsw";
-			this->txtpsw->PasswordChar = '?';
-			this->txtpsw->Size = System::Drawing::Size(153, 20);
-			this->txtpsw->TabIndex = 5;
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(50, 25);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(93, 13);
+			this->label3->TabIndex = 10;
+			this->label3->Text = L"Modulo de Stansa";
 			// 
 			// AcessFormh
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(284, 262);
-			this->Controls->Add(this->txtpsw);
-			this->Controls->Add(this->textBox1);
-			this->Controls->Add(this->label2);
+			this->ClientSize = System::Drawing::Size(360, 213);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->combModuloStansa);
+			this->Controls->Add(this->txtStaffDni);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->btnOk);
 			this->Controls->Add(this->btnCancel);
@@ -148,44 +155,20 @@ namespace StansaGUI {
 
 	}
 private: System::Void btnOk_Click(System::Object^  sender, System::EventArgs^  e) {
-			 /*
-			 String^ user = textBox1->Text;
-			 String^ psw = txtpsw->Text;
+	String^ dni = txtStaffDni->Text;
+	String^ ModuloStansa = combModuloStansa->Text; //Eligo el Modulo de Stansa al que estoy accediendo
+	if (dni != nullptr){
+		Staff^ s = StansaManager::QueryStaffByDni(dni);
+		if (s != nullptr){
+			//ModuloStansa^ Modulo_Stansa = StansaManager::QueryModuloStansaByPlace(idModStansa);
+			StansaAPPForm^ pForm = gcnew StansaAPPForm();
+			pForm->Show();
+		}
+		else MessageBox::Show("Personal de Stansa No Registrado");
+	}
 
-			 Salesman ^p = SalesmanDB::QueryByUser(user);
-
-			 while (p == nullptr)
-			 {
-				 MessageBox::Show("Usuario NO EXISTE");
-				 //();
-			 }
-			 /*if (p == nullptr){
-			 MessageBox::Show("Usuario NO EXISTE");
-			 goto ;
-			 }
-			 
-
-
-			 int value = SalesmanDB::Validate(p, psw);
-
-			 if (value == 1)
-			 {
-				 SalesAppForm ^ psForm = gcnew SalesAppForm();
-				 psForm->Titulo = " Sistema de ventas " + p->name + " ";
-				 Visible = false;
-				 psForm->ShowDialog();
-				 //this->
-
-
-			 }
-			 else
-			 {
-				 MessageBox::Show("Usuario o Contraseña INCORRECTA");
-
-			 }
-
-			 */
-
+}
+private: System::Void txtpsw_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 }
