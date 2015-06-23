@@ -10,7 +10,6 @@ namespace StansaGUI {
 	using namespace System::Drawing;	
 	using namespace System::Collections::Generic;
 	using namespace FotoLibrary;
-	using namespace BossStansaController;
 	using namespace StansaController;
 
 	/// <summary>
@@ -94,15 +93,17 @@ namespace StansaGUI {
 		}
 #pragma endregion
 	private: System::Void btnBuildUser_Click(System::Object^  sender, System::EventArgs^  e) {
-		Customer^ User = gcnew Customer(); //Creo un objeto Usuario
-		DateTime^ d1 = DateTime::Now; //Creo un objeto DateTime con la hora actual
-				User->hora_ini = d1;
-		User->estado = "Esperando";
-		User->hora_fin = d1;//En lugar de Null
-		User->dni = "para modificar";//En lugar de Null
-		User->name = "para modificar";//En lugar de Null
-		lblHora->Text = "" + User->hora_ini;
-		ModStansaController::AddCustomer(User);
+		Attention^ atencion = gcnew Attention(); //Creo un objeto Atencion
+		ModuloStansa^ modStansa = StansaManager::QueryModuloStansaById(1); //Busco a cual Modulo de Stansa Pertenece
+		Customer^ usuario = StansaManager::QueryCustomerById(1); //Busco el usuario que voy a atender
+		DateTime^ fecha = DateTime::Now; //Creo un objeto DateTime con la hora actual
+		atencion->fecha = fecha;
+		atencion->hora_ini = fecha;
+		atencion->hora_fin = fecha;
+		atencion->estado = "Esperando";
+		atencion->customer->id = usuario->id;
+		atencion->moduloStansa->id = modStansa->id;
+		StansaManager::AddAttention(atencion);
 	}
 	private: System::Void Lector_PruebaForm_Load(System::Object^  sender, System::EventArgs^  e) {
 	}

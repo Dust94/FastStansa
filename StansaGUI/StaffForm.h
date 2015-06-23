@@ -10,7 +10,6 @@ namespace StansaGUI {
 	using namespace System::Drawing;
 	using namespace System::Collections::Generic;
 	using namespace FotoLibrary;
-	using namespace BossStansaController;
 	using namespace StansaController;
 
 	/// <summary>

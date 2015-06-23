@@ -11,7 +11,6 @@ namespace StansaGUI {
 	using namespace System::Drawing;
 	using namespace FotoLibrary;
 	using namespace StansaController;
-	using namespace BossStansaController;
 	using namespace System::Collections::Generic;
 
 	/// <summary>
