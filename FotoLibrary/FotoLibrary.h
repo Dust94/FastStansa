@@ -9,19 +9,22 @@ namespace FotoLibrary {
 	public ref class Persona
 	{
 		public:
-			int id; // Solo se ingresan los valores de la base de datos. No se reinicia cada dia.
+			int id; // Identificador de Customer o Staff en la DB. No se reinicia cada dia.
 			String^ dni;
-			String^ name;
-			String^ sexo; // Masculino(M) Femenino(F) sera luego un char
+			String^ name; // Nombre de la Persona
+			String^ apellido_Paterno;
+			String^ apellido_Materno;
+			char sexo; // Masculino(M) Femenino(F)
+			String^ username;  // para el logeo con su cuenta
+			String^ password;  // para el logeo con su cuenta
 	}; // Fin Clase Persona
 
 	public ref class Customer:Persona
 	{
 		public:
-			int n_orden; //Se setea a 0 cada dia
-			DateTime^ hora_ini; //Setea
-			DateTime^ hora_fin;
-			String^ estado;  //Customer: Esperando o Finalizado. 
+			String^ codigoPUCP; //Si no es de la PUCP de queda en blanco
+			String^ facultad; //Para saber de que facultad vienen mas estudiantes a determinado modulo
+			
 	}; // Fin Clase Customer
 
 	public ref class Staff:Persona
@@ -30,8 +33,6 @@ namespace FotoLibrary {
 			DateTime^ hora_entrada; //Hora de Entrada al Trabajo
 			DateTime^ hora_salida; //Hora de Salida del Trabajo
 			String^ puesto;
-			String^ password;
-			String^ user;
 	}; // Fin Clase Staff
 
 	public ref class Product
@@ -39,27 +40,49 @@ namespace FotoLibrary {
 		public:
 			int id;
 			String^ name;
-			String^ description;
-			double price;
+			String^ description; //Descripcion del Producto
+			double price; //Precio de 1 Producto
 			int stock;
-		
 	};// Fin Clase Product
 
+	public ref class ModuloStansa{
+		public:
+			int id;
+			String^ name;
+			String^ place;
+			int MaquinasOperativas;
+			List<Staff^>^ listStaff; //Cada ModuloStansa tiene un grupo de Staff trabajando en el.
+			List<Product^>^ listProduct; //Cada ModuloStansa tiene una lista de Productos que puede vender
+	};
+
+	public ref class Attention {
+		public:
+			int id; //Identifica una fila. Una atencion
+			DateTime^ fecha; //Dia de la Atencion
+			int n_orden; //El Numero de Orden de la Persona que esta siendo atendida
+			DateTime^ hora_ini; //Inicia la atencion con el Ticket de Numero de Orden
+			DateTime^ hora_fin; //Finaliza la atencion de un Usuario
+			String^ estado; //El estado del Usuario: Atendido o Esperando
+			Customer^ customer; //Que Usuario fue atendido
+			ModuloStansa^ moduloStansa; //En cual ModuloStansa fue atendido
+			Staff^ staff; //Quien fue la persona(staff) que lo atendio.
+	};
+
 	public ref class SaleDetail { //Boleta
-	public:
-		int quantity;
-		double subTotal; //Producto*cantidad
-		Product^ product; //1 Producto
+		public:
+			int quantity; //Cantidad de Productos del Tipo Product
+			double subTotal; //Producto*cantidad
+			Product^ product; //1 Producto
 	}; // Fin Clase SaleDetail
 
 	public ref class Sale {
-	public:
-		int id;
-		double total;
-		DateTime^ date; // Dia de la Venta
-		Staff^ staff; //Quien ejecuto la venta
-		Customer^ customer; //Para Obtener el Numero de Orden del Usuario
-		List<SaleDetail^>^ details; //Varias Boletas en un Proceso de Venta
+		public:
+			int id;
+			double total;
+			DateTime^ date; // Dia de la Venta
+			Staff^ staff; //Quien ejecuto la venta
+			Customer^ customer; //Para Obtener el Numero de Orden del Usuario
+			List<SaleDetail^>^ details; //Varias Boletas en un Proceso de Venta
 	};// Fin Clase Sale.
 
 }
