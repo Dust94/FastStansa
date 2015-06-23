@@ -156,11 +156,11 @@ namespace StansaGUI {
 	}
 private: System::Void btnOk_Click(System::Object^  sender, System::EventArgs^  e) {
 	String^ dni = txtStaffDni->Text;
-	String^ ModuloStansa = combModuloStansa->Text; //Eligo el Modulo de Stansa al que estoy accediendo
+	String^ ModuloStansaPlace = combModuloStansa->Text; //Eligo el Modulo de Stansa al que estoy accediendo
 	if (dni != nullptr){
 		Staff^ s = StansaManager::QueryStaffByDni(dni);
 		if (s != nullptr){
-			//ModuloStansa^ Modulo_Stansa = StansaManager::QueryModuloStansaByPlace(idModStansa);
+			ModuloStansa^ ModuloStansa = StansaManager::QueryModuloStansaByPlace(ModuloStansaPlace);
 			StansaAPPForm^ pForm = gcnew StansaAPPForm();
 			pForm->Show();
 		}
