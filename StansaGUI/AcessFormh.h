@@ -151,7 +151,7 @@ namespace StansaGUI {
 		}
 #pragma endregion
 	private: System::Void btnCancel_Click(System::Object^  sender, System::EventArgs^  e) {
-				 Close();
+		Application::Exit();
 
 	}
 private: System::Void btnOk_Click(System::Object^  sender, System::EventArgs^  e) {

@@ -101,7 +101,7 @@ namespace StansaController {
 			static Staff^ QueryStaffById(int id);
 			static Staff^ QueryStaffByDni(String^ dni);
 			static List<Staff^>^ QueryAllStaff();
-			static List<Staff^>^ QueryAllByModuloStansa(ModuloStansa^ modulo);
+			static List<Staff^>^ QueryAllStaffByModuloStansa(ModuloStansa^ modulo);
 
 			//metodos de clase globlales para Product
 			static void AddProduct(Product^ p);
