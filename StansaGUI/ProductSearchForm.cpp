@@ -19,7 +19,7 @@ using namespace StansaGUI;
 		 ((SaleForm^)saleForm)->AddProductToDetails(p);
 		 this->Close();
 	 }
-  
+  ///
  }
 
 

@@ -499,12 +499,10 @@ namespace StansaGUI {
 		if (rbtnFemenino->Checked) sexo = 'F';
 		String^ username = txtStaffUsername->Text;
 		String^ password = txtStaffPassword->Text;
-		String^ horaEntrada = dTPHoraEntrada->Text;
-		String^ horaSalida;
+		String^ horaEntrada = dTPHoraEntrada->Value.Hour.ToString();
+		String^ horaSalida = dTPHoraSalida->Value.Hour.ToString();
 		String^ puesto = combStaffPuesto->Text;
-		lblPrueba->Text = puesto;
-		
-		//MessageBox::Show(String::Concat(" is ", dateTimePicker1->Value.DayOfWeek.ToString()));
+		//lblPrueba->Text = horaEntrada;
 
 		Staff^ s = gcnew Staff();
 		StansaManager::AddStaff(s);
