@@ -54,7 +54,7 @@ void StaffDB::Add(Staff^ s){
 	p8->Value = s->hora_entrada; //String
 	p9->Value = s->hora_salida; //String
 	p10->Value = s->puesto; //String
-	p11->Value = 4; //int
+	p11->Value = 4; //int  
 
 	comm->Parameters->Add(p1);
 	comm->Parameters->Add(p2);
