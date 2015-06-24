@@ -562,7 +562,7 @@ namespace StansaGUI {
 						listStaff[i]->name,
 						listStaff[i]->apellido_Paterno,
 						listStaff[i]->apellido_Materno,
-						"" + listStaff[i]->sexo,
+						Convert::ToString(listStaff[i]->sexo),
 						listStaff[i]->username,
 						listStaff[i]->password,
 						listStaff[i]->hora_entrada->ToString("hh:mm:ss"),
@@ -575,15 +575,7 @@ public:  int idStaff;
 		 static ModuloStansa^ moduloStansaLocal = gcnew ModuloStansa();
 		 int idModuloStansa;
 
- private: System::Void dgvStaff_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
-	 if (dgvStaff->CurrentCell != nullptr &&
-		 dgvStaff->CurrentCell->Value != nullptr &&
-		 dgvStaff->CurrentCell->Value->ToString() != "") {
-		 idStaff = Int32::Parse(
-			 dgvStaff->SelectedRows[0]->
-			 Cells[0]->Value->ToString());//Lo parseo primero a String y luego a Integer
-		 }
-	 }
+ private: System::Void dgvStaff_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e);
 
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) { //Boton Add
 		String^ dni = txtStaffDni->Text;

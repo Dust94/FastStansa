@@ -5,7 +5,8 @@
 using namespace StansaGUI;
 
 
- System::Void ProductSearchForm::dgvproductsearch_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
+ System::Void ProductSearchForm::dgvproductsearch_CellContentClick(System::Object^  sender, 
+	 System::Windows::Forms::DataGridViewCellEventArgs^  e) {
 
 	 if (e->RowIndex < 0){
 		 return;
