@@ -29,6 +29,7 @@ namespace StansaController {
 			Staff^ QueryById(int id);
 			Staff^ QueryByDni(String^ dni);
 			List<Staff^>^ QueryAll();
+			List<Staff^>^ QueryAllByModuloStansa(ModuloStansa^ modulo);
 	}; //Fin Clase StaffDB
 
 	public ref class ProductDB //Base de Datos para Todos los Products
@@ -100,6 +101,7 @@ namespace StansaController {
 			static Staff^ QueryStaffById(int id);
 			static Staff^ QueryStaffByDni(String^ dni);
 			static List<Staff^>^ QueryAllStaff();
+			static List<Staff^>^ QueryAllByModuloStansa(ModuloStansa^ modulo);
 
 			//metodos de clase globlales para Product
 			static void AddProduct(Product^ p);

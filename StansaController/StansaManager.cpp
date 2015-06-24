@@ -49,6 +49,9 @@ Staff^ StansaManager::QueryStaffByDni(String^ dni){
 List<Staff^>^ StansaManager::QueryAllStaff(){
 	return staffDB->QueryAll();
 }
+List<Staff^>^ StansaManager::QueryAllByModuloStansa(ModuloStansa^ modulo){
+	return staffDB->QueryAllByModuloStansa(modulo);
+}
 
 //metodos de clase globlales para Product
 void StansaManager::AddProduct(Product^ p){
