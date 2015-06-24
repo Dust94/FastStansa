@@ -628,7 +628,7 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 	s->hora_salida = horaSalida;
 	s->puesto = puesto;
 	StansaManager::AddStaff(s);
-	RefreshDGVStaff();
+	RefreshDGVStaff();//Enviando Staff
 }
 
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) { //Boton Delete
