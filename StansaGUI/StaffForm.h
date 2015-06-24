@@ -552,7 +552,7 @@ namespace StansaGUI {
 #pragma endregion
 
 		void RefreshDGVStaff(){
-			List<Staff^>^ listStaff = StansaManager::QueryAllStaffByModuloStansa(3); //Asumo Cualquier Modulo
+			List<Staff^>^ listStaff = StansaManager::QueryAllStaff(); //Asumo Cualquier Modulo
 			dgvStaff->Rows->Clear(); //Limpio la Grilla
 
 			for (int i = 0; i < listStaff->Count; i++){
@@ -582,11 +582,8 @@ public:  int idStaff;
 		 idStaff = Int32::Parse(
 			 dgvStaff->SelectedRows[0]->
 			 Cells[0]->Value->ToString());//Lo parseo primero a String y luego a Integer
-		 idModuloStansa = Int32::Parse(
-			 dgvStaff->SelectedRows[0]->
-			 Cells[0]->Value->ToString());//Lo parseo primero a String y luego a Integer
+		 }
 	 }
- }
 
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) { //Boton Add
 		String^ dni = txtStaffDni->Text;
@@ -616,7 +613,7 @@ public:  int idStaff;
 		s->hora_entrada = horaEntrada;
 		s->hora_salida = horaSalida;
 		s->puesto = puesto;
-		StansaManager::AddStaff(s, 1); //Asumo Cualquier Identificador de Modulo de Stansa
+		StansaManager::AddStaff(s); //Asumo Cualquier Identificador de Modulo de Stansa
 		RefreshDGVStaff();
 	}
 	
@@ -645,8 +642,8 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 	s->hora_entrada = horaEntrada;
 	s->hora_salida = horaSalida;
 	s->puesto = puesto;
-	StansaManager::AddStaff(s, 4);
-	RefreshDGVStaff();//Enviando Staff
+	StansaManager::UpdateStaff(s);
+	RefreshDGVStaff();
 }
 
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) { //Boton Delete
