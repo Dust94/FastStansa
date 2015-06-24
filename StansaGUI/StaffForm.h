@@ -572,7 +572,7 @@ namespace StansaGUI {
 		}//Fin del Metodo RefreshDGVStaff
 
 public:  int idStaff;
-		 ModuloStansa^ moduloStansaLocal = gcnew ModuloStansa();
+		 static ModuloStansa^ moduloStansaLocal = gcnew ModuloStansa();
 		 int idModuloStansa;
 
  private: System::Void dgvStaff_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {

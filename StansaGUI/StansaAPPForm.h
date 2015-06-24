@@ -62,16 +62,26 @@ namespace StansaGUI {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::MenuStrip^  menuStrip1;
-	protected:
 	private: System::Windows::Forms::ToolStripMenuItem^  operacionesToolStripMenuItem;
+	protected:
 	private: System::Windows::Forms::ToolStripMenuItem^  realizarVentaToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  mantenimientoToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  actualizarProductosToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  lectorPruebaToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  toolStripMenuItem1;
-	private: System::Windows::Forms::ToolStripMenuItem^  toolStripMenuItem2;
 	private: System::Windows::Forms::ToolStripMenuItem^  staffToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  archivoToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  cerrarToolStripMenuItem;
+	private: System::Windows::Forms::MenuStrip^  menuStrip1;
+
+	protected:
+
+
+
+
+
+
+
+
 
 	private:
 		/// <summary>
@@ -86,30 +96,17 @@ namespace StansaGUI {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->operacionesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->realizarVentaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->mantenimientoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->actualizarProductosToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->lectorPruebaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->toolStripMenuItem2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->toolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->staffToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->archivoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
+			this->cerrarToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
-			// 
-			// menuStrip1
-			// 
-			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
-				this->operacionesToolStripMenuItem,
-					this->mantenimientoToolStripMenuItem, this->toolStripMenuItem2, this->toolStripMenuItem1
-			});
-			this->menuStrip1->Location = System::Drawing::Point(0, 0);
-			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(284, 24);
-			this->menuStrip1->TabIndex = 1;
-			this->menuStrip1->Text = L"menuStrip1";
-			this->menuStrip1->ItemClicked += gcnew System::Windows::Forms::ToolStripItemClickedEventHandler(this, &StansaAPPForm::menuStrip1_ItemClicked);
 			// 
 			// operacionesToolStripMenuItem
 			// 
@@ -149,23 +146,39 @@ namespace StansaGUI {
 			this->lectorPruebaToolStripMenuItem->Text = L"Lector Prueba";
 			this->lectorPruebaToolStripMenuItem->Click += gcnew System::EventHandler(this, &StansaAPPForm::lectorPruebaToolStripMenuItem_Click);
 			// 
-			// toolStripMenuItem2
-			// 
-			this->toolStripMenuItem2->Name = L"toolStripMenuItem2";
-			this->toolStripMenuItem2->Size = System::Drawing::Size(125, 20);
-			this->toolStripMenuItem2->Text = L"toolStripMenuItem2";
-			// 
-			// toolStripMenuItem1
-			// 
-			this->toolStripMenuItem1->Name = L"toolStripMenuItem1";
-			this->toolStripMenuItem1->Size = System::Drawing::Size(12, 20);
-			// 
 			// staffToolStripMenuItem
 			// 
 			this->staffToolStripMenuItem->Name = L"staffToolStripMenuItem";
 			this->staffToolStripMenuItem->Size = System::Drawing::Size(183, 22);
 			this->staffToolStripMenuItem->Text = L"Staff";
 			this->staffToolStripMenuItem->Click += gcnew System::EventHandler(this, &StansaAPPForm::staffToolStripMenuItem_Click);
+			// 
+			// archivoToolStripMenuItem
+			// 
+			this->archivoToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->cerrarToolStripMenuItem });
+			this->archivoToolStripMenuItem->Name = L"archivoToolStripMenuItem";
+			this->archivoToolStripMenuItem->Size = System::Drawing::Size(60, 20);
+			this->archivoToolStripMenuItem->Text = L"Archivo";
+			// 
+			// menuStrip1
+			// 
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
+				this->archivoToolStripMenuItem,
+					this->operacionesToolStripMenuItem, this->mantenimientoToolStripMenuItem
+			});
+			this->menuStrip1->Location = System::Drawing::Point(0, 0);
+			this->menuStrip1->Name = L"menuStrip1";
+			this->menuStrip1->Size = System::Drawing::Size(284, 24);
+			this->menuStrip1->TabIndex = 1;
+			this->menuStrip1->Text = L"menuStrip1";
+			this->menuStrip1->ItemClicked += gcnew System::Windows::Forms::ToolStripItemClickedEventHandler(this, &StansaAPPForm::menuStrip1_ItemClicked);
+			// 
+			// cerrarToolStripMenuItem
+			// 
+			this->cerrarToolStripMenuItem->Name = L"cerrarToolStripMenuItem";
+			this->cerrarToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->cerrarToolStripMenuItem->Text = L"Cerrar";
+			this->cerrarToolStripMenuItem->Click += gcnew System::EventHandler(this, &StansaAPPForm::cerrarToolStripMenuItem_Click);
 			// 
 			// StansaAPPForm
 			// 
@@ -185,7 +198,7 @@ namespace StansaGUI {
 
 		}
 #pragma endregion
-	public: ModuloStansa^ moduloStansaLocal = gcnew ModuloStansa();
+	public: static ModuloStansa^ moduloStansaLocal = gcnew ModuloStansa();
 	private: System::Void lectorPruebaToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 		Lector_PruebaForm^ pForm = gcnew Lector_PruebaForm();
 		pForm->MdiParent = this;
@@ -209,6 +222,9 @@ private: System::Void staffToolStripMenuItem_Click(System::Object^  sender, Syst
 			 StaffForm^ pForm = gcnew StaffForm();
 			 pForm->MdiParent = this;
 			 pForm->Show();
+}
+private: System::Void cerrarToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	Application::Exit();
 }
 };
 }

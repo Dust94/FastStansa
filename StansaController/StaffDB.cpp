@@ -30,15 +30,15 @@ void StaffDB::Add(Staff^ s, int idModuloStansa){
 	SqlParameter^ p4 = gcnew SqlParameter("@p4",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p5 = gcnew SqlParameter("@p5",
-		System::Data::SqlDbType::Char);
+		System::Data::SqlDbType::Char, 1);
 	SqlParameter^ p6 = gcnew SqlParameter("@p6",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p7 = gcnew SqlParameter("@p7",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p8 = gcnew SqlParameter("@p8",
-		System::Data::SqlDbType::Time);
+		System::Data::SqlDbType::DateTime);
 	SqlParameter^ p9 = gcnew SqlParameter("@p9",
-		System::Data::SqlDbType::Time);
+		System::Data::SqlDbType::DateTime);
 	SqlParameter^ p10 = gcnew SqlParameter("@p10",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p11 = gcnew SqlParameter("@p11",
@@ -51,8 +51,8 @@ void StaffDB::Add(Staff^ s, int idModuloStansa){
 	p5->Value = s->sexo; // char
 	p6->Value = s->username; //String
 	p7->Value = s->password; //String
-	p8->Value = s->hora_entrada; //String
-	p9->Value = s->hora_salida; //String
+	p8->Value = s->hora_entrada; //DateTime
+	p9->Value = s->hora_salida; //DateTime
 	p10->Value = s->puesto; //String
 	p11->Value = idModuloStansa; //int  
 
@@ -100,9 +100,9 @@ void StaffDB::Update(Staff^ s, int idModuloStansa){
 	SqlParameter^ p7 = gcnew SqlParameter("@p7",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p8 = gcnew SqlParameter("@p8",
-		System::Data::SqlDbType::Time);
+		System::Data::SqlDbType::DateTime);
 	SqlParameter^ p9 = gcnew SqlParameter("@p9",
-		System::Data::SqlDbType::Time);
+		System::Data::SqlDbType::DateTime);
 	SqlParameter^ p10 = gcnew SqlParameter("@p10",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p11 = gcnew SqlParameter("@p11",
@@ -117,8 +117,8 @@ void StaffDB::Update(Staff^ s, int idModuloStansa){
 	p5->Value = s->sexo; // char
 	p6->Value = s->username; //String
 	p7->Value = s->password; //String
-	p8->Value = s->hora_entrada; //String
-	p9->Value = s->hora_salida; //String
+	p8->Value = s->hora_entrada; //DateTime
+	p9->Value = s->hora_salida; //DateTime
 	p10->Value = s->puesto; //String
 	p11->Value = s->id; //int
 	p11->Value = idModuloStansa; //int
@@ -200,10 +200,14 @@ Staff^ StaffDB::QueryById(int id){
 			s->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
 			s->password = safe_cast<String ^>(dr["password"]);
-		if (dr["inTime"] != System::DBNull::Value)
-			s->hora_entrada = safe_cast<String ^>(dr["inTime"]);
-		if (dr["outTime"] != System::DBNull::Value)
-			s->hora_salida = safe_cast<String ^>(dr["outTime"]);
+		if (dr["inTime"] != System::DBNull::Value){
+			DateTime^ Temphora_entrada = dr->GetDateTime(8); //Columna 8 "inTime"
+			s->hora_entrada = Temphora_entrada->ToString("HH:mm:ss");
+		}
+		if (dr["outTime"] != System::DBNull::Value){
+			DateTime^ Temphora_salida = dr->GetDateTime(9); //Columna 9 "outTime"
+			s->hora_salida = Temphora_salida->ToString("HH:mm:ss");
+		}
 		if (dr["position"] != System::DBNull::Value)
 			s->puesto = safe_cast<String ^>(dr["position"]);
 	}
@@ -245,15 +249,19 @@ Staff^ StaffDB::QueryByDni(String^ dni){
 		if (dr["secondLastName"] != System::DBNull::Value)
 			s->apellido_Materno = safe_cast<String ^>(dr["secondLastName"]);
 		if (dr["sex"] != System::DBNull::Value)
-			s->sexo = safe_cast<char>(dr["sex"]);
+			s->sexo = Char::Parse( safe_cast<String ^>(dr["sex"]));
 		if (dr["username"] != System::DBNull::Value)
 			s->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
 			s->password = safe_cast<String ^>(dr["password"]);
-		if (dr["inTime"] != System::DBNull::Value)
-			s->hora_entrada = safe_cast<String ^>(dr["inTime"]);
-		if (dr["outTime"] != System::DBNull::Value)
-			s->hora_salida = safe_cast<String ^>(dr["outTime"]);
+		if (dr["inTime"] != System::DBNull::Value){
+			DateTime^ Temphora_entrada = dr->GetDateTime(8); //Columna 8 "inTime"
+			s->hora_entrada = Temphora_entrada->ToString("HH:mm:ss");
+		}
+		if (dr["outTime"] != System::DBNull::Value){
+			DateTime^ Temphora_salida = dr->GetDateTime(9); //Columna 9 "outTime"
+			s->hora_salida = Temphora_salida->ToString("HH:mm:ss");
+		}
 		if (dr["position"] != System::DBNull::Value)
 			s->puesto = safe_cast<String ^>(dr["position"]);
 	}
@@ -296,10 +304,14 @@ List<Staff^>^ StaffDB::QueryAll(){
 			s->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
 			s->password = safe_cast<String ^>(dr["password"]);
-		if (dr["inTime"] != System::DBNull::Value)
-			s->hora_entrada = safe_cast<String ^>(dr["inTime"]);
-		if (dr["outTime"] != System::DBNull::Value)
-			s->hora_salida = safe_cast<String ^>(dr["outTime"]);
+		if (dr["inTime"] != System::DBNull::Value){
+			DateTime^ Temphora_entrada = dr->GetDateTime(8); //Columna 8 "inTime"
+			s->hora_entrada = Temphora_entrada->ToString("HH:mm:ss");
+		}
+		if (dr["outTime"] != System::DBNull::Value){
+			DateTime^ Temphora_salida = dr->GetDateTime(9); //Columna 9 "outTime"
+			s->hora_salida = Temphora_salida->ToString("HH:mm:ss");
+		}
 		if (dr["position"] != System::DBNull::Value)
 			s->puesto = safe_cast<String ^>(dr["position"]);
 		staffList->Add(s);
@@ -349,10 +361,14 @@ List<Staff^>^ StaffDB::QueryAllByModuloStansa(int idModuloStansa){
 			s->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
 			s->password = safe_cast<String ^>(dr["password"]);
-		if (dr["inTime"] != System::DBNull::Value)
-			s->hora_entrada = safe_cast<String ^>(dr["inTime"]);
-		if (dr["outTime"] != System::DBNull::Value)
-			s->hora_salida = safe_cast<String ^>(dr["outTime"]);
+		if (dr["inTime"] != System::DBNull::Value){
+			DateTime^ Temphora_entrada = dr->GetDateTime(8); //Columna 8 "inTime"
+			s->hora_entrada = Temphora_entrada->ToString("HH:mm:ss");
+		}
+		if (dr["outTime"] != System::DBNull::Value){
+			DateTime^ Temphora_salida = dr->GetDateTime(9); //Columna 9 "outTime"
+			s->hora_salida = Temphora_salida->ToString("HH:mm:ss");
+		}
 		if (dr["position"] != System::DBNull::Value)
 			s->puesto = safe_cast<String ^>(dr["position"]);
 		staffList->Add(s);

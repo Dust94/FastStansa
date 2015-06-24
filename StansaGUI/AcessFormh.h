@@ -178,6 +178,7 @@ private: System::Void btnOk_Click(System::Object^  sender, System::EventArgs^  e
 			((StaffForm^)staffForm)->moduloStansaLocal->id = moduloStansa->id;
 			StansaAPPForm^ pForm = gcnew StansaAPPForm();
 			pForm->Show();
+			//AcessFormh::Close();
 		}
 		else MessageBox::Show("Personal de Stansa No Registrado");
 	}

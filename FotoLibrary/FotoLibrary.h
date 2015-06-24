@@ -30,8 +30,8 @@ namespace FotoLibrary {
 	public ref class Staff:Persona
 	{
 		public:
-			String^ hora_entrada; //Hora de Entrada al Trabajo
-			String^ hora_salida; //Hora de Salida del Trabajo
+			DateTime^ hora_entrada; //Hora de Entrada al Trabajo
+			DateTime^ hora_salida; //Hora de Salida del Trabajo
 			String^ puesto;
 	}; // Fin Clase Staff
 
