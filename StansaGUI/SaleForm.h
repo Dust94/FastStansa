@@ -81,7 +81,8 @@ namespace StansaGUI {
 	private: System::Windows::Forms::ComboBox^  cmbCostumer;
 
 	private: System::Windows::Forms::Button^  button1;
-	private: System::Windows::Forms::Button^  button2;
+	private: System::Windows::Forms::Button^  btndelete;
+
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::TextBox^  txttotal;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  id;
@@ -133,7 +134,7 @@ namespace StansaGUI {
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->cmbCostumer = (gcnew System::Windows::Forms::ComboBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->btndelete = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->txttotal = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvVenta))->BeginInit();
@@ -151,6 +152,7 @@ namespace StansaGUI {
 			this->dgvVenta->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
 			this->dgvVenta->Size = System::Drawing::Size(493, 98);
 			this->dgvVenta->TabIndex = 24;
+			this->dgvVenta->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &SaleForm::dgvVenta_CellContentClick);
 			this->dgvVenta->CellValueChanged += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &SaleForm::dgvVenta_CellValueChanged);
 			// 
 			// id
@@ -250,14 +252,15 @@ namespace StansaGUI {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &SaleForm::button1_Click);
 			// 
-			// button2
+			// btndelete
 			// 
-			this->button2->Location = System::Drawing::Point(380, 139);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(129, 23);
-			this->button2->TabIndex = 42;
-			this->button2->Text = L"Eliminar producto";
-			this->button2->UseVisualStyleBackColor = true;
+			this->btndelete->Location = System::Drawing::Point(380, 139);
+			this->btndelete->Name = L"btndelete";
+			this->btndelete->Size = System::Drawing::Size(129, 23);
+			this->btndelete->TabIndex = 42;
+			this->btndelete->Text = L"Eliminar producto";
+			this->btndelete->UseVisualStyleBackColor = true;
+			this->btndelete->Click += gcnew System::EventHandler(this, &SaleForm::button2_Click);
 			// 
 			// label2
 			// 
@@ -282,7 +285,7 @@ namespace StansaGUI {
 			this->ClientSize = System::Drawing::Size(554, 355);
 			this->Controls->Add(this->txttotal);
 			this->Controls->Add(this->label2);
-			this->Controls->Add(this->button2);
+			this->Controls->Add(this->btndelete);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->cmbCostumer);
 			this->Controls->Add(this->label5);
@@ -368,6 +371,27 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 
 	ProductSearchForm ^psForm = gcnew ProductSearchForm(this);
 	psForm->ShowDialog();
+	
+}
+private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+	
+	if (dgvVenta->CurrentCell != nullptr &&
+		dgvVenta->CurrentCell->Value != nullptr &&
+		dgvVenta->CurrentCell->Value->ToString() != "") {
+
+		dgvVenta->SelectedRows[0]->Cells[0]->Value = "";
+		dgvVenta->SelectedRows[0]->Cells[1]->Value = "";
+		dgvVenta->SelectedRows[0]->Cells[2]->Value = "";
+		dgvVenta->SelectedRows[0]->Cells[3]->Value = "";
+		dgvVenta->SelectedRows[0]->Cells[4]->Value = "";
+
+			
+		
+	}
+}
+		
+
+public: System::Void dgvVenta_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
 	
 }
 };

@@ -319,6 +319,7 @@ private: System::Void btnUpdate_Click(System::Object^  sender, System::EventArgs
 	String^ stock = txtstock->Text;
 
 	Product^ p = gcnew Product();
+	p=StansaManager::QueryProductById(idProd);
 	p->name = name;
 	p->description = descripcion;
 	p->price = Double::Parse(precio);
