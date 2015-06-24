@@ -19,8 +19,8 @@ void StaffDB::Add(Staff^ s){
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
 	comm->CommandText = "INSERT INTO Staff_DB" +
-		" (dni, name, lastName, secondLastName, sex, username, password, inTime, outTime, position)" +
-		" VALUES (@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9,@p10)";
+		" (dni, name, lastName, secondLastName, sex, username, password, inTime, outTime, position, idModStansa)" +
+		" VALUES (@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9,@p10,@p11)";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p2 = gcnew SqlParameter("@p2",
@@ -36,11 +36,13 @@ void StaffDB::Add(Staff^ s){
 	SqlParameter^ p7 = gcnew SqlParameter("@p7",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p8 = gcnew SqlParameter("@p8",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::Time);
 	SqlParameter^ p9 = gcnew SqlParameter("@p9",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::Time);
 	SqlParameter^ p10 = gcnew SqlParameter("@p10",
 		System::Data::SqlDbType::VarChar);
+	SqlParameter^ p11 = gcnew SqlParameter("@p11",
+		System::Data::SqlDbType::Int);
 
 	p1->Value = s->dni; //String
 	p2->Value = s->name; //String
@@ -52,6 +54,7 @@ void StaffDB::Add(Staff^ s){
 	p8->Value = s->hora_entrada; //String
 	p9->Value = s->hora_salida; //String
 	p10->Value = s->puesto; //String
+	p11->Value = 4; //int
 
 	comm->Parameters->Add(p1);
 	comm->Parameters->Add(p2);
@@ -63,6 +66,7 @@ void StaffDB::Add(Staff^ s){
 	comm->Parameters->Add(p8);
 	comm->Parameters->Add(p9);
 	comm->Parameters->Add(10);
+	comm->Parameters->Add(11);
 	//Paso 3: Ejecución de la sentencia
 	comm->ExecuteNonQuery();
 	//Paso 4: Cerramos la conexión con la BD
