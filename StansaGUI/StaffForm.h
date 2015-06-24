@@ -505,6 +505,16 @@ namespace StansaGUI {
 		//lblPrueba->Text = horaEntrada;
 
 		Staff^ s = gcnew Staff();
+		s->dni = dni;
+		s->name = name;
+		s->apellido_Paterno = apellido_Paterno;
+		s->apellido_Materno = apellido_Materno;
+		s->sexo = sexo;
+		s->username = username;
+		s->password = password;
+		s->hora_entrada = horaEntrada;
+		s->hora_salida = horaSalida;
+		s->puesto = puesto;
 		StansaManager::AddStaff(s);
 		//RefreshDGVStaff();
 	}
@@ -521,14 +531,27 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 	if (rbtnFemenino->Checked) sexo = 'F';
 	String^ username = txtStaffUsername->Text;
 	String^ password = txtStaffPassword->Text;
-	String^ horaEntrada = dTPHoraEntrada->Text;
+	String^ horaEntrada = dTPHoraEntrada->Value.Hour.ToString();
+	String^ horaSalida = dTPHoraSalida->Value.Hour.ToString();
+	String^ puesto = combStaffPuesto->Text;
+	//lblPrueba->Text = horaEntrada;
 
 	Staff^ s = gcnew Staff();
+	s->dni = dni;
+	s->name = name;
+	s->apellido_Paterno = apellido_Paterno;
+	s->apellido_Materno = apellido_Materno;
+	s->sexo = sexo;
+	s->username = username;
+	s->password = password;
+	s->hora_entrada = horaEntrada;
+	s->hora_salida = horaSalida;
+	s->puesto = puesto;
 	StansaManager::AddStaff(s);
-	RefreshDGVStaff();
+	//RefreshDGVStaff();
 }
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
-			 if (dgvStaff->CurrentCell != nullptr &&
+			 /*if (dgvStaff->CurrentCell != nullptr &&
 				 dgvStaff->CurrentCell->Value != nullptr &&
 				 dgvStaff->CurrentCell->Value->ToString() != "") {
 				 String^ idStaff = dgvStaff->SelectedRows[0]->
@@ -536,7 +559,7 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 
 				 StansaManager::DeleteStaff(Int32::Parse(idStaff));
 				 RefreshDGVStaff();
-			 }
+			 }*/
 
 
 
