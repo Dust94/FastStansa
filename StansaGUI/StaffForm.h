@@ -565,8 +565,8 @@ namespace StansaGUI {
 						"" + listStaff[i]->sexo,
 						listStaff[i]->username,
 						listStaff[i]->password,
-						listStaff[i]->hora_entrada,
-						listStaff[i]->hora_salida,
+						listStaff[i]->hora_entrada->ToString("hh:mm:ss"),
+						listStaff[i]->hora_salida->ToString("hh:mm:ss"),
 						listStaff[i]->puesto});
 			} //Fin del For
 		}//Fin del Metodo RefreshDGVStaff
@@ -598,10 +598,11 @@ public:  int idStaff;
 		if (rbtnFemenino->Checked) sexo = 'F';
 		String^ username = txtStaffUsername->Text;
 		String^ password = txtStaffPassword->Text;
-		String^ horaEntrada = dTPHoraEntrada->Value.ToString("hh:mm:ss");
-		String^ horaSalida = dTPHoraSalida->Value.ToString("hh:mm:ss");
+		DateTime^ horaEntrada = dTPHoraEntrada->Value;
+		DateTime^ horaSalida = dTPHoraSalida->Value;
 		String^ puesto = combStaffPuesto->Text;
-		lblPrueba->Text = horaEntrada;
+
+		lblPrueba->Text = horaEntrada->ToString("hh:mm:ss");
 		lblPrueba2->Text = puesto;
 
 		Staff^ s = gcnew Staff();
@@ -615,7 +616,7 @@ public:  int idStaff;
 		s->hora_entrada = horaEntrada;
 		s->hora_salida = horaSalida;
 		s->puesto = puesto;
-		StansaManager::AddStaff(s, 4); //Asumo Cualquier Identificador de Modulo de Stansa
+		StansaManager::AddStaff(s, 1); //Asumo Cualquier Identificador de Modulo de Stansa
 		RefreshDGVStaff();
 	}
 	
@@ -629,8 +630,8 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 	if (rbtnFemenino->Checked) sexo = 'F';
 	String^ username = txtStaffUsername->Text;
 	String^ password = txtStaffPassword->Text;
-	String^ horaEntrada = dTPHoraEntrada->Value.Hour.ToString();
-	String^ horaSalida = dTPHoraSalida->Value.Hour.ToString();
+	DateTime^ horaEntrada = dTPHoraEntrada->Value;
+	DateTime^ horaSalida = dTPHoraSalida->Value;
 	String^ puesto = combStaffPuesto->Text;
 
 	Staff ^ s = StansaManager::QueryStaffById(idStaff);

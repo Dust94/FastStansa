@@ -200,14 +200,10 @@ Staff^ StaffDB::QueryById(int id){
 			s->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
 			s->password = safe_cast<String ^>(dr["password"]);
-		if (dr["inTime"] != System::DBNull::Value){
-			DateTime^ Temphora_entrada = dr->GetDateTime(8); //Columna 8 "inTime"
-			s->hora_entrada = Temphora_entrada->ToString("HH:mm:ss");
-		}
-		if (dr["outTime"] != System::DBNull::Value){
-			DateTime^ Temphora_salida = dr->GetDateTime(9); //Columna 9 "outTime"
-			s->hora_salida = Temphora_salida->ToString("HH:mm:ss");
-		}
+		if (dr["inTime"] != System::DBNull::Value)
+			s->hora_entrada = dr->GetDateTime(8); //Columna 8 "inTime"
+		if (dr["outTime"] != System::DBNull::Value)
+			s->hora_salida = dr->GetDateTime(9); //Columna 9 "outTime"
 		if (dr["position"] != System::DBNull::Value)
 			s->puesto = safe_cast<String ^>(dr["position"]);
 	}
@@ -254,14 +250,10 @@ Staff^ StaffDB::QueryByDni(String^ dni){
 			s->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
 			s->password = safe_cast<String ^>(dr["password"]);
-		if (dr["inTime"] != System::DBNull::Value){
-			DateTime^ Temphora_entrada = dr->GetDateTime(8); //Columna 8 "inTime"
-			s->hora_entrada = Temphora_entrada->ToString("HH:mm:ss");
-		}
-		if (dr["outTime"] != System::DBNull::Value){
-			DateTime^ Temphora_salida = dr->GetDateTime(9); //Columna 9 "outTime"
-			s->hora_salida = Temphora_salida->ToString("HH:mm:ss");
-		}
+		if (dr["inTime"] != System::DBNull::Value)
+			s->hora_entrada = dr->GetDateTime(8); //Columna 8 "inTime"
+		if (dr["outTime"] != System::DBNull::Value)
+			s->hora_salida = dr->GetDateTime(9); //Columna 9 "outTime"
 		if (dr["position"] != System::DBNull::Value)
 			s->puesto = safe_cast<String ^>(dr["position"]);
 	}
@@ -304,14 +296,10 @@ List<Staff^>^ StaffDB::QueryAll(){
 			s->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
 			s->password = safe_cast<String ^>(dr["password"]);
-		if (dr["inTime"] != System::DBNull::Value){
-			DateTime^ Temphora_entrada = dr->GetDateTime(8); //Columna 8 "inTime"
-			s->hora_entrada = Temphora_entrada->ToString("HH:mm:ss");
-		}
-		if (dr["outTime"] != System::DBNull::Value){
-			DateTime^ Temphora_salida = dr->GetDateTime(9); //Columna 9 "outTime"
-			s->hora_salida = Temphora_salida->ToString("HH:mm:ss");
-		}
+		if (dr["inTime"] != System::DBNull::Value)
+			s->hora_entrada = dr->GetDateTime(8); //Columna 8 "inTime"
+		if (dr["outTime"] != System::DBNull::Value)
+			s->hora_salida = dr->GetDateTime(9); //Columna 9 "outTime"
 		if (dr["position"] != System::DBNull::Value)
 			s->puesto = safe_cast<String ^>(dr["position"]);
 		staffList->Add(s);
@@ -361,14 +349,10 @@ List<Staff^>^ StaffDB::QueryAllByModuloStansa(int idModuloStansa){
 			s->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
 			s->password = safe_cast<String ^>(dr["password"]);
-		if (dr["inTime"] != System::DBNull::Value){
-			DateTime^ Temphora_entrada = dr->GetDateTime(8); //Columna 8 "inTime"
-			s->hora_entrada = Temphora_entrada->ToString("HH:mm:ss");
-		}
-		if (dr["outTime"] != System::DBNull::Value){
-			DateTime^ Temphora_salida = dr->GetDateTime(9); //Columna 9 "outTime"
-			s->hora_salida = Temphora_salida->ToString("HH:mm:ss");
-		}
+		if (dr["inTime"] != System::DBNull::Value)
+			s->hora_entrada = dr->GetDateTime(8); //Columna 8 "inTime"
+		if (dr["outTime"] != System::DBNull::Value)
+			s->hora_salida = dr->GetDateTime(9); //Columna 9 "outTime"
 		if (dr["position"] != System::DBNull::Value)
 			s->puesto = safe_cast<String ^>(dr["position"]);
 		staffList->Add(s);
