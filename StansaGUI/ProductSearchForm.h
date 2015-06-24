@@ -119,6 +119,7 @@ namespace StansaGUI {
 			this->dgvproductsearch->Name = L"dgvproductsearch";
 			this->dgvproductsearch->Size = System::Drawing::Size(395, 150);
 			this->dgvproductsearch->TabIndex = 3;
+			this->dgvproductsearch->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &ProductSearchForm::dgvproductsearch_CellContentClick);
 			// 
 			// code
 			// 
@@ -231,5 +232,7 @@ private: System::Void ProductSearchForm_Load(System::Object^  sender, System::Ev
 	RefreshDGVProducts();
 
 }
+ System::Void dgvproductsearch_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e);
+
 };
 }
