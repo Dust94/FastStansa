@@ -13,7 +13,7 @@ void CustomerDB::Add(Customer^ c){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
@@ -296,7 +296,7 @@ List<Customer^>^ CustomerDB::QueryAll(){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
