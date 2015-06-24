@@ -560,7 +560,7 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 				 StansaManager::DeleteStaff(Int32::Parse(idStaff));
 				 RefreshDGVStaff();
 			 }*/
-
+	//Trabajando Staff
 
 
 }

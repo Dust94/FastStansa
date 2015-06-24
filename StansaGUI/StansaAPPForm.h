@@ -33,13 +33,14 @@ namespace StansaGUI {
 		}
 		void MyRun(){
 			while (true) {
-
+				/*
 				DateTime^ now = DateTime::Now;
 				Invoke(gcnew delegateUpdateTitle(this, &StansaAPPForm::UpdateTitle),
 					gcnew array<String^>{"Sistema de Ventas " + now->ToString("hh:mm:ss")});
 				Thread::Sleep(1000);
 				if (!this->Visible)
 					return;
+					*/
 			}
 		}
 
