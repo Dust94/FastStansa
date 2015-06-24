@@ -1,7 +1,7 @@
 #pragma once
 namespace StansaGUI {
 
-
+	//Trabajando 
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
