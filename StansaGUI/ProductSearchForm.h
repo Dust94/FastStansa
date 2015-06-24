@@ -17,13 +17,17 @@ namespace StansaGUI {
 	/// </summary>
 	public ref class ProductSearchForm : public System::Windows::Forms::Form
 	{
+		Form^ saleForm;
+
 	public:
-		ProductSearchForm(void)
+		ProductSearchForm(Form ^saleForm)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
 			//
+
+			this->saleForm = saleForm;
 		}
 
 	protected:
@@ -208,27 +212,21 @@ namespace StansaGUI {
 			}
 		}
 		else {
-			List<Product^> ^productList = StansaManager::QueryProductsLikeName(txtName->Text);
-			dgvProducts->Rows->Clear();
+			List<Product^> ^productList = StansaManager::QueryProductsLikeName(txtqueryname->Text);
+			dgvproductsearch->Rows->Clear();
 			for (int i = 0; i < productList->Count; i++){
-				dgvProducts->Rows->Add(gcnew array<String^>{
-					"" + productList[i]->GetId(),
-						productList[i]->GetName(),
-						"" + productList[i]->GetPrice(),
-						"" + productList[i]->GetStock()});
+				dgvproductsearch->Rows->Add(gcnew array<String^>{
+					"" + productList[i]->id,
+						productList[i]->name,
+						"" + productList[i]->price,
+						"" + productList[i]->stock});
 			}
 		}
-	}
-
-
-
-
-
-
 
 
 
 	}
+	
 private: System::Void ProductSearchForm_Load(System::Object^  sender, System::EventArgs^  e) {
 	RefreshDGVProducts();
 
