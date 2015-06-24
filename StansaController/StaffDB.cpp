@@ -36,9 +36,9 @@ void StaffDB::Add(Staff^ s){
 	SqlParameter^ p7 = gcnew SqlParameter("@p7",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p8 = gcnew SqlParameter("@p8",
-		System::Data::SqlDbType::DateTime);
+		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p9 = gcnew SqlParameter("@p9",
-		System::Data::SqlDbType::DateTime);
+		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p10 = gcnew SqlParameter("@p10",
 		System::Data::SqlDbType::VarChar);
 
@@ -49,8 +49,8 @@ void StaffDB::Add(Staff^ s){
 	p5->Value = s->sexo; // char
 	p6->Value = s->username; //String
 	p7->Value = s->password; //String
-	p8->Value = s->hora_entrada; //DateTime
-	p9->Value = s->hora_salida; //DateTime
+	p8->Value = s->hora_entrada; //String
+	p9->Value = s->hora_salida; //String
 	p10->Value = s->puesto; //String
 
 	comm->Parameters->Add(p1);
@@ -96,9 +96,9 @@ void StaffDB::Update(Staff^ s){
 	SqlParameter^ p7 = gcnew SqlParameter("@p7",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p8 = gcnew SqlParameter("@p8",
-		System::Data::SqlDbType::DateTime);
+		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p9 = gcnew SqlParameter("@p9",
-		System::Data::SqlDbType::DateTime);
+		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p10 = gcnew SqlParameter("@p10",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p11 = gcnew SqlParameter("@p11",
@@ -111,8 +111,8 @@ void StaffDB::Update(Staff^ s){
 	p5->Value = s->sexo; // char
 	p6->Value = s->username; //String
 	p7->Value = s->password; //String
-	p8->Value = s->hora_entrada; //DateTime
-	p9->Value = s->hora_salida; //DateTime
+	p8->Value = s->hora_entrada; //String
+	p9->Value = s->hora_salida; //String
 	p10->Value = s->puesto; //String
 	p11->Value = s->id; //int
 
@@ -194,9 +194,9 @@ Staff^ StaffDB::QueryById(int id){
 		if (dr["password"] != System::DBNull::Value)
 			s->password = safe_cast<String ^>(dr["password"]);
 		if (dr["hora_entrada"] != System::DBNull::Value)
-			s->hora_entrada = safe_cast<DateTime ^>(dr["hora_entrada"]);
+			s->hora_entrada = safe_cast<String ^>(dr["hora_entrada"]);
 		if (dr["hora_salida"] != System::DBNull::Value)
-			s->hora_salida = safe_cast<DateTime ^>(dr["hora_salida"]);
+			s->hora_salida = safe_cast<String ^>(dr["hora_salida"]);
 		if (dr["puesto"] != System::DBNull::Value)
 			s->puesto = safe_cast<String ^>(dr["puesto"]);
 	}
@@ -244,9 +244,9 @@ Staff^ StaffDB::QueryByDni(String^ dni){
 		if (dr["password"] != System::DBNull::Value)
 			s->password = safe_cast<String ^>(dr["password"]);
 		if (dr["hora_entrada"] != System::DBNull::Value)
-			s->hora_entrada = safe_cast<DateTime ^>(dr["hora_entrada"]);
+			s->hora_entrada = safe_cast<String ^>(dr["hora_entrada"]);
 		if (dr["hora_salida"] != System::DBNull::Value)
-			s->hora_salida = safe_cast<DateTime ^>(dr["hora_salida"]);
+			s->hora_salida = safe_cast<String ^>(dr["hora_salida"]);
 		if (dr["puesto"] != System::DBNull::Value)
 			s->puesto = safe_cast<String ^>(dr["puesto"]);
 	}
@@ -290,9 +290,9 @@ List<Staff^>^ StaffDB::QueryAll(){
 		if (dr["password"] != System::DBNull::Value)
 			s->password = safe_cast<String ^>(dr["password"]);
 		if (dr["hora_entrada"] != System::DBNull::Value)
-			s->hora_entrada = safe_cast<DateTime ^>(dr["hora_entrada"]);
+			s->hora_entrada = safe_cast<String ^>(dr["hora_entrada"]);
 		if (dr["hora_salida"] != System::DBNull::Value)
-			s->hora_salida = safe_cast<DateTime ^>(dr["hora_salida"]);
+			s->hora_salida = safe_cast<String ^>(dr["hora_salida"]);
 		if (dr["puesto"] != System::DBNull::Value)
 			s->puesto = safe_cast<String ^>(dr["puesto"]);
 		staffList->Add(s);

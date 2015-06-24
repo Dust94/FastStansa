@@ -30,8 +30,8 @@ namespace FotoLibrary {
 	public ref class Staff:Persona
 	{
 		public:
-			DateTime^ hora_entrada; //Hora de Entrada al Trabajo
-			DateTime^ hora_salida; //Hora de Salida del Trabajo
+			String^ hora_entrada; //Hora de Entrada al Trabajo
+			String^ hora_salida; //Hora de Salida del Trabajo
 			String^ puesto;
 	}; // Fin Clase Staff
 
@@ -58,10 +58,10 @@ namespace FotoLibrary {
 	public ref class Attention {
 		public:
 			int id; //Identifica una fila. Una atencion
-			DateTime^ fecha; //Dia de la Atencion
+			String^ fecha; //Dia de la Atencion
 			int n_orden; //El Numero de Orden de la Persona que esta siendo atendida
-			DateTime^ hora_ini; //Inicia la atencion con el Ticket de Numero de Orden
-			DateTime^ hora_fin; //Finaliza la atencion de un Usuario
+			String^ hora_ini; //Inicia la atencion con el Ticket de Numero de Orden
+			String^ hora_fin; //Finaliza la atencion de un Usuario
 			String^ estado; //El estado del Usuario: Atendido o Esperando
 			Customer^ customer; //Que Usuario fue atendido
 			ModuloStansa^ moduloStansa; //En cual ModuloStansa fue atendido
@@ -79,7 +79,7 @@ namespace FotoLibrary {
 		public:
 			int id;
 			double total;
-			DateTime^ date; // Dia de la Venta
+			String^ date; // Dia de la Venta
 			Staff^ staff; //Quien ejecuto la venta
 			Customer^ customer; //Para Obtener el Numero de Orden del Usuario
 			List<SaleDetail^>^ details; //Varias Boletas en un Proceso de Venta
