@@ -31,11 +31,11 @@ List<Customer^>^ StansaManager::QueryAllCustomer(){
 }
 
 //metodos de clase globlales para Staff
-void StansaManager::AddStaff(Staff^ s){
-	staffDB->Add(s);
+void StansaManager::AddStaff(Staff^ s, int idModuloStansa){
+	staffDB->Add(s, idModuloStansa);
 }
-void StansaManager::UpdateStaff(Staff^ s){
-	staffDB->Update(s);
+void StansaManager::UpdateStaff(Staff^ s, int idModuloStansa){
+	staffDB->Update(s, idModuloStansa);
 }
 void StansaManager::DeleteStaff(int id){
 	staffDB->Delete(id);
@@ -49,8 +49,8 @@ Staff^ StansaManager::QueryStaffByDni(String^ dni){
 List<Staff^>^ StansaManager::QueryAllStaff(){
 	return staffDB->QueryAll();
 }
-List<Staff^>^ StansaManager::QueryAllStaffByModuloStansa(ModuloStansa^ modulo){
-	return staffDB->QueryAllByModuloStansa(modulo);
+List<Staff^>^ StansaManager::QueryAllStaffByModuloStansa(int idModuloStansa){
+	return staffDB->QueryAllByModuloStansa(idModuloStansa);
 }
 
 //metodos de clase globlales para Product

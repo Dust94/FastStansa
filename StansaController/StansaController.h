@@ -23,13 +23,13 @@ namespace StansaController {
 		public:
 			List<Staff^> ^ listStaff;
 		public:
-			void Add(Staff^ s);
-			void Update(Staff^ s);
+			void Add(Staff^ s, int idModuloStansa); //Necesito saber a que Stansa pertenece
+			void Update(Staff^ s, int idModuloStansa); //Necesito saber a que Stansa pertenece
 			void Delete(int id);
 			Staff^ QueryById(int id);
 			Staff^ QueryByDni(String^ dni);
 			List<Staff^>^ QueryAll();
-			List<Staff^>^ QueryAllByModuloStansa(ModuloStansa^ modulo);
+			List<Staff^>^ QueryAllByModuloStansa(int idModuloStansa);
 	}; //Fin Clase StaffDB
 
 	public ref class ProductDB //Base de Datos para Todos los Products
@@ -95,13 +95,13 @@ namespace StansaController {
 			static List<Customer^>^ QueryAllCustomer();
 
 			//metodos de clase globlales para Staff
-			static void AddStaff(Staff^ s);
-			static void UpdateStaff(Staff^ s);
+			static void AddStaff(Staff^ s, int idModuloStansa);
+			static void UpdateStaff(Staff^ s, int idModuloStansa);
 			static void DeleteStaff(int id);
 			static Staff^ QueryStaffById(int id);
 			static Staff^ QueryStaffByDni(String^ dni);
 			static List<Staff^>^ QueryAllStaff();
-			static List<Staff^>^ QueryAllStaffByModuloStansa(ModuloStansa^ modulo);
+			static List<Staff^>^ QueryAllStaffByModuloStansa(int idModuloStansa);
 
 			//metodos de clase globlales para Product
 			static void AddProduct(Product^ p);

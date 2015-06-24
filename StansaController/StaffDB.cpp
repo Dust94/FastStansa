@@ -8,7 +8,7 @@ using namespace System::Runtime::Serialization::Formatters::Binary;
 using namespace System::Data::SqlClient;
 
 //Metodos de la Clase StaffDB
-void StaffDB::Add(Staff^ s){
+void StaffDB::Add(Staff^ s, int idModuloStansa){
 	//Paso 1: Obtener la conexión
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
@@ -54,7 +54,7 @@ void StaffDB::Add(Staff^ s){
 	p8->Value = s->hora_entrada; //String
 	p9->Value = s->hora_salida; //String
 	p10->Value = s->puesto; //String
-	p11->Value = 4; //int  
+	p11->Value = idModuloStansa; //int  
 
 	comm->Parameters->Add(p1);
 	comm->Parameters->Add(p2);
@@ -72,7 +72,7 @@ void StaffDB::Add(Staff^ s){
 	//Paso 4: Cerramos la conexión con la BD
 	conn->Close();
 }
-void StaffDB::Update(Staff^ s){
+void StaffDB::Update(Staff^ s, int idModuloStansa){
 	//Paso 1: Se abre la conexión
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
@@ -83,8 +83,8 @@ void StaffDB::Update(Staff^ s){
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
 	comm->CommandText = "UPDATE Staff_DB " +
-		"SET dni=@p1, name=@p2, lastName=@p3, secondLastName=@p4, sex=@p5, username=@p6 , password=@p7 , inTime=@p8 , outTime=@p9, position=@p10  " +
-		" WHERE id=@p11";
+		"SET dni=@p1, name=@p2, lastName=@p3, secondLastName=@p4, sex=@p5, username=@p6 , password=@p7 , inTime=@p8 , outTime=@p9, position=@p10, idModStansa=@p11  " +
+		" WHERE id=@p12";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p2 = gcnew SqlParameter("@p2",
@@ -100,12 +100,14 @@ void StaffDB::Update(Staff^ s){
 	SqlParameter^ p7 = gcnew SqlParameter("@p7",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p8 = gcnew SqlParameter("@p8",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::Time);
 	SqlParameter^ p9 = gcnew SqlParameter("@p9",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::Time);
 	SqlParameter^ p10 = gcnew SqlParameter("@p10",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p11 = gcnew SqlParameter("@p11",
+		System::Data::SqlDbType::Int);
+	SqlParameter^ p12 = gcnew SqlParameter("@p12",
 		System::Data::SqlDbType::Int);
 
 	p1->Value = s->dni; //String
@@ -119,6 +121,7 @@ void StaffDB::Update(Staff^ s){
 	p9->Value = s->hora_salida; //String
 	p10->Value = s->puesto; //String
 	p11->Value = s->id; //int
+	p11->Value = idModuloStansa; //int
 
 	comm->Parameters->Add(p1);
 	comm->Parameters->Add(p2);
@@ -220,7 +223,7 @@ Staff^ StaffDB::QueryByDni(String^ dni){
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
 	comm->CommandText = "SELECT * FROM Staff_DB " +
-		"WHERE id=@p1";
+		"WHERE dni=@p1";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::VarChar);
 	p1->Value = dni; // String
@@ -306,7 +309,7 @@ List<Staff^>^ StaffDB::QueryAll(){
 	conn->Close();
 	return staffList;
 }
-List<Staff^>^ StaffDB::QueryAllByModuloStansa(ModuloStansa^ modulo){
+List<Staff^>^ StaffDB::QueryAllByModuloStansa(int idModuloStansa){
 	//Paso 1: Se abre la conexión
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
@@ -321,7 +324,7 @@ List<Staff^>^ StaffDB::QueryAllByModuloStansa(ModuloStansa^ modulo){
 
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::Int);
-	p1->Value = modulo->id; // int
+	p1->Value = idModuloStansa; // int
 	comm->Parameters->Add(p1);
 
 	//Paso 3: Ejecución de la sentencia
