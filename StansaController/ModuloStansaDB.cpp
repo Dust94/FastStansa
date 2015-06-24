@@ -149,7 +149,7 @@ ModuloStansa^ ModuloStansaDB::QueryById(int id){
 	return m;	
 	
 }
-ModuloStansa^ ModuloStansaDB::QueryByPlace(String^ place){ 
+ModuloStansa^ ModuloStansaDB::QueryLikePlace(String^ place){
 	//Paso 1: Se abre la conexión
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
@@ -160,12 +160,13 @@ ModuloStansa^ ModuloStansaDB::QueryByPlace(String^ place){
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
 	comm->CommandText = "SELECT * FROM ModStansa_DB " +
-		"WHERE place=@p1";
-	SqlParameter^ p1 = gcnew SqlParameter("@p1",
-		System::Data::SqlDbType::Int);
-	p1->Value = place; // String
+		"WHERE place LIKE @p1";
 
+	SqlParameter^ p1 = gcnew SqlParameter("@p1",
+		System::Data::SqlDbType::VarChar);
+	p1->Value = "%" + place + "%"; // String
 	comm->Parameters->Add(p1);
+
 	//Paso 3: Ejecución de la sentencia
 	SqlDataReader^ dr = comm->ExecuteReader();
 	//Paso 3.1: Procesamos los resultados	
@@ -179,7 +180,6 @@ ModuloStansa^ ModuloStansaDB::QueryByPlace(String^ place){
 			m->place = safe_cast<String ^>(dr["place"]);
 		if (dr["operativeMachines"] != System::DBNull::Value)
 			m->MaquinasOperativas = safe_cast<int>(dr["operativeMachines"]);
-
 	}
 	//Paso 4: Cerramos el dataReader y la conexión con la BD
 	dr->Close();

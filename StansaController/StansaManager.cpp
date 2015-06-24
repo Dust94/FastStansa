@@ -88,8 +88,8 @@ void StansaManager::DeleteModuloStansa(int id){
 ModuloStansa^ StansaManager::QueryModuloStansaById(int id){
 	return moduloStansaDB->QueryById(id);
 }
-ModuloStansa^ StansaManager::QueryModuloStansaByPlace(String^ place){
-	return moduloStansaDB->QueryByPlace(place);
+ModuloStansa^ StansaManager::QueryModuloStansaLikePlace(String^ place){
+	return moduloStansaDB->QueryLikePlace(place);
 }
 List<ModuloStansa^>^ StansaManager::QueryAllModuloStansa(){
 	return moduloStansaDB->QueryAll();

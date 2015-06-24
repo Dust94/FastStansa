@@ -1,5 +1,8 @@
 #pragma once
 #include "StansaAPPForm.h"
+#include "ProductForm.h"
+#include "SaleForm.h"
+#include "StaffForm.h"
 
 namespace StansaGUI {
 
@@ -18,9 +21,19 @@ namespace StansaGUI {
 	/// </summary>
 	public ref class AcessFormh : public System::Windows::Forms::Form
 	{
+		Form^ stansaAppForm; //Creo un Form para acceder a "StansaAPPForm.h". 
+		Form^ staffForm; //Creo un Form para acceder a "StaffForm.h"
 	public:
-		AcessFormh(void)
+		AcessFormh(Form^ stansaAppForm, Form^ staffForm)
 		{
+			InitializeComponent();
+			//
+			//TODO: agregar código de constructor aquí
+			//
+			this->stansaAppForm = stansaAppForm;
+			this->staffForm = staffForm;
+		}
+		AcessFormh(){
 			InitializeComponent();
 			//
 			//TODO: agregar código de constructor aquí
@@ -160,7 +173,9 @@ private: System::Void btnOk_Click(System::Object^  sender, System::EventArgs^  e
 	if (dni != nullptr){
 		Staff^ s = StansaManager::QueryStaffByDni(dni);
 		if (s != nullptr){
-			ModuloStansa^ ModuloStansa = StansaManager::QueryModuloStansaByPlace(ModuloStansaPlace);
+			ModuloStansa^ moduloStansa = StansaManager::QueryModuloStansaLikePlace(ModuloStansaPlace);
+			((StansaAPPForm^)stansaAppForm)->moduloStansaLocal->id = moduloStansa->id;
+			((StaffForm^)staffForm)->moduloStansaLocal->id = moduloStansa->id;
 			StansaAPPForm^ pForm = gcnew StansaAPPForm();
 			pForm->Show();
 		}

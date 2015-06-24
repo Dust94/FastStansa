@@ -54,7 +54,7 @@ namespace StansaController {
 			void Update(ModuloStansa^ m);
 			void Delete(int id);
 			ModuloStansa^ QueryById(int id);
-			ModuloStansa^ QueryByPlace(String^ place);
+			ModuloStansa^ QueryLikePlace(String^ place);
 			List<ModuloStansa^>^ QueryAll();
 	}; //Fin Clase ModuloStansaDB
 
@@ -116,7 +116,7 @@ namespace StansaController {
 			static void UpdateModuloStansa(ModuloStansa^ m);
 			static void DeleteModuloStansa(int id);
 			static ModuloStansa^ QueryModuloStansaById(int id);
-			static ModuloStansa^ QueryModuloStansaByPlace(String^ place);
+			static ModuloStansa^ QueryModuloStansaLikePlace(String^ place);
 			static List<ModuloStansa^>^ QueryAllModuloStansa();
 
 			//metodos de clase globlales para Attention

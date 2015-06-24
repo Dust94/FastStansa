@@ -196,26 +196,25 @@ namespace StansaGUI {
 			return;
 		}
 		if (String::Compare(txtquerycode->Text->Trim(), "") != 0){
-			int id = Int32::Parse(txtquerycode->Text);
+			int id = Int32::Parse(txtquerycode->Text); //Codigo de Producto Ingresado por Usuario
 			Product^ p = StansaManager::QueryProductById(id);
 			dgvproductsearch->Rows->Clear();
-			if (p != nullptr){
+			if (p != nullptr){//Si existe un Producto con ese codigo
 				dgvproductsearch->Rows->Add(gcnew array<String^>{
 					"" + p->id,
 						p->name,
 						"" + p->price,
 						"" + p->stock});
 				return;
-
 			}
 			else {
 				MessageBox::Show("Product no existe");
 			}
 		}
-		else {
-			List<Product^> ^productList = StansaManager::QueryProductsLikeName(txtqueryname->Text);
+		else {//Si no ha ingresado codigo el Usuario
+			List<Product^> ^productList = StansaManager::QueryProductsLikeName(txtqueryname->Text);//Lo busco por nombre
 			dgvproductsearch->Rows->Clear();
-			for (int i = 0; i < productList->Count; i++){
+			for (int i = 0; i < productList->Count; i++){ //Si lo encuentro, lleno la grilla
 				dgvproductsearch->Rows->Add(gcnew array<String^>{
 					"" + productList[i]->id,
 						productList[i]->name,

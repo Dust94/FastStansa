@@ -187,7 +187,6 @@ List<Product^>^ ProductDB::QueryAll(){
 	return ProductList;
 }
 
-
 List<Product^>^ ProductDB::QueryLikeName(String ^name){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
