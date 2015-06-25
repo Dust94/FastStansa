@@ -176,6 +176,9 @@ namespace StansaGUI {
 
 		}
 #pragma endregion
+		public:  static Staff^ staffLocal = gcnew Staff();
+				 static ModuloStansa^ moduloStansaLocal = gcnew ModuloStansa();
+
 		void RefreshDGVProducts(){
 			List<Product^>^ productList = StansaManager::QueryAllProduct();
 			dgvproductsearch->Rows->Clear();

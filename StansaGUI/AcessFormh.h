@@ -1,8 +1,9 @@
 #pragma once
 #include "StansaAPPForm.h"
-#include "ProductForm.h"
-#include "SaleForm.h"
 #include "StaffForm.h"
+#include "ProductForm.h"
+#include "ProductSearchForm.h"
+#include "SaleForm.h"
 
 namespace StansaGUI {
 
@@ -23,6 +24,9 @@ namespace StansaGUI {
 	{
 		Form^ stansaAppForm; //Creo un Form para acceder a "StansaAPPForm.h". 
 		Form^ staffForm; //Creo un Form para acceder a "StaffForm.h"
+		Form^ productForm; //Creo un Form para acceder a "ProductForm.h"
+		Form^ productSearchForm; //Creo un Form para acceder a "ProductSearchForm.h"
+		Form^ saleForm; //Creo un Form para acceder a "SaleForm.h"
 	public:
 		AcessFormh(Form^ stansaAppForm, Form^ staffForm)
 		{
@@ -176,6 +180,14 @@ private: System::Void btnOk_Click(System::Object^  sender, System::EventArgs^  e
 			ModuloStansa^ moduloStansa = StansaManager::QueryModuloStansaLikePlace(ModuloStansaPlace);
 			((StansaAPPForm^)stansaAppForm)->moduloStansaLocal->id = moduloStansa->id;
 			((StaffForm^)staffForm)->moduloStansaLocal->id = moduloStansa->id;
+			((ProductForm^)staffForm)->moduloStansaLocal->id = moduloStansa->id;
+			((ProductSearchForm^)staffForm)->moduloStansaLocal->id = moduloStansa->id;
+			((SaleForm^)staffForm)->moduloStansaLocal->id = moduloStansa->id;
+
+			((StaffForm^)staffForm)->staffLocal->id = s->id;
+			((ProductForm^)staffForm)->staffLocal->id = s->id;
+			((ProductSearchForm^)staffForm)->staffLocal->id = s->id;
+			((SaleForm^)staffForm)->staffLocal->id = s->id;		
 			StansaAPPForm^ pForm = gcnew StansaAPPForm();
 			pForm->Show();
 			//AcessFormh::Close();
