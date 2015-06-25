@@ -8,7 +8,7 @@ using namespace System::Runtime::Serialization::Formatters::Binary;
 using namespace System::Data::SqlClient;
 
 //Metodos de la Clase StaffDB
-void StaffDB::Add(Staff^ s){
+void StaffDB::Add(Staff^ s, int idModuloStansa){
 	//Paso 1: Obtener la conexión
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
@@ -19,8 +19,8 @@ void StaffDB::Add(Staff^ s){
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
 	comm->CommandText = "INSERT INTO Staff_DB" +
-		" (dni, name, lastName, secondLastName, sex, username, password, inTime, outTime, position)" +
-		" VALUES (@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9,@p10)";
+		" (dni, name, lastName, secondLastName, sex, username, password, inTime, outTime, position, idModStansa)" +
+		" VALUES (@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9,@p10,@p11)";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p2 = gcnew SqlParameter("@p2",
@@ -41,6 +41,8 @@ void StaffDB::Add(Staff^ s){
 		System::Data::SqlDbType::DateTime);
 	SqlParameter^ p10 = gcnew SqlParameter("@p10",
 		System::Data::SqlDbType::VarChar);
+	SqlParameter^ p11 = gcnew SqlParameter("@p11",
+		System::Data::SqlDbType::Int);
 
 	p1->Value = s->dni; //String
 	p2->Value = s->name; //String
@@ -68,7 +70,7 @@ void StaffDB::Add(Staff^ s){
 	//Paso 4: Cerramos la conexión con la BD
 	conn->Close();
 }
-void StaffDB::Update(Staff^ s){
+void StaffDB::Update(Staff^ s, int idModuloStansa){
 	//Paso 1: Se abre la conexión
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();

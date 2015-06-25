@@ -606,7 +606,7 @@ public:  int idStaff;
 		s->hora_entrada = horaEntrada;
 		s->hora_salida = horaSalida;
 		s->puesto = puesto;
-		StansaManager::AddStaff(s); //Asumo Cualquier Identificador de Modulo de Stansa
+		StansaManager::AddStaff(s, moduloStansaLocal->id); //Asumo Cualquier Identificador de Modulo de Stansa
 		RefreshDGVStaff();
 	}
 	
@@ -635,7 +635,7 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 	s->hora_entrada = horaEntrada;
 	s->hora_salida = horaSalida;
 	s->puesto = puesto;
-	StansaManager::UpdateStaff(s);
+	StansaManager::UpdateStaff(s, moduloStansaLocal->id);
 	RefreshDGVStaff();
 }
 
