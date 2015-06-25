@@ -30,7 +30,7 @@ void CustomerDB::Add(Customer^ c){
 	SqlParameter^ p4 = gcnew SqlParameter("@p4",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p5 = gcnew SqlParameter("@p5",
-		System::Data::SqlDbType::Char);
+		System::Data::SqlDbType::Char, 1);
 	SqlParameter^ p6 = gcnew SqlParameter("@p6",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p7 = gcnew SqlParameter("@p7",
@@ -86,7 +86,7 @@ void CustomerDB::Update(Customer^ c){
 	SqlParameter^ p4 = gcnew SqlParameter("@p4",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p5 = gcnew SqlParameter("@p5",
-		System::Data::SqlDbType::Char);
+		System::Data::SqlDbType::Char, 1);
 	SqlParameter^ p6 = gcnew SqlParameter("@p6",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p7 = gcnew SqlParameter("@p7",
@@ -175,20 +175,20 @@ Customer^ CustomerDB::QueryById(int id){
 			c->dni = safe_cast<String^>(dr["dni"]);
 		if (dr["name"] != System::DBNull::Value)
 			c->name = safe_cast<String ^>(dr["name"]);
-		if (dr["apellido_Paterno"] != System::DBNull::Value)
-			c->apellido_Paterno = safe_cast<String ^>(dr["apellido_Paterno"]);
-		if (dr["apellido_Materno"] != System::DBNull::Value)
-			c->apellido_Materno = safe_cast<String ^>(dr["apellido_Materno"]);
-		if (dr["sexo"] != System::DBNull::Value)
-			c->sexo = safe_cast<char>(dr["sexo"]);
+		if (dr["lastName"] != System::DBNull::Value)
+			c->apellido_Paterno = safe_cast<String ^>(dr["lastName"]);
+		if (dr["secondLastName"] != System::DBNull::Value)
+			c->apellido_Materno = safe_cast<String ^>(dr["secondLastName"]);
+		if (dr["sex"] != System::DBNull::Value)
+			c->sexo = Char::Parse(safe_cast<String ^>(dr["sex"]));
 		if (dr["username"] != System::DBNull::Value)
 			c->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
 			c->password = safe_cast<String ^>(dr["password"]);
-		if (dr["codigoPUCP"] != System::DBNull::Value)
-			c->codigoPUCP = safe_cast<String ^>(dr["codigoPUCP"]);
-		if (dr["facultad"] != System::DBNull::Value)
-			c->facultad = safe_cast<String ^>(dr["facultad"]);
+		if (dr["codePUCP"] != System::DBNull::Value)
+			c->codigoPUCP = safe_cast<String ^>(dr["codePUCP"]);
+		if (dr["academicUnit"] != System::DBNull::Value)
+			c->facultad = safe_cast<String ^>(dr["acaademicUnit"]);
 	}
 	//Paso 4: Cerramos el dataReader y la conexión con la BD
 	dr->Close();
@@ -223,20 +223,20 @@ Customer^ CustomerDB::QueryByDni(String^ dni){
 			c->dni = safe_cast<String^>(dr["dni"]);
 		if (dr["name"] != System::DBNull::Value)
 			c->name = safe_cast<String ^>(dr["name"]);
-		if (dr["apellido_Paterno"] != System::DBNull::Value)
-			c->apellido_Paterno = safe_cast<String ^>(dr["apellido_Paterno"]);
-		if (dr["apellido_Materno"] != System::DBNull::Value)
-			c->apellido_Materno = safe_cast<String ^>(dr["apellido_Materno"]);
-		if (dr["sexo"] != System::DBNull::Value)
-			c->sexo = safe_cast<char>(dr["sexo"]);
+		if (dr["lastName"] != System::DBNull::Value)
+			c->apellido_Paterno = safe_cast<String ^>(dr["lastName"]);
+		if (dr["secondLastName"] != System::DBNull::Value)
+			c->apellido_Materno = safe_cast<String ^>(dr["secondLastName"]);
+		if (dr["sex"] != System::DBNull::Value)
+			c->sexo = Char::Parse(safe_cast<String ^>(dr["sex"]));
 		if (dr["username"] != System::DBNull::Value)
 			c->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
 			c->password = safe_cast<String ^>(dr["password"]);
 		if (dr["codigoPUCP"] != System::DBNull::Value)
-			c->codigoPUCP = safe_cast<String ^>(dr["codigoPUCP"]);
+			c->codigoPUCP = safe_cast<String ^>(dr["codePUCP"]);
 		if (dr["facultad"] != System::DBNull::Value)
-			c->facultad = safe_cast<String ^>(dr["facultad"]);
+			c->facultad = safe_cast<String ^>(dr["academicUnit"]);
 	}
 	//Paso 4: Cerramos el dataReader y la conexión con la BD
 	dr->Close();
@@ -271,20 +271,20 @@ Customer^ CustomerDB::QueryByCodigoPUCP(String^ codigoPUCP){
 			c->dni = safe_cast<String^>(dr["dni"]);
 		if (dr["name"] != System::DBNull::Value)
 			c->name = safe_cast<String ^>(dr["name"]);
-		if (dr["apellido_Paterno"] != System::DBNull::Value)
-			c->apellido_Paterno = safe_cast<String ^>(dr["apellido_Paterno"]);
-		if (dr["apellido_Materno"] != System::DBNull::Value)
-			c->apellido_Materno = safe_cast<String ^>(dr["apellido_Materno"]);
-		if (dr["sexo"] != System::DBNull::Value)
-			c->sexo = safe_cast<char>(dr["sexo"]);
+		if (dr["lastName"] != System::DBNull::Value)
+			c->apellido_Paterno = safe_cast<String ^>(dr["lastName"]);
+		if (dr["secondLastName"] != System::DBNull::Value)
+			c->apellido_Materno = safe_cast<String ^>(dr["secondLastName"]);
+		if (dr["sex"] != System::DBNull::Value)
+			c->sexo = Char::Parse(safe_cast<String ^>(dr["sex"]));
 		if (dr["username"] != System::DBNull::Value)
 			c->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
 			c->password = safe_cast<String ^>(dr["password"]);
-		if (dr["codigoPUCP"] != System::DBNull::Value)
-			c->codigoPUCP = safe_cast<String ^>(dr["codigoPUCP"]);
-		if (dr["facultad"] != System::DBNull::Value)
-			c->facultad = safe_cast<String ^>(dr["facultad"]);
+		if (dr["codePUCP"] != System::DBNull::Value)
+			c->codigoPUCP = safe_cast<String ^>(dr["codePUCP"]);
+		if (dr["academicUnit"] != System::DBNull::Value)
+			c->facultad = safe_cast<String ^>(dr["academicUnit"]);
 	}
 	//Paso 4: Cerramos el dataReader y la conexión con la BD
 	dr->Close();
@@ -314,20 +314,20 @@ List<Customer^>^ CustomerDB::QueryAll(){
 			c->dni = safe_cast<String^>(dr["dni"]);
 		if (dr["name"] != System::DBNull::Value)
 			c->name = safe_cast<String ^>(dr["name"]);
-		if (dr["apellido_Paterno"] != System::DBNull::Value)
-			c->apellido_Paterno = safe_cast<String ^>(dr["apellido_Paterno"]);
-		if (dr["apellido_Materno"] != System::DBNull::Value)
-			c->apellido_Materno = safe_cast<String ^>(dr["apellido_Materno"]);
-		if (dr["sexo"] != System::DBNull::Value)
-			c->sexo = safe_cast<char>(dr["sexo"]);
+		if (dr["lastName"] != System::DBNull::Value)
+			c->apellido_Paterno = safe_cast<String ^>(dr["lastName"]);
+		if (dr["secondLastName"] != System::DBNull::Value)
+			c->apellido_Materno = safe_cast<String ^>(dr["secondLastName"]);
+		if (dr["sex"] != System::DBNull::Value)
+			c->sexo = Char::Parse(safe_cast<String ^>(dr["sex"]));
 		if (dr["username"] != System::DBNull::Value)
 			c->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
 			c->password = safe_cast<String ^>(dr["password"]);
-		if (dr["codigoPUCP"] != System::DBNull::Value)
-			c->codigoPUCP = safe_cast<String ^>(dr["codigoPUCP"]);
-		if (dr["facultad"] != System::DBNull::Value)
-			c->facultad = safe_cast<String ^>(dr["facultad"]);
+		if (dr["codePUCP"] != System::DBNull::Value)
+			c->codigoPUCP = safe_cast<String ^>(dr["codePUCP"]);
+		if (dr["academicUnit"] != System::DBNull::Value)
+			c->facultad = safe_cast<String ^>(dr["academicUnit"]);
 		customerList->Add(c);	
 	}
 	//Paso 4: Cerramos el dataReader y la conexión con la BD
