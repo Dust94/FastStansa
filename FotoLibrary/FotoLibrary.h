@@ -68,7 +68,7 @@ namespace FotoLibrary {
 			Staff^ staff; //Quien fue la persona(staff) que lo atendio.
 	};
 
-	public ref class SaleDetail { //Boleta
+	public ref class Saledetail { //Boleta
 		public:
 			int quantity; //Cantidad de Productos del Tipo Product
 			double subTotal; //Producto*cantidad
@@ -80,9 +80,12 @@ namespace FotoLibrary {
 			int id;
 			double total;
 			String^ date; // Dia de la Venta
+			char status;
 			Staff^ staff; //Quien ejecuto la venta
+			Attention^ attention;
 			Customer^ customer; //Para Obtener el Numero de Orden del Usuario
-			List<SaleDetail^>^ details; //Varias Boletas en un Proceso de Venta
+			ModuloStansa^ modstansa;
+			List<Saledetail^>^ details; //Varias Boletas en un Proceso de Venta
 	};// Fin Clase Sale.
 
 }

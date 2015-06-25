@@ -191,6 +191,7 @@ namespace StansaGUI {
 			this->btnSale->TabIndex = 23;
 			this->btnSale->Text = L"Realizar Venta";
 			this->btnSale->UseVisualStyleBackColor = true;
+			this->btnSale->Click += gcnew System::EventHandler(this, &SaleForm::btnSale_Click);
 			// 
 			// label4
 			// 
@@ -393,6 +394,13 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 
 public: System::Void dgvVenta_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
 	
+}
+private: System::Void btnSale_Click(System::Object^  sender, System::EventArgs^  e) {
+
+
+
+
+
 }
 };
 }

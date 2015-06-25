@@ -75,6 +75,15 @@ namespace StansaController {
 			List<Attention^>^ QueryAllByModuloStansaFechaAndStaff(ModuloStansa^ modulo, String^ fecha, Staff^ staff);
 	}; //Fin Clase ModuloStansaDB
 
+	public ref class SaleDB
+	{
+	public:
+		void SaveSale(Sale^ sale);
+		void SaleDetail(int idSale, Saledetail^ saledetail);
+	}; //Fin Clase SaleDB y sale detail
+	
+
+
 	public ref class StansaManager
 	{
 		public:
