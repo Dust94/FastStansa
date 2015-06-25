@@ -184,6 +184,7 @@ private: System::Void btnOk_Click(System::Object^  sender, System::EventArgs^  e
 			((ProductSearchForm^)staffForm)->moduloStansaLocal->id = moduloStansa->id;
 			((SaleForm^)staffForm)->moduloStansaLocal->id = moduloStansa->id;
 
+			((StansaAPPForm^)stansaAppForm)->staffLocal->id = s->id;
 			((StaffForm^)staffForm)->staffLocal->id = s->id;
 			((ProductForm^)staffForm)->staffLocal->id = s->id;
 			((ProductSearchForm^)staffForm)->staffLocal->id = s->id;

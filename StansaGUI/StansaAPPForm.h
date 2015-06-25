@@ -199,6 +199,7 @@ namespace StansaGUI {
 		}
 #pragma endregion
 	public: static ModuloStansa^ moduloStansaLocal = gcnew ModuloStansa();
+			static Staff^ staffLocal = gcnew Staff();
 	private: System::Void lectorPruebaToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 		Lector_PruebaForm^ pForm = gcnew Lector_PruebaForm();
 		pForm->MdiParent = this;
@@ -219,10 +220,13 @@ private: System::Void StansaAPPForm_Load(System::Object^  sender, System::EventA
 private: System::Void menuStrip1_ItemClicked(System::Object^  sender, System::Windows::Forms::ToolStripItemClickedEventArgs^  e) {
 }
 private: System::Void staffToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-			 StaffForm^ pForm = gcnew StaffForm();
-			 pForm->MdiParent = this;
-			 pForm->Show();
-}
+	if ( String::Equals(staffLocal->puesto, "Gerente") ){
+		StaffForm^ pForm = gcnew StaffForm();
+		pForm->MdiParent = this;
+		pForm->Show();
+	}	
+	else MessageBox::Show("No tienes acceso a esta Ventana. Solo un Gerente puede editar el Personal");		
+}//Fin del Metodo
 private: System::Void cerrarToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	Application::Exit();
 }
