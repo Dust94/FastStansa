@@ -164,7 +164,7 @@ Attention^ AttentionDB::QueryById(int id){
 		a = gcnew Attention();
 		a->id = (int)dr["id"];
 		if (dr["fecha"] != System::DBNull::Value)
-			a->fecha = safe_cast<String^>(dr["fecha"]);
+			a->fecha = safe_cast<DateTime^>(dr["fecha"]);
 		if (dr["n_orden"] != System::DBNull::Value)
 			a->n_orden = safe_cast<int>(dr["n_orden"]);
 		if (dr["hora_ini"] != System::DBNull::Value)
@@ -205,7 +205,7 @@ List<Attention^>^ AttentionDB::QueryAll(){
 		Attention^a = gcnew Attention();
 		a->id = (int)dr["id"];
 		if (dr["fecha"] != System::DBNull::Value)
-			a->fecha = safe_cast<String^>(dr["fecha"]);
+			a->fecha = safe_cast<DateTime^>(dr["fecha"]);
 		if (dr["n_orden"] != System::DBNull::Value)
 			a->n_orden = safe_cast<int>(dr["n_orden"]);
 		if (dr["hora_ini"] != System::DBNull::Value)

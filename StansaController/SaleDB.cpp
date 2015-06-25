@@ -6,8 +6,6 @@ using namespace System::IO;
 using namespace System::Runtime::Serialization;
 using namespace System::Runtime::Serialization::Formatters::Binary;
 using namespace System::Data::SqlClient;
-///holi
-
 
 void SaleDB::SaleDetail(int idSale, Saledetail^ saleDetail){
 	//Paso 1: Obtener la conexión
@@ -46,8 +44,6 @@ void SaleDB::SaleDetail(int idSale, Saledetail^ saleDetail){
 	//Paso 4: Cerramos la conexión con la BD
 	conn->Close();
 }
-
-
 
 void SaleDB::SaveSale(Sale ^sale){
 	//Paso 1: Obtener la conexión
