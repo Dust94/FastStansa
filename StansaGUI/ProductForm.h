@@ -260,6 +260,8 @@ namespace StansaGUI {
 
 		}
 #pragma endregion
+		public:  static Staff^ staffLocal = gcnew Staff();
+				 static ModuloStansa^ moduloStansaLocal = gcnew ModuloStansa();
 
 		void RefreshDGVProducts(){
 			List<Product^>^ productList = StansaManager::QueryAllProduct();
@@ -319,13 +321,11 @@ private: System::Void btnUpdate_Click(System::Object^  sender, System::EventArgs
 	String^ stock = txtstock->Text;
 
 	Product^ p = gcnew Product();
-	p=StansaManager::QueryProductById(idProd);
 	p->name = name;
 	p->description = descripcion;
 	p->price = Double::Parse(precio);
 	p->stock = Int32::Parse(stock);
 	StansaManager::UpdateProduct(p);
-	
 	RefreshDGVProducts();
 
 }
@@ -333,7 +333,6 @@ private: System::Void btnDelete_Click(System::Object^  sender, System::EventArgs
 
 	
 	StansaManager::DeleteProduct(idProd);
-	RefreshDGVProducts();
 //entregaa
 }
 };
