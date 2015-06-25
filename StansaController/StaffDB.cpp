@@ -90,7 +90,7 @@ void StaffDB::Update(Staff^ s){
 	SqlParameter^ p4 = gcnew SqlParameter("@p4",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p5 = gcnew SqlParameter("@p5",
-		System::Data::SqlDbType::Char);
+		System::Data::SqlDbType::Char, 1);
 	SqlParameter^ p6 = gcnew SqlParameter("@p6",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p7 = gcnew SqlParameter("@p7",
