@@ -262,6 +262,24 @@ namespace StansaGUI {
 #pragma endregion
 		public:  static Staff^ staffLocal = gcnew Staff();
 				 static ModuloStansa^ moduloStansaLocal = gcnew ModuloStansa();
+		public: System::Void ActualizarModuloyStaff(ModuloStansa^ modulo, Staff^ staff){
+			moduloStansaLocal->id = modulo->id;
+			moduloStansaLocal->name = modulo->name;
+			moduloStansaLocal->place = modulo->place;
+			moduloStansaLocal->MaquinasOperativas = modulo->MaquinasOperativas;
+
+			staffLocal->id = staff->id;
+			staffLocal->dni = staff->dni;
+			staffLocal->name = staff->name;
+			staffLocal->apellido_Paterno = staff->apellido_Paterno;
+			staffLocal->apellido_Materno = staff->apellido_Materno;
+			staffLocal->sexo = staff->sexo;
+			staffLocal->username = staff->username;
+			staffLocal->password = staff->password;
+			staffLocal->hora_entrada = staff->hora_entrada;
+			staffLocal->hora_salida = staff->hora_salida;
+			staffLocal->puesto = staff->puesto;
+		}
 
 		void RefreshDGVProducts(){
 			List<Product^>^ productList = StansaManager::QueryAllProduct();

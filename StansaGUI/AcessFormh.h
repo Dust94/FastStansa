@@ -174,21 +174,18 @@ namespace StansaGUI {
 private: System::Void btnOk_Click(System::Object^  sender, System::EventArgs^  e) {
 	String^ dni = txtStaffDni->Text;
 	String^ ModuloStansaPlace = combModuloStansa->Text; //Eligo el Modulo de Stansa al que estoy accediendo
+	ModuloStansa^ moduloStansa = StansaManager::QueryModuloStansaLikePlace(ModuloStansaPlace);
 	if (dni != nullptr){
-		Staff^ s = StansaManager::QueryStaffByDni(dni);
-		if (s != nullptr){
-			ModuloStansa^ moduloStansa = StansaManager::QueryModuloStansaLikePlace(ModuloStansaPlace);
-			((StansaAPPForm^)stansaAppForm)->moduloStansaLocal->id = moduloStansa->id;
-			((StaffForm^)staffForm)->moduloStansaLocal->id = moduloStansa->id;
-			((ProductForm^)staffForm)->moduloStansaLocal->id = moduloStansa->id;
-			((ProductSearchForm^)staffForm)->moduloStansaLocal->id = moduloStansa->id;
-			((SaleForm^)staffForm)->moduloStansaLocal->id = moduloStansa->id;
+		Staff^ s = StansaManager::QueryStaffByDni(dni);	
+		if (s != nullptr){		
+			String^ msg = "" + s->name + s->apellido_Paterno + s->dni;
+			MessageBox::Show(msg);
 
-			((StansaAPPForm^)stansaAppForm)->staffLocal->id = s->id;
-			((StaffForm^)staffForm)->staffLocal->id = s->id;
-			((ProductForm^)staffForm)->staffLocal->id = s->id;
-			((ProductSearchForm^)staffForm)->staffLocal->id = s->id;
-			((SaleForm^)staffForm)->staffLocal->id = s->id;		
+			((StansaAPPForm^)stansaAppForm)->ActualizarModuloyStaff(moduloStansa, s);
+			((StaffForm^)staffForm)->ActualizarModuloyStaff(moduloStansa, s);
+			((ProductForm^)productForm)->ActualizarModuloyStaff(moduloStansa, s);
+			((ProductSearchForm^)productSearchForm)->ActualizarModuloyStaff(moduloStansa, s);
+
 			StansaAPPForm^ pForm = gcnew StansaAPPForm();
 			pForm->Show();
 			//AcessFormh::Close();

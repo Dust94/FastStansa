@@ -199,7 +199,26 @@ namespace StansaGUI {
 		}
 #pragma endregion
 	public: static ModuloStansa^ moduloStansaLocal = gcnew ModuloStansa();
-			static Staff^ staffLocal = gcnew Staff();
+	public: static Staff^ staffLocal = gcnew Staff();
+	public: System::Void ActualizarModuloyStaff(ModuloStansa^ modulo, Staff^ staff){
+		moduloStansaLocal->id = modulo->id;
+		moduloStansaLocal->name = modulo->name;
+		moduloStansaLocal->place = modulo->place;
+		moduloStansaLocal->MaquinasOperativas = modulo->MaquinasOperativas;
+
+		staffLocal->id = staff->id;
+		staffLocal->dni = staff->dni;
+		staffLocal->name = staff->name;
+		staffLocal->apellido_Paterno = staff->apellido_Paterno;
+		staffLocal->apellido_Materno = staff->apellido_Materno;
+		staffLocal->sexo = staff->sexo;
+		staffLocal->username = staff->username;
+		staffLocal->password = staff->password;
+		staffLocal->hora_entrada = staff->hora_entrada;
+		staffLocal->hora_salida = staff->hora_salida;
+		staffLocal->puesto = staff->puesto;
+	}
+
 	private: System::Void lectorPruebaToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 		Lector_PruebaForm^ pForm = gcnew Lector_PruebaForm();
 		pForm->MdiParent = this;
@@ -220,6 +239,8 @@ private: System::Void StansaAPPForm_Load(System::Object^  sender, System::EventA
 private: System::Void menuStrip1_ItemClicked(System::Object^  sender, System::Windows::Forms::ToolStripItemClickedEventArgs^  e) {
 }
 private: System::Void staffToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	String^ msg = "" + staffLocal->name + staffLocal->apellido_Paterno + staffLocal->dni;
+	MessageBox::Show(msg);
 	if ( String::Equals(staffLocal->puesto, "Gerente") ){
 		StaffForm^ pForm = gcnew StaffForm();
 		pForm->MdiParent = this;
