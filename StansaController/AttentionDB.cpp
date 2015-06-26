@@ -203,6 +203,7 @@ List<Attention^>^ AttentionDB::QueryAll(){
 	//Paso 3.1: Procesamos los resultados
 	List<Attention^>^ AttentionList = gcnew List<Attention^>();
 	while (dr->Read()){
+	
 		Attention^a = gcnew Attention();
 		a->id = (int)dr["id"];
 		if (dr["date"] != System::DBNull::Value)

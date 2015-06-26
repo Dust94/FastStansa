@@ -398,7 +398,17 @@ public: System::Void dgvVenta_CellContentClick(System::Object^  sender, System::
 	
 }
 private: System::Void btnSale_Click(System::Object^  sender, System::EventArgs^  e) {
-	DateTime fecha = DateTime::Now;
+
+			 if (cmbCostumer->Text == "") 
+			 {
+				 MessageBox::Show("Por favor, seleccione el cliente en atención");
+				 return; }
+
+			 if (cmbStaff->Text == "")
+			 {	 MessageBox::Show("Por favor, seleccione al personal atendiendo");
+				 return; }
+			 
+	 DateTime fecha = DateTime::Now;
 	//txtTotal->Text = fecha.ToString("yyyy/MM/dd");
 	Staff ^salesman = gcnew Staff();
 	int idsale = 1;
@@ -410,6 +420,7 @@ private: System::Void btnSale_Click(System::Object^  sender, System::EventArgs^ 
 	cust->id = customerId; // Esto no debería
 
 	Sale ^sale = gcnew Sale();
+		
 	sale->date = fecha;
 	sale->staff->id = idsale;
 	sale->customer = cust;
