@@ -388,8 +388,8 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 		dgvVenta->SelectedRows[0]->Cells[2]->Value = "";
 		dgvVenta->SelectedRows[0]->Cells[3]->Value = "";
 		dgvVenta->SelectedRows[0]->Cells[4]->Value = "";
-
-			
+		
+		dgvVenta->SelectedRows->RemoveAt[0];
 		
 	}
 }
