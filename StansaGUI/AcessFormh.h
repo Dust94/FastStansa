@@ -185,6 +185,7 @@ private: System::Void btnOk_Click(System::Object^  sender, System::EventArgs^  e
 			((StaffForm^)staffForm)->ActualizarModuloyStaff(moduloStansa, s);
 			((ProductForm^)productForm)->ActualizarModuloyStaff(moduloStansa, s);
 			((ProductSearchForm^)productSearchForm)->ActualizarModuloyStaff(moduloStansa, s);
+			((SaleForm^)saleForm)->ActualizarModuloyStaff(moduloStansa, s);
 
 			StansaAPPForm^ pForm = gcnew StansaAPPForm();
 			pForm->Show();
