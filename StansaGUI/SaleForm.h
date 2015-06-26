@@ -417,6 +417,12 @@ public: System::Void dgvVenta_CellContentClick(System::Object^  sender, System::
 }
 private: System::Void btnSale_Click(System::Object^  sender, System::EventArgs^  e) {
 
+			 if ((cmbCostumer->Text == "") && (cmbStaff->Text == ""))
+			 {
+				 MessageBox::Show("Por favor, seleccione el cliente en atención y al personal atendiendo");
+				 return;
+			 }			 
+			 
 			 if (cmbCostumer->Text == "") 
 			 {
 				 MessageBox::Show("Por favor, seleccione el cliente en atención");
