@@ -58,10 +58,10 @@ namespace FotoLibrary {
 	public ref class Attention {
 		public:
 			int id; //Identifica una fila. Una atencion
-			String^ fecha; //Dia de la Atencion
+			DateTime^ fecha; //Dia de la Atencion
 			int n_orden; //El Numero de Orden de la Persona que esta siendo atendida
-			String^ hora_ini; //Inicia la atencion con el Ticket de Numero de Orden
-			String^ hora_fin; //Finaliza la atencion de un Usuario
+			DateTime^ hora_ini; //Inicia la atencion con el Ticket de Numero de Orden
+			DateTime^ hora_fin; //Finaliza la atencion de un Usuario
 			String^ estado; //El estado del Usuario: Atendido o Esperando
 			Customer^ customer; //Que Usuario fue atendido
 			ModuloStansa^ moduloStansa; //En cual ModuloStansa fue atendido
@@ -79,7 +79,7 @@ namespace FotoLibrary {
 		public:
 			int id;
 			double total;
-			String^ date; // Dia de la Venta
+			DateTime^ date; // Dia de la Venta
 			char status;
 			Staff^ staff; //Quien ejecuto la venta
 			Attention^ attention;

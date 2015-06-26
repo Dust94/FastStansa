@@ -383,14 +383,13 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 		dgvVenta->CurrentCell->Value != nullptr &&
 		dgvVenta->CurrentCell->Value->ToString() != "") {
 
-		dgvVenta->SelectedRows[0]->Cells[0]->Value = "";
-		dgvVenta->SelectedRows[0]->Cells[1]->Value = "";
-		dgvVenta->SelectedRows[0]->Cells[2]->Value = "";
-		dgvVenta->SelectedRows[0]->Cells[3]->Value = "";
-		dgvVenta->SelectedRows[0]->Cells[4]->Value = "";
-
-			
-		
+		Int32 rowToDelete = dgvVenta->Rows->GetFirstRow(
+			DataGridViewElementStates::Selected);
+		if (rowToDelete > -1)
+		{
+			this->dgvVenta->Rows->RemoveAt(rowToDelete);
+		}
+				
 	}
 }
 		
@@ -399,9 +398,34 @@ public: System::Void dgvVenta_CellContentClick(System::Object^  sender, System::
 	
 }
 private: System::Void btnSale_Click(System::Object^  sender, System::EventArgs^  e) {
+	DateTime fecha = DateTime::Now;
+	//txtTotal->Text = fecha.ToString("yyyy/MM/dd");
+	Staff ^salesman = gcnew Staff();
+	int idsale = 1;
+	salesman->id = idsale;
+	int whitePos = cmbCostumer->Items[cmbCostumer->SelectedIndex]->ToString()->IndexOf(" -");
+	int customerId = Int32::Parse(cmbCostumer->Items[cmbCostumer->SelectedIndex]
+		->ToString()->Substring(0, whitePos));
+	Customer^ cust = gcnew Customer(); //SalesManager::QueryCustomerById(customerId);
+	cust->id = customerId; // Esto no debería
 
-
-
+	Sale ^sale = gcnew Sale();
+	sale->date = fecha;
+	sale->staff->id = idsale;
+	sale->customer = cust;
+	sale->attention->fecha = fecha;
+	sale->status = 'P';
+	sale->total = Double::Parse(txttotal->Text);
+	sale->details = gcnew List<Saledetail^>();
+	for (int i = 0; i < dgvVenta->Rows->Count - 1; i++){
+		Saledetail ^detail = gcnew Saledetail();
+		detail->product = StansaManager::QueryProductById(
+			Int32::Parse(dgvVenta->Rows[i]->Cells[0]->Value->ToString()));
+		detail->quantity = Int32::Parse(dgvVenta->Rows[i]->Cells[3]->Value->ToString());
+		detail->subTotal = Double::Parse(dgvVenta->Rows[i]->Cells[4]->Value->ToString());
+		sale->details->Add(detail);
+	}
+	StansaManager::RegisterSaveSale(sale);
 
 
 }
