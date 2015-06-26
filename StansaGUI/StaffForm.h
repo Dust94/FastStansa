@@ -575,7 +575,7 @@ public:  int idStaff;
 		 static ModuloStansa^ moduloStansaLocal = gcnew ModuloStansa();
 		 static Staff^ staffLocal = gcnew Staff();
 		 int idModuloStansa;
-		 public: System::Void ActualizarModuloyStaff(ModuloStansa^ modulo, Staff^ staff){
+public: System::Void ActualizarModuloyStaff(ModuloStansa^ modulo, Staff^ staff){
 			 moduloStansaLocal->id = modulo->id;
 			 moduloStansaLocal->name = modulo->name;
 			 moduloStansaLocal->place = modulo->place;
@@ -592,8 +592,7 @@ public:  int idStaff;
 			 staffLocal->hora_entrada = staff->hora_entrada;
 			 staffLocal->hora_salida = staff->hora_salida;
 			 staffLocal->puesto = staff->puesto;
-		 }
-		 
+		 }	 
 
  private: System::Void dgvStaff_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e);
 
@@ -625,7 +624,7 @@ public:  int idStaff;
 		s->hora_entrada = horaEntrada;
 		s->hora_salida = horaSalida;
 		s->puesto = puesto;
-		StansaManager::AddStaff(s, moduloStansaLocal->id); //Asumo Cualquier Identificador de Modulo de Stansa
+		StansaManager::AddStaff(s, moduloStansaLocal->id); //Cogo el Id del ModuloStansa Local
 		RefreshDGVStaff();
 	}
 	

@@ -54,6 +54,7 @@ void StaffDB::Add(Staff^ s, int idModuloStansa){
 	p8->Value = s->hora_entrada; //DateTime
 	p9->Value = s->hora_salida; //DateTime
 	p10->Value = s->puesto; //String
+	p11->Value = idModuloStansa; //int
 
 	comm->Parameters->Add(p1);
 	comm->Parameters->Add(p2);
@@ -65,6 +66,7 @@ void StaffDB::Add(Staff^ s, int idModuloStansa){
 	comm->Parameters->Add(p8);
 	comm->Parameters->Add(p9);
 	comm->Parameters->Add(p10);
+	comm->Parameters->Add(p11);
 	//Paso 3: Ejecución de la sentencia
 	comm->ExecuteNonQuery();
 	//Paso 4: Cerramos la conexión con la BD
@@ -81,8 +83,8 @@ void StaffDB::Update(Staff^ s, int idModuloStansa){
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
 	comm->CommandText = "UPDATE Staff_DB " +
-		"SET dni=@p1, name=@p2, lastName=@p3, secondLastName=@p4, sex=@p5, username=@p6 , password=@p7 , inTime=@p8 , outTime=@p9, position=@p10  " +
-		" WHERE id=@p11";
+		"SET dni=@p1, name=@p2, lastName=@p3, secondLastName=@p4, sex=@p5, username=@p6 , password=@p7 , inTime=@p8 , outTime=@p9, position=@p10, idModStansa=@p11 " +
+		" WHERE id=@p12";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p2 = gcnew SqlParameter("@p2",
@@ -105,6 +107,8 @@ void StaffDB::Update(Staff^ s, int idModuloStansa){
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p11 = gcnew SqlParameter("@p11",
 		System::Data::SqlDbType::Int);
+	SqlParameter^ p12 = gcnew SqlParameter("@p12",
+		System::Data::SqlDbType::Int);
 
 	p1->Value = s->dni; //String
 	p2->Value = s->name; //String
@@ -116,7 +120,8 @@ void StaffDB::Update(Staff^ s, int idModuloStansa){
 	p8->Value = s->hora_entrada; //DateTime
 	p9->Value = s->hora_salida; //DateTime
 	p10->Value = s->puesto; //String
-	p11->Value = s->id; //int
+	p11->Value = idModuloStansa; //int
+	p12->Value = s->id; //int
 
 	comm->Parameters->Add(p1);
 	comm->Parameters->Add(p2);
@@ -129,6 +134,7 @@ void StaffDB::Update(Staff^ s, int idModuloStansa){
 	comm->Parameters->Add(p9);
 	comm->Parameters->Add(p10);
 	comm->Parameters->Add(p11);
+	comm->Parameters->Add(p12);
 	//Paso 3: Ejecución de la sentencia
 	comm->ExecuteNonQuery();
 	//Paso 4: Cerramos la conexión con la BD
