@@ -353,14 +353,24 @@ public: void RefreshDGVProducts(){
 	private: System::Void SaleForm_Load(System::Object^  sender, System::EventArgs^  e) {
 		cmbCostumer->Items->Clear();
 		List <Attention^ >^ listAttention = StansaManager::QueryAllAttentionByModuloStansaStatus(moduloStansaLocal->id, "Esperando");
-		List <Customer^ >^ listCustomer = gcnew List<Customer^>();
-				 
+		/*List <Customer^ >^ listCustomer = gcnew List<Customer^>();
+
 		for (int i = 0; i < listAttention->Count; i++){
-				listCustomer[i] = StansaManager::QueryCustomerById(listAttention[i]->customer->id);
+			listCustomer[i] = StansaManager::QueryCustomerById(listAttention[i]->customer->id);
+		}
+				 
+		for (int i = 0; i < listCustomer->Count; i++){
 				cmbCostumer->Items->Add(listCustomer[i]->id + " - " +
 					listCustomer[i]->name + " " +
 					listCustomer[i]->apellido_Paterno);
-		}		
+		}*/
+
+		for (int i = 0; i < listAttention->Count; i++){ //De esta manera tengo los custoemr pero no los nombres. Usar Arte Como modulo
+			cmbCostumer->Items->Add(listAttention[i]->customer->id + " - " +
+				listAttention[i]->customer->name + " " +
+				listAttention[i]->customer->apellido_Paterno);
+		}
+
 		List <Staff^> ^StaffList = StansaManager::QueryAllStaff();
 		for (int i = 0; i < StaffList->Count; i++){
 			 cmbStaff->Items->Add(StaffList[i]->id + " - " +
@@ -440,6 +450,9 @@ private: System::Void btnSale_Click(System::Object^  sender, System::EventArgs^ 
 	DateTime fecha = DateTime::Now; 
 	Sale ^sale = gcnew Sale();
 	sale->attention = gcnew Attention();
+	sale->attention->moduloStansa = gcnew ModuloStansa();
+	sale->attention->customer = gcnew Customer();
+	sale->attention->staff = gcnew Staff();
 
 	sale->date = fecha;
 	sale->attention->fecha = fecha;
