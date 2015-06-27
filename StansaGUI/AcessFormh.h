@@ -233,7 +233,7 @@ private: System::Void btnOk_Click(System::Object^  sender, System::EventArgs^  e
 			 }
 
 				
-			 
+			 ///
 					 
 	
 
