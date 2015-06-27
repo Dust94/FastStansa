@@ -212,7 +212,7 @@ private: System::Void btnOk_Click(System::Object^  sender, System::EventArgs^  e
 			 if (!String::Compare(s->password, psw))
 			 {
 
-
+				 //
 
 				 Staff^ s = StansaManager::QueryStaffByDni(user);
 				 if (s != nullptr){
