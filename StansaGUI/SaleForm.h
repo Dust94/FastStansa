@@ -354,21 +354,22 @@ public: void QueryCustomerForAttention(){}
 
 	private: System::Void SaleForm_Load(System::Object^  sender, System::EventArgs^  e) {
 		cmbCostumer->Items->Clear();
-		
-			List <Customer^> ^customerList = StansaManager::QueryAllCustomer();
-			for (int i = 0; i < customerList->Count; i++){
-				cmbCostumer->Items->Add(customerList[i]->id + " - " +
-					customerList[i]->name + " " +
-					customerList[i]->apellido_Paterno);
-			}		
-		
-			List <Staff^> ^StaffList = StansaManager::QueryAllStaff();
-			for (int i = 0; i < StaffList->Count; i++){
-				 cmbStaff->Items->Add(StaffList[i]->id + " - " +
-					 StaffList[i]->name + " " + 
-					 StaffList[i]->apellido_Paterno);
-			}
-		}	 
+		List <Attention^ >^ listAttention = StansaManager::QueryAllAttentionByModuloStansaStatus(moduloStansaLocal->id, "Esperando");
+		List <Customer^ >^ listCustomer = gcnew List<Customer^>();
+				 
+		for (int i = 0; i < listAttention->Count; i++){
+				listCustomer[i] = StansaManager::QueryCustomerById(listAttention[i]->customer->id);
+				cmbCostumer->Items->Add(listCustomer[i]->id + " - " +
+					listCustomer[i]->name + " " +
+					listCustomer[i]->apellido_Paterno);
+		}		
+		List <Staff^> ^StaffList = StansaManager::QueryAllStaff();
+		for (int i = 0; i < StaffList->Count; i++){
+			 cmbStaff->Items->Add(StaffList[i]->id + " - " +
+				 StaffList[i]->name + " " + 
+				 StaffList[i]->apellido_Paterno);
+		}//FIn del For
+	}//Fin del Metodo Load	 
 
 private: System::Void dgvVenta_CellValueChanged(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
 
