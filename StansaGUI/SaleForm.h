@@ -438,16 +438,23 @@ private: System::Void btnSale_Click(System::Object^  sender, System::EventArgs^ 
 	int whitePos = cmbCostumer->Items[cmbCostumer->SelectedIndex]->ToString()->IndexOf(" -");
 	int customerId = Int32::Parse(cmbCostumer->Items[cmbCostumer->SelectedIndex]
 		->ToString()->Substring(0, whitePos));
+	
 	Customer^ cust = gcnew Customer(); //SalesManager::QueryCustomerById(customerId);
 	cust->id = customerId; // Esto no debería
 
 	Sale ^sale = gcnew Sale();
-		
+	sale->staff = gcnew Staff();
+	sale->attention = gcnew Attention();
+	sale->modstansa = gcnew ModuloStansa();
+	sale->attention->moduloStansa = gcnew ModuloStansa();
+
 	sale->date = fecha;
 	sale->staff->id = idsale;
 	sale->customer = cust;
 	sale->attention->fecha = fecha;
-	sale->status = 'P';
+	sale->attention->estado = "Esperando";
+	sale->modstansa->id = moduloStansaLocal->id;
+	sale->attention->moduloStansa->id = moduloStansaLocal->id;
 	sale->total = Double::Parse(txttotal->Text);
 	sale->details = gcnew List<Saledetail^>();
 	for (int i = 0; i < dgvVenta->Rows->Count - 1; i++){

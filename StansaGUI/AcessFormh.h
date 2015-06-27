@@ -162,6 +162,7 @@ namespace StansaGUI {
 			this->Controls->Add(this->btnCancel);
 			this->Name = L"AcessFormh";
 			this->Text = L"Acceso";
+			this->Load += gcnew System::EventHandler(this, &AcessFormh::AcessFormh_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -196,6 +197,15 @@ private: System::Void btnOk_Click(System::Object^  sender, System::EventArgs^  e
 
 }
 private: System::Void txtpsw_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void AcessFormh_Load(System::Object^  sender, System::EventArgs^  e) {
+			 List <ModuloStansa^> ^ modstansaList = StansaManager::QueryAllModuloStansa();
+			 for (int i = 0; i < modstansaList->Count; i++){
+				 combModuloStansa->Items->Add(
+					 modstansaList[i]->name + " " +
+					 modstansaList[i]->place);
+			 }
+			 
 }
 };
 }
