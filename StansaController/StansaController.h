@@ -69,6 +69,7 @@ namespace StansaController {
 			Attention^ QueryById(int id);
 			List<Attention^>^ QueryAll();
 			List<Attention^>^ QueryAllByModuloStansa(ModuloStansa^ modulo);
+			List<Attention^>^ QueryAllByModuloStansaStatus(ModuloStansa^ modulo, String^ estadoCustomer);
 			List<Attention^>^ QueryAllByModuloStansaAndCustomer(ModuloStansa^ modulo, Customer^ customer);
 			List<Attention^>^ QueryAllByModuloStansaAndStaff(ModuloStansa^ modulo, Staff^ staff);
 			List<Attention^>^ QueryAllByModuloStansaAndFecha(ModuloStansa^ modulo, String^ fecha);
@@ -104,11 +105,11 @@ namespace StansaController {
 			static Customer^ QueryCustomerByDni(String^ dni);
 			static Customer^ QueryCustomerByCodigoPUCP(String^ codigoPUCP);
 			static List<Customer^>^ QueryAllCustomer();
-	public:
+		public:
 			//metodos de clase globales para sales
 			static void RegisterSaleDetail(int idSale, Saledetail^ saleDetail);
 			static void RegisterSaveSale(Sale ^sale);
-	public:
+		public:
 			//metodos de clase globlales para Staff
 			static void AddStaff(Staff^ s, int idModuloStansa);
 			static void UpdateStaff(Staff^ s, int idModuloStansa);
@@ -116,7 +117,7 @@ namespace StansaController {
 			static Staff^ QueryStaffById(int id);
 			static Staff^ QueryStaffByDni(String^ dni);
 			static List<Staff^>^ QueryAllStaff();
-	public:
+		public:
 			//metodos de clase globlales para Product
 			static void AddProduct(Product^ p);
 			static void UpdateProduct(Product^ p);
@@ -124,7 +125,7 @@ namespace StansaController {
 			static Product^ QueryProductById(int id);
 			static List<Product^>^ QueryAllProduct();
 			static List<Product^> ^ QueryProductsLikeName(String ^name);
-	public:
+		public:
 			//metodos de clase globlales para ModuloStansa
 			static void AddModuloStansa(ModuloStansa^ m);
 			static void UpdateModuloStansa(ModuloStansa^ m);
@@ -140,6 +141,7 @@ namespace StansaController {
 			static Attention^ QueryAttentionById(int id);
 			static List<Attention^>^ QueryAllAttention();
 			static List<Attention^>^ QueryAllAttentionByModuloStansa(ModuloStansa^ modulo);
+			static List<Attention^>^ QueryAllAttentionByModuloStansaStatus(ModuloStansa^ modulo, String^ estadoCustomer);
 			static List<Attention^>^ QueryAllAttentionByModuloStansaAndCustomer(ModuloStansa^ modulo, Customer^ customer);
 			static List<Attention^>^ QueryAllAttentionByModuloStansaAndStaff(ModuloStansa^ modulo, Staff^ staff);
 			static List<Attention^>^ QueryAllAttentionByModuloStansaAndFecha(ModuloStansa^ modulo, String^ fecha);
