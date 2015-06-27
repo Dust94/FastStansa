@@ -259,6 +259,10 @@ List<Attention^>^ AttentionDB::QueryAllByModuloStansaStatus(int idModuloStansa, 
 	List<Attention^>^ AttentionList = gcnew List<Attention^>();
 	while (dr->Read()){
 		Attention^a = gcnew Attention();
+		a->customer = gcnew Customer();
+		a->staff = gcnew Staff();
+		a->moduloStansa = gcnew ModuloStansa();
+
 		a->id = (int)dr["id"];
 		if (dr["date"] != System::DBNull::Value)
 			a->fecha = dr->GetDateTime(1); //Columna 1 "date"
