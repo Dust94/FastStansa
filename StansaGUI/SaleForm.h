@@ -328,7 +328,6 @@ namespace StansaGUI {
 
 public: void RefreshDGVProducts(){
 			List<Product^>^ productList =  StansaManager::QueryAllProduct();
-			//lstProducts->Items->Clear();
 			dgvVenta->Rows->Clear();
 			for (int i = 0; i < productList->Count; i++){
 				dgvVenta->Rows->Add(gcnew array<String^>{
@@ -338,8 +337,10 @@ public: void RefreshDGVProducts(){
 						"" + productList[i]->price});
 			}
 }
-		
-		public: System::Void AddProductToDetails(Product ^p){
+
+public: void QueryCustomerForAttention(){}
+
+	public: System::Void AddProductToDetails(Product ^p){
 			dgvVenta->Rows->Add(gcnew array<String^>{"" + p->id,
 				p->name,
 				"" + p->price,
@@ -351,8 +352,6 @@ public: void RefreshDGVProducts(){
 			txttotal->Text = "" + total;
 		}
 
-
-
 	private: System::Void SaleForm_Load(System::Object^  sender, System::EventArgs^  e) {
 		cmbCostumer->Items->Clear();
 		
@@ -361,8 +360,7 @@ public: void RefreshDGVProducts(){
 				cmbCostumer->Items->Add(customerList[i]->id + " - " +
 					customerList[i]->name + " " +
 					customerList[i]->apellido_Paterno);
-			}
-		
+			}		
 		
 			List <Staff^> ^StaffList = StansaManager::QueryAllStaff();
 			for (int i = 0; i < StaffList->Count; i++){
@@ -459,10 +457,8 @@ private: System::Void btnSale_Click(System::Object^  sender, System::EventArgs^ 
 		detail->quantity = Int32::Parse(dgvVenta->Rows[i]->Cells[3]->Value->ToString());
 		detail->subTotal = Double::Parse(dgvVenta->Rows[i]->Cells[4]->Value->ToString());
 		sale->details->Add(detail);
-	}
+	} //Fin de For
 	StansaManager::RegisterSaveSale(sale);
-
-
-}
+} //Fin de Metodo de Agregar Venta
 };
 }
