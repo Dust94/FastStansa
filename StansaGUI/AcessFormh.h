@@ -28,6 +28,11 @@ namespace StansaGUI {
 		Form^ productSearchForm; //Creo un Form para acceder a "ProductSearchForm.h"
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::TextBox^  txtpsw;
+	private: System::Windows::Forms::TextBox^  txtuser;
+
+	private: System::Windows::Forms::Label^  label4;
+	private: System::Windows::Forms::Label^  label5;
+	private: System::Windows::Forms::Label^  label6;
 
 
 
@@ -101,6 +106,10 @@ namespace StansaGUI {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->txtpsw = (gcnew System::Windows::Forms::TextBox());
+			this->txtuser = (gcnew System::Windows::Forms::TextBox());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// btnCancel
@@ -126,7 +135,7 @@ namespace StansaGUI {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(47, 67);
+			this->label1->Location = System::Drawing::Point(41, 111);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(67, 13);
 			this->label1->TabIndex = 2;
@@ -134,7 +143,7 @@ namespace StansaGUI {
 			// 
 			// txtStaffDni
 			// 
-			this->txtStaffDni->Location = System::Drawing::Point(149, 64);
+			this->txtStaffDni->Location = System::Drawing::Point(149, 108);
 			this->txtStaffDni->Name = L"txtStaffDni";
 			this->txtStaffDni->Size = System::Drawing::Size(153, 20);
 			this->txtStaffDni->TabIndex = 4;
@@ -160,25 +169,67 @@ namespace StansaGUI {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(47, 100);
+			this->label2->Location = System::Drawing::Point(47, 184);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(61, 13);
 			this->label2->TabIndex = 11;
 			this->label2->Text = L"Contraseña";
+			this->label2->Click += gcnew System::EventHandler(this, &AcessFormh::label2_Click);
 			// 
 			// txtpsw
 			// 
-			this->txtpsw->Location = System::Drawing::Point(149, 100);
+			this->txtpsw->Location = System::Drawing::Point(149, 177);
 			this->txtpsw->Name = L"txtpsw";
 			this->txtpsw->PasswordChar = '*';
 			this->txtpsw->Size = System::Drawing::Size(153, 20);
 			this->txtpsw->TabIndex = 12;
+			this->txtpsw->TextChanged += gcnew System::EventHandler(this, &AcessFormh::txtpsw_TextChanged_1);
+			// 
+			// txtuser
+			// 
+			this->txtuser->Location = System::Drawing::Point(149, 148);
+			this->txtuser->Name = L"txtuser";
+			this->txtuser->PasswordChar = '*';
+			this->txtuser->Size = System::Drawing::Size(153, 20);
+			this->txtuser->TabIndex = 14;
+			this->txtuser->TextChanged += gcnew System::EventHandler(this, &AcessFormh::textBox1_TextChanged);
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(47, 151);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(55, 13);
+			this->label4->TabIndex = 13;
+			this->label4->Text = L"Username";
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(43, 65);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(259, 13);
+			this->label5->TabIndex = 15;
+			this->label5->Text = L"Por favor, solo ingrese su número de DNI o username";
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(44, 78);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(96, 13);
+			this->label6->TabIndex = 16;
+			this->label6->Text = L" para la validación.";
 			// 
 			// AcessFormh
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(460, 153);
+			this->ClientSize = System::Drawing::Size(476, 220);
+			this->Controls->Add(this->label6);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->txtuser);
+			this->Controls->Add(this->label4);
 			this->Controls->Add(this->txtpsw);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label3);
@@ -202,45 +253,71 @@ namespace StansaGUI {
 private: System::Void btnOk_Click(System::Object^  sender, System::EventArgs^  e) {
 
 			 
-			 String^ user = txtStaffDni->Text->Trim();
+			 String^ dni = txtStaffDni->Text->Trim();
+			 String^ User = txtuser->Text->Trim();
 			 String^ psw = txtpsw->Text->Trim();
 
 			
 			 String^ ModuloStansaPlace = combModuloStansa->Text; //Eligo el Modulo de Stansa al que estoy accediendo
 			 ModuloStansa^ moduloStansa = StansaManager::QueryModuloStansaLikePlace(ModuloStansaPlace);
-			 Staff^ s = StansaManager::QueryStaffByDni(user);
+			
 
-			 if (!String::Compare(s->password, psw))
+
+			 if (dni != "" && User == "")
 			 {
+				 Staff^ s = StansaManager::QueryStaffByDni(dni);
+				 String^ msg = "" + s->name + s->apellido_Paterno + s->dni;
+				 MessageBox::Show(msg);
 
+				 ((StansaAPPForm^)stansaAppForm)->ActualizarModuloyStaff(moduloStansa, s);
+				 ((StaffForm^)staffForm)->ActualizarModuloyStaff(moduloStansa, s);
+				 ((ProductForm^)productForm)->ActualizarModuloyStaff(moduloStansa, s);
+				 ((ProductSearchForm^)productSearchForm)->ActualizarModuloyStaff(moduloStansa, s);
+				 ((SaleForm^)saleForm)->ActualizarModuloyStaff(moduloStansa, s);
 
-				 Staff^ s = StansaManager::QueryStaffByDni(user);
-				 if (s != nullptr){
-					 String^ msg = "" + s->name + s->apellido_Paterno + s->dni;
-					 MessageBox::Show(msg);
+				 StansaAPPForm^ pForm = gcnew StansaAPPForm();
+				 pForm->Show();
+				 //AcessFormh::Close();
+			 }
+			 else
+			 {
+				 MessageBox::Show("DNI INCORRECTO");
+				 return;
+			 }
 
-					 ((StansaAPPForm^)stansaAppForm)->ActualizarModuloyStaff(moduloStansa, s);
-					 ((StaffForm^)staffForm)->ActualizarModuloyStaff(moduloStansa, s);
-					 ((ProductForm^)productForm)->ActualizarModuloyStaff(moduloStansa, s);
-					 ((ProductSearchForm^)productSearchForm)->ActualizarModuloyStaff(moduloStansa, s);
-					 ((SaleForm^)saleForm)->ActualizarModuloyStaff(moduloStansa, s);
+			 if (User != "" && dni== "")
+			 {
+				 Staff^ s = StansaManager::QueryByUsername(User);
 
-					 StansaAPPForm^ pForm = gcnew StansaAPPForm();
-					 pForm->Show();
-					 //AcessFormh::Close();
-
-
-				 }
-				 else
+				 if (!String::Compare(s->password, psw))
 				 {
-					 MessageBox::Show("Usuario o Contraseña INCORRECTA");
+					 if (s != nullptr){
+						 String^ msg = "" + s->name + s->apellido_Paterno + s->dni;
+						 MessageBox::Show(msg);
+
+						 ((StansaAPPForm^)stansaAppForm)->ActualizarModuloyStaff(moduloStansa, s);
+						 ((StaffForm^)staffForm)->ActualizarModuloyStaff(moduloStansa, s);
+						 ((ProductForm^)productForm)->ActualizarModuloyStaff(moduloStansa, s);
+						 ((ProductSearchForm^)productSearchForm)->ActualizarModuloyStaff(moduloStansa, s);
+						 ((SaleForm^)saleForm)->ActualizarModuloyStaff(moduloStansa, s);
+
+						 StansaAPPForm^ pForm = gcnew StansaAPPForm();
+						 pForm->Show();
+						 //AcessFormh::Close();
+
+
+					 }
+					 else
+					 {
+						 MessageBox::Show("Usuario o Contraseña INCORRECTA");
+					 }
 				 }
 			 }
 
-				
-			 
-					 
-	
+			 if (User != "" && dni != "")
+			 {
+				 MessageBox::Show("Por favor, solo ingrese uno de los campos requeridos");
+			 }
 
 }
 private: System::Void txtpsw_TextChanged(System::Object^  sender, System::EventArgs^  e) {
@@ -261,6 +338,12 @@ private: System::Void btnregister_Click(System::Object^  sender, System::EventAr
 
 
 
+}
+private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void txtpsw_TextChanged_1(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void label2_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 }

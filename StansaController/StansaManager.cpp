@@ -50,6 +50,11 @@ List<Staff^>^ StansaManager::QueryAllStaff(){
 	return staffDB->QueryAll();
 }
 
+Staff^ StansaManager::QueryByUsername(String^ username){
+	return staffDB->QueryByUsername(username);
+}
+
+
 //metodos de clase globlales para Product
 void StansaManager::AddProduct(Product^ p){
 	productDB->Add(p);

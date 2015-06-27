@@ -310,3 +310,55 @@ List<Staff^>^ StaffDB::QueryAll(){
 	conn->Close();
 	return staffList;
 }
+
+Staff^ StaffDB::QueryByUsername(String^ username){
+
+	//Paso 1: Se abre la conexión
+	SqlConnection^ conn;
+	conn = gcnew SqlConnection();
+	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+	conn->Open();
+	//Paso 2: Preparamos la sentencia
+	SqlCommand^ comm = gcnew SqlCommand();
+	comm->Connection = conn;
+	comm->CommandText = "SELECT * FROM Staff_DB " +
+		"WHERE username=@p1";
+	SqlParameter^ p1 = gcnew SqlParameter("@p1",
+		System::Data::SqlDbType::Int);
+	p1->Value = username; // int
+
+	comm->Parameters->Add(p1);
+	//Paso 3: Ejecución de la sentencia
+	SqlDataReader^ dr = comm->ExecuteReader();
+	//Paso 3.1: Procesamos los resultados	
+	Staff ^s = nullptr;
+	if (dr->Read()){
+		s = gcnew Staff();
+		s->id = (int)dr["id"];
+		if (dr["dni"] != System::DBNull::Value)
+			s->dni = safe_cast<String^>(dr["dni"]);
+		if (dr["name"] != System::DBNull::Value)
+			s->name = safe_cast<String ^>(dr["name"]);
+		if (dr["lastName"] != System::DBNull::Value)
+			s->apellido_Paterno = safe_cast<String ^>(dr["lastName"]);
+		if (dr["secondLastName"] != System::DBNull::Value)
+			s->apellido_Materno = safe_cast<String ^>(dr["secondLastName"]);
+		if (dr["sex"] != System::DBNull::Value)
+			s->sexo = Char::Parse(safe_cast<String ^>(dr["sex"]));
+		if (dr["username"] != System::DBNull::Value)
+			s->username = safe_cast<String ^>(dr["username"]);
+		if (dr["password"] != System::DBNull::Value)
+			s->password = safe_cast<String ^>(dr["password"]);
+		if (dr["inTime"] != System::DBNull::Value)
+			s->hora_entrada = dr->GetDateTime(8); //Columna 8 "inTime"
+		if (dr["outTime"] != System::DBNull::Value)
+			s->hora_salida = dr->GetDateTime(9); //Columna 9 "outTime"
+		if (dr["position"] != System::DBNull::Value)
+			s->puesto = safe_cast<String ^>(dr["position"]);
+	}
+	//Paso 4: Cerramos el dataReader y la conexión con la BD
+	dr->Close();
+	conn->Close();
+	return s;
+}

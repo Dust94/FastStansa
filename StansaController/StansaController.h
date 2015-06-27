@@ -27,6 +27,7 @@ namespace StansaController {
 			void Add(Staff^ s, int idModuloStansa); //Necesito saber a que Stansa pertenece
 			void Update(Staff^ s, int idModuloStansa); //Necesito saber a que Stansa pertenece
 			void Delete(int id);
+			Staff^ QueryByUsername(String^ username);
 			Staff^ QueryById(int id);
 			Staff^ QueryByDni(String^ dni);
 			List<Staff^>^ QueryAll();
@@ -117,6 +118,8 @@ namespace StansaController {
 			static Staff^ QueryStaffById(int id);
 			static Staff^ QueryStaffByDni(String^ dni);
 			static List<Staff^>^ QueryAllStaff();
+			static Staff^ QueryByUsername(String^ username);
+
 		public:
 			//metodos de clase globlales para Product
 			static void AddProduct(Product^ p);
