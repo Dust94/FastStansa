@@ -170,6 +170,7 @@ namespace StansaGUI {
 			// 
 			this->txtpsw->Location = System::Drawing::Point(149, 100);
 			this->txtpsw->Name = L"txtpsw";
+			this->txtpsw->PasswordChar = '*';
 			this->txtpsw->Size = System::Drawing::Size(153, 20);
 			this->txtpsw->TabIndex = 12;
 			// 
@@ -212,7 +213,6 @@ private: System::Void btnOk_Click(System::Object^  sender, System::EventArgs^  e
 			 if (!String::Compare(s->password, psw))
 			 {
 
-				 //
 
 				 Staff^ s = StansaManager::QueryStaffByDni(user);
 				 if (s != nullptr){
