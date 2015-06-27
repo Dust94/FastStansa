@@ -81,10 +81,7 @@ namespace FotoLibrary {
 			double total;
 			DateTime^ date; // Dia de la Venta
 			char status;
-			Staff^ staff; //Quien ejecuto la venta
 			Attention^ attention;
-			Customer^ customer; //Para Obtener el Numero de Orden del Usuario
-			ModuloStansa^ modstansa;
 			List<Saledetail^>^ details; //Varias Boletas en un Proceso de Venta
 	};// Fin Clase Sale.
 

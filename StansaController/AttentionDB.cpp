@@ -231,7 +231,7 @@ List<Attention^>^ AttentionDB::QueryAll(){
 	return AttentionList;
 }
 List<Attention^>^ AttentionDB::QueryAllByModuloStansa(ModuloStansa^ modulo){ return nullptr; }
-List<Attention^>^ AttentionDB::QueryAllByModuloStansaStatus(ModuloStansa^ modulo, String^ estadoCustomer){
+List<Attention^>^ AttentionDB::QueryAllByModuloStansaStatus(int idModuloStansa, String^ estadoCustomer){
 	//Paso 1: Se abre la conexión
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
@@ -248,7 +248,7 @@ List<Attention^>^ AttentionDB::QueryAllByModuloStansaStatus(ModuloStansa^ modulo
 		System::Data::SqlDbType::Int);
 	SqlParameter^ p2 = gcnew SqlParameter("@p2",
 		System::Data::SqlDbType::VarChar);
-	p1->Value = modulo->id;
+	p1->Value = idModuloStansa;
 	p2->Value = "%" + estadoCustomer + "%";
 	comm->Parameters->Add(p1);
 	comm->Parameters->Add(p2);

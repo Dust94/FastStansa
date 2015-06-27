@@ -338,8 +338,6 @@ public: void RefreshDGVProducts(){
 			}
 }
 
-public: void QueryCustomerForAttention(){}
-
 	public: System::Void AddProductToDetails(Product ^p){
 			dgvVenta->Rows->Add(gcnew array<String^>{"" + p->id,
 				p->name,
@@ -354,21 +352,22 @@ public: void QueryCustomerForAttention(){}
 
 	private: System::Void SaleForm_Load(System::Object^  sender, System::EventArgs^  e) {
 		cmbCostumer->Items->Clear();
-		
-			List <Customer^> ^customerList = StansaManager::QueryAllCustomer();
-			for (int i = 0; i < customerList->Count; i++){
-				cmbCostumer->Items->Add(customerList[i]->id + " - " +
-					customerList[i]->name + " " +
-					customerList[i]->apellido_Paterno);
-			}		
-		
-			List <Staff^> ^StaffList = StansaManager::QueryAllStaff();
-			for (int i = 0; i < StaffList->Count; i++){
-				 cmbStaff->Items->Add(StaffList[i]->id + " - " +
-					 StaffList[i]->name + " " + 
-					 StaffList[i]->apellido_Paterno);
-			}
-		}	 
+		List <Attention^ >^ listAttention = StansaManager::QueryAllAttentionByModuloStansaStatus(moduloStansaLocal->id, "Esperando");
+		List <Customer^ >^ listCustomer = gcnew List<Customer^>();
+				 
+		for (int i = 0; i < listAttention->Count; i++){
+				listCustomer[i] = StansaManager::QueryCustomerById(listAttention[i]->customer->id);
+				cmbCostumer->Items->Add(listCustomer[i]->id + " - " +
+					listCustomer[i]->name + " " +
+					listCustomer[i]->apellido_Paterno);
+		}		
+		List <Staff^> ^StaffList = StansaManager::QueryAllStaff();
+		for (int i = 0; i < StaffList->Count; i++){
+			 cmbStaff->Items->Add(StaffList[i]->id + " - " +
+				 StaffList[i]->name + " " + 
+				 StaffList[i]->apellido_Paterno);
+		}//FIn del For
+	}//Fin del Metodo Load	 
 
 private: System::Void dgvVenta_CellValueChanged(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
 
@@ -414,47 +413,39 @@ public: System::Void dgvVenta_CellContentClick(System::Object^  sender, System::
 	
 }
 private: System::Void btnSale_Click(System::Object^  sender, System::EventArgs^  e) {
+	Staff^ salesman = gcnew Staff(); //Staff que va esta atendiendo
+	Customer^ customer = gcnew Customer(); // Customer que esta siendo atendido
 
-			 if ((cmbCostumer->Text == "") && (cmbStaff->Text == ""))
-			 {
-				 MessageBox::Show("Por favor, seleccione el cliente en atención y al personal atendiendo");
-				 return;
-			 }			 
+	bool staffSeleccionado = String::Equals(cmbStaff->Text, "");//true si son iguales. true si esta vacio
+	bool customerSelecionado = String::Equals(cmbCostumer->Text, "");//true si son iguales. true si esta vacio
+	if (staffSeleccionado && customerSelecionado)
+		MessageBox::Show("Por favor, seleccione el cliente en atención y al personal atendiendo");
+
+	if (!staffSeleccionado){ //Si no esta vacio
+		int whitePos = cmbStaff->Items[cmbStaff->SelectedIndex]->ToString()->IndexOf(" -");
+		int staffId = Int32::Parse(cmbStaff->Items[cmbStaff->SelectedIndex]
+			->ToString()->Substring(0, whitePos));
+		salesman = StansaManager::QueryStaffById(staffId);
+	}
+	else MessageBox::Show("Por favor, seleccione al personal atendiendo");
+
+	if (!customerSelecionado){ //Si no esta vacio
+		int whitePos = cmbCostumer->Items[cmbCostumer->SelectedIndex]->ToString()->IndexOf(" -");
+		int customerId = Int32::Parse(cmbCostumer->Items[cmbCostumer->SelectedIndex]
+			->ToString()->Substring(0, whitePos));
+		customer = StansaManager::QueryCustomerById(customerId);
+	}
+	else MessageBox::Show("Por favor, seleccione el cliente en atención");
 			 
-			 if (cmbCostumer->Text == "") 
-			 {
-				 MessageBox::Show("Por favor, seleccione el cliente en atención");
-				 return; }
-
-			 if (cmbStaff->Text == "")
-			 {	 MessageBox::Show("Por favor, seleccione al personal atendiendo");
-				 return; }
-			 
-	 DateTime fecha = DateTime::Now;
-	//txtTotal->Text = fecha.ToString("yyyy/MM/dd");
-	Staff ^salesman = gcnew Staff();
-	int idsale = 1;
-	salesman->id = idsale;
-	int whitePos = cmbCostumer->Items[cmbCostumer->SelectedIndex]->ToString()->IndexOf(" -");
-	int customerId = Int32::Parse(cmbCostumer->Items[cmbCostumer->SelectedIndex]
-		->ToString()->Substring(0, whitePos));
-	
-	Customer^ cust = gcnew Customer(); //SalesManager::QueryCustomerById(customerId);
-	cust->id = customerId; // Esto no debería
-
+	DateTime fecha = DateTime::Now; 
 	Sale ^sale = gcnew Sale();
-	sale->staff = gcnew Staff();
 	sale->attention = gcnew Attention();
-	sale->modstansa = gcnew ModuloStansa();
-	sale->attention->moduloStansa = gcnew ModuloStansa();
 
 	sale->date = fecha;
-	sale->staff->id = idsale;
-	sale->customer = cust;
 	sale->attention->fecha = fecha;
-	sale->attention->estado = "Esperando";
-	sale->modstansa->id = moduloStansaLocal->id;
+	sale->attention->estado = "Atentido";
 	sale->attention->moduloStansa->id = moduloStansaLocal->id;
+	sale->attention->hora_fin = fecha;
 	sale->total = Double::Parse(txttotal->Text);
 	sale->details = gcnew List<Saledetail^>();
 	for (int i = 0; i < dgvVenta->Rows->Count - 1; i++){
