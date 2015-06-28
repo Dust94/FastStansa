@@ -186,6 +186,63 @@ Attention^ AttentionDB::QueryById(int id){
 	conn->Close();
 	return a;
 }
+Attention^ AttentionDB::QueryByFechaNorderModuloStansa(DateTime^ fecha, int n_order, int idModuloStansa){ 
+	//Paso 1: Se abre la conexión
+	SqlConnection^ conn;
+	conn = gcnew SqlConnection();
+	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+	conn->Open();
+	//Paso 2: Preparamos la sentencia
+	SqlCommand^ comm = gcnew SqlCommand();
+	comm->Connection = conn;
+	comm->CommandText = "SELECT * FROM Attention_DB " +
+		"WHERE date=@p1 AND orderNumber=@p2 AND idModStansa=@p3 ";
+	
+	SqlParameter^ p1 = gcnew SqlParameter("@p1",
+		System::Data::SqlDbType::DateTime);
+	SqlParameter^ p2 = gcnew SqlParameter("@p2",
+		System::Data::SqlDbType::Int);
+	SqlParameter^ p3 = gcnew SqlParameter("@p3",
+		System::Data::SqlDbType::Int);
+	p1->Value = fecha; // DateTime
+	p2->Value = n_order; // int
+	p3->Value = idModuloStansa; // int
+
+	comm->Parameters->Add(p1);
+	comm->Parameters->Add(p2);
+	comm->Parameters->Add(p3);
+	//Paso 3: Ejecución de la sentencia
+	SqlDataReader^ dr = comm->ExecuteReader();
+
+	//Paso 3.1: Procesamos los resultados	
+	Attention ^ a = nullptr;
+	if (dr->Read()){
+		a = gcnew Attention();
+		a->id = (int)dr["id"];
+		if (dr["date"] != System::DBNull::Value)
+			a->fecha = safe_cast<DateTime^>(dr["date"]);
+		if (dr["orderNumber"] != System::DBNull::Value)
+			a->n_orden = safe_cast<int>(dr["orderNumber"]);
+		if (dr["inTime"] != System::DBNull::Value)
+			a->hora_ini = safe_cast<DateTime^>(dr["inTime"]);
+		if (dr["outTime"] != System::DBNull::Value)
+			a->hora_fin = safe_cast<DateTime^>(dr["outTime"]);
+		if (dr["status"] != System::DBNull::Value)
+			a->estado = safe_cast<String^>(dr["status"]);
+		if (dr["idCustomer"] != System::DBNull::Value)
+			a->customer->id = safe_cast<int>(dr["idCustomer"]);
+		if (dr["idModStansa"] != System::DBNull::Value)
+			a->moduloStansa->id = safe_cast<int>(dr["idModStansa"]);
+		if (dr["idStaff"] != System::DBNull::Value)
+			a->staff->id = safe_cast<int>(dr["idStaff"]);
+	}
+	//Paso 4: Cerramos el dataReader y la conexión con la BD
+	dr->Close();
+	conn->Close();
+	return a;
+}
+
 List<Attention^>^ AttentionDB::QueryAll(){
 	//Paso 1: Se abre la conexión
 	SqlConnection^ conn;

@@ -237,7 +237,8 @@ public: bool Validacion(){
 	}
 	if ( (!username && !password) && dni ){ //Si solo se ha llenado el campo de username y password
 		String^ usernameText = txtStaffUsername->Text; //username Ingresado por Usuario
-		s = StansaManager::QueryStaffByDni(usernameText);
+		String^ passwordText = txtStaffPassword->Text; //password Ingresado por Usuario
+		s = StansaManager::QueryStaffByUsernameAndPassWord(usernameText, passwordText);
 		if (s != nullptr) return true; //Se ha encontrado el usuario
 		else {
 			MessageBox::Show("Nombre de Usuario o Contraseña Incorrecta");
@@ -290,9 +291,6 @@ private: System::Void AcessFormh_Load(System::Object^  sender, System::EventArgs
 			 
 }
 private: System::Void btnregister_Click(System::Object^  sender, System::EventArgs^  e) {
-
-			 
-
 
 
 

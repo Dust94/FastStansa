@@ -27,9 +27,9 @@ namespace StansaController {
 			void Add(Staff^ s, int idModuloStansa); //Necesito saber a que Stansa pertenece
 			void Update(Staff^ s, int idModuloStansa); //Necesito saber a que Stansa pertenece
 			void Delete(int id);
-			Staff^ QueryByUsername(String^ username);
 			Staff^ QueryById(int id);
 			Staff^ QueryByDni(String^ dni);
+			Staff^ QueryByUsernameAndPassWord(String^ username, String^ password);
 			List<Staff^>^ QueryAll();
 	}; //Fin Clase StaffDB
 
@@ -68,6 +68,7 @@ namespace StansaController {
 			void Update(Attention^ a);
 			void Delete(int id);
 			Attention^ QueryById(int id);
+			Attention^ QueryByFechaNorderModuloStansa(DateTime^ fecha, int n_order, int idModuloStansa); //Debo Mandarle la fecha actual
 			List<Attention^>^ QueryAll();
 			List<Attention^>^ QueryAllByModuloStansa(ModuloStansa^ modulo);
 			List<Attention^>^ QueryAllByModuloStansaStatus(int idModuloStansa, String^ estadoCustomer);
@@ -115,8 +116,8 @@ namespace StansaController {
 			static void DeleteStaff(int id);
 			static Staff^ QueryStaffById(int id);
 			static Staff^ QueryStaffByDni(String^ dni);
+			static Staff^ QueryStaffByUsernameAndPassWord(String^ username, String^ password);
 			static List<Staff^>^ QueryAllStaff();
-			static Staff^ QueryByUsername(String^ username);
 
 		public:
 			//metodos de clase globlales para Product
@@ -140,6 +141,7 @@ namespace StansaController {
 			static void UpdateAttention(Attention^ a);
 			static void DeleteAttention(int id);
 			static Attention^ QueryAttentionById(int id);
+			static Attention^ QueryByFechaNorderModuloStansa(DateTime^ fecha, int n_order, int idModuloStansa);
 			static List<Attention^>^ QueryAllAttention();
 			static List<Attention^>^ QueryAllAttentionByModuloStansa(ModuloStansa^ modulo);
 			static List<Attention^>^ QueryAllAttentionByModuloStansaStatus(int idModuloStansa, String^ estadoCustomer);

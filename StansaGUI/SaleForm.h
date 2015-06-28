@@ -450,6 +450,7 @@ private: System::Void btnSale_Click(System::Object^  sender, System::EventArgs^ 
 			 
 	DateTime fecha = DateTime::Now; 
 	Sale ^sale = gcnew Sale();
+	sale->attention = StansaManager::QueryByFechaNorderModuloStansa(fecha, 1, moduloStansaLocal->id);
 	sale->attention = gcnew Attention(); //Debo Jalar solo la atencion que se esta atendiendo con usuario
 	sale->attention->moduloStansa = gcnew ModuloStansa();
 	sale->attention->customer = gcnew Customer();

@@ -46,12 +46,11 @@ Staff^ StansaManager::QueryStaffById(int id){
 Staff^ StansaManager::QueryStaffByDni(String^ dni){
 	return staffDB->QueryByDni(dni);
 }
+Staff^ StansaManager::QueryStaffByUsernameAndPassWord(String^ username, String^ password){
+	return staffDB->QueryByUsernameAndPassWord(username, password);
+}
 List<Staff^>^ StansaManager::QueryAllStaff(){
 	return staffDB->QueryAll();
-}
-
-Staff^ StansaManager::QueryByUsername(String^ username){
-	return staffDB->QueryByUsername(username);
 }
 
 
@@ -116,6 +115,9 @@ void StansaManager::DeleteAttention(int id){
 }
 Attention^ StansaManager::QueryAttentionById(int id){ 
 	return attentionDB->QueryById(id);
+}
+Attention^ StansaManager::QueryByFechaNorderModuloStansa(DateTime^ fecha, int n_order, int idModuloStansa){
+	return attentionDB->QueryByFechaNorderModuloStansa(fecha, n_order, idModuloStansa);
 }
 List<Attention^>^ StansaManager::QueryAllAttention(){ 
 	return attentionDB->QueryAll();
