@@ -93,19 +93,17 @@ namespace StansaGUI {
 		}
 #pragma endregion
 	private: System::Void btnBuildUser_Click(System::Object^  sender, System::EventArgs^  e) {
-				 /*
 		Attention^ atencion = gcnew Attention(); //Creo un objeto Atencion
 		ModuloStansa^ modStansa = StansaManager::QueryModuloStansaById(1); //Busco a cual Modulo de Stansa Pertenece
 		Customer^ usuario = StansaManager::QueryCustomerById(1); //Busco el usuario que voy a atender
 		DateTime^ fechaDateTime = DateTime::Now; //Creo un objeto DateTime con la hora actual
-		atencion->fecha = fechaDateTime->ToString("yyyy-MM-dd");
-		atencion->hora_ini = fechaDateTime->ToString("HH:mm tt");
-		atencion->hora_fin = fechaDateTime->ToString("HH:mm tt");
+		atencion->fecha = fechaDateTime;
+		atencion->hora_ini = fechaDateTime;
+		atencion->hora_fin = fechaDateTime;
 		atencion->estado = "Esperando";
 		atencion->customer->id = usuario->id;
 		atencion->moduloStansa->id = modStansa->id;
 		StansaManager::AddAttention(atencion);
-		*/
 	}
 	private: System::Void Lector_PruebaForm_Load(System::Object^  sender, System::EventArgs^  e) {
 	}

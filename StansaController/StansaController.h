@@ -1,3 +1,4 @@
+
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace FotoLibrary;
@@ -28,6 +29,7 @@ namespace StansaController {
 			void Delete(int id);
 			Staff^ QueryById(int id);
 			Staff^ QueryByDni(String^ dni);
+			Staff^ QueryByUsernameAndPassWord(String^ username, String^ password);
 			List<Staff^>^ QueryAll();
 	}; //Fin Clase StaffDB
 
@@ -66,8 +68,10 @@ namespace StansaController {
 			void Update(Attention^ a);
 			void Delete(int id);
 			Attention^ QueryById(int id);
+			Attention^ QueryByFechaNorderModuloStansa(DateTime^ fecha, int n_order, int idModuloStansa); //Debo Mandarle la fecha actual
 			List<Attention^>^ QueryAll();
 			List<Attention^>^ QueryAllByModuloStansa(ModuloStansa^ modulo);
+			List<Attention^>^ QueryAllByModuloStansaStatus(int idModuloStansa, String^ estadoCustomer);
 			List<Attention^>^ QueryAllByModuloStansaAndCustomer(ModuloStansa^ modulo, Customer^ customer);
 			List<Attention^>^ QueryAllByModuloStansaAndStaff(ModuloStansa^ modulo, Staff^ staff);
 			List<Attention^>^ QueryAllByModuloStansaAndFecha(ModuloStansa^ modulo, String^ fecha);
@@ -81,8 +85,6 @@ namespace StansaController {
 		void SaveSale(Sale^ sale);
 		void SaleDetail(int idSale, Saledetail^ saledetail);
 	}; //Fin Clase SaleDB y sale detail
-	
-
 
 	public ref class StansaManager
 	{
@@ -103,19 +105,21 @@ namespace StansaController {
 			static Customer^ QueryCustomerByDni(String^ dni);
 			static Customer^ QueryCustomerByCodigoPUCP(String^ codigoPUCP);
 			static List<Customer^>^ QueryAllCustomer();
-	public:
+		public:
 			//metodos de clase globales para sales
 			static void RegisterSaleDetail(int idSale, Saledetail^ saleDetail);
 			static void RegisterSaveSale(Sale ^sale);
-	public:
+		public:
 			//metodos de clase globlales para Staff
 			static void AddStaff(Staff^ s, int idModuloStansa);
 			static void UpdateStaff(Staff^ s, int idModuloStansa);
 			static void DeleteStaff(int id);
 			static Staff^ QueryStaffById(int id);
 			static Staff^ QueryStaffByDni(String^ dni);
+			static Staff^ QueryStaffByUsernameAndPassWord(String^ username, String^ password);
 			static List<Staff^>^ QueryAllStaff();
-	public:
+
+		public:
 			//metodos de clase globlales para Product
 			static void AddProduct(Product^ p);
 			static void UpdateProduct(Product^ p);
@@ -123,7 +127,7 @@ namespace StansaController {
 			static Product^ QueryProductById(int id);
 			static List<Product^>^ QueryAllProduct();
 			static List<Product^> ^ QueryProductsLikeName(String ^name);
-	public:
+		public:
 			//metodos de clase globlales para ModuloStansa
 			static void AddModuloStansa(ModuloStansa^ m);
 			static void UpdateModuloStansa(ModuloStansa^ m);
@@ -137,8 +141,10 @@ namespace StansaController {
 			static void UpdateAttention(Attention^ a);
 			static void DeleteAttention(int id);
 			static Attention^ QueryAttentionById(int id);
+			static Attention^ QueryByFechaNorderModuloStansa(DateTime^ fecha, int n_order, int idModuloStansa);
 			static List<Attention^>^ QueryAllAttention();
 			static List<Attention^>^ QueryAllAttentionByModuloStansa(ModuloStansa^ modulo);
+			static List<Attention^>^ QueryAllAttentionByModuloStansaStatus(int idModuloStansa, String^ estadoCustomer);
 			static List<Attention^>^ QueryAllAttentionByModuloStansaAndCustomer(ModuloStansa^ modulo, Customer^ customer);
 			static List<Attention^>^ QueryAllAttentionByModuloStansaAndStaff(ModuloStansa^ modulo, Staff^ staff);
 			static List<Attention^>^ QueryAllAttentionByModuloStansaAndFecha(ModuloStansa^ modulo, String^ fecha);

@@ -4,6 +4,7 @@
 #include "ProductForm.h"
 #include "SaleForm.h"
 #include "StaffForm.h"
+#include "ModuloStansaForm.h"
 
 namespace StansaGUI {
 
@@ -33,14 +34,14 @@ namespace StansaGUI {
 		}
 		void MyRun(){
 			while (true) {
-				/*
+				
 				DateTime^ now = DateTime::Now;
 				Invoke(gcnew delegateUpdateTitle(this, &StansaAPPForm::UpdateTitle),
 					gcnew array<String^>{"Sistema de Ventas " + now->ToString("hh:mm:ss")});
 				Thread::Sleep(1000);
 				if (!this->Visible)
 					return;
-					*/
+					
 			}
 		}
 
@@ -72,6 +73,7 @@ namespace StansaGUI {
 	private: System::Windows::Forms::ToolStripMenuItem^  archivoToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  cerrarToolStripMenuItem;
 	private: System::Windows::Forms::MenuStrip^  menuStrip1;
+	private: System::Windows::Forms::ToolStripMenuItem^  modulosDeStansaToolStripMenuItem;
 
 	protected:
 
@@ -103,8 +105,9 @@ namespace StansaGUI {
 			this->lectorPruebaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->staffToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->archivoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->cerrarToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
+			this->modulosDeStansaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -124,9 +127,9 @@ namespace StansaGUI {
 			// 
 			// mantenimientoToolStripMenuItem
 			// 
-			this->mantenimientoToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
+			this->mantenimientoToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
 				this->actualizarProductosToolStripMenuItem,
-					this->lectorPruebaToolStripMenuItem, this->staffToolStripMenuItem
+					this->lectorPruebaToolStripMenuItem, this->staffToolStripMenuItem, this->modulosDeStansaToolStripMenuItem
 			});
 			this->mantenimientoToolStripMenuItem->Name = L"mantenimientoToolStripMenuItem";
 			this->mantenimientoToolStripMenuItem->Size = System::Drawing::Size(101, 20);
@@ -160,6 +163,13 @@ namespace StansaGUI {
 			this->archivoToolStripMenuItem->Size = System::Drawing::Size(60, 20);
 			this->archivoToolStripMenuItem->Text = L"Archivo";
 			// 
+			// cerrarToolStripMenuItem
+			// 
+			this->cerrarToolStripMenuItem->Name = L"cerrarToolStripMenuItem";
+			this->cerrarToolStripMenuItem->Size = System::Drawing::Size(106, 22);
+			this->cerrarToolStripMenuItem->Text = L"Cerrar";
+			this->cerrarToolStripMenuItem->Click += gcnew System::EventHandler(this, &StansaAPPForm::cerrarToolStripMenuItem_Click);
+			// 
 			// menuStrip1
 			// 
 			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
@@ -173,12 +183,12 @@ namespace StansaGUI {
 			this->menuStrip1->Text = L"menuStrip1";
 			this->menuStrip1->ItemClicked += gcnew System::Windows::Forms::ToolStripItemClickedEventHandler(this, &StansaAPPForm::menuStrip1_ItemClicked);
 			// 
-			// cerrarToolStripMenuItem
+			// modulosDeStansaToolStripMenuItem
 			// 
-			this->cerrarToolStripMenuItem->Name = L"cerrarToolStripMenuItem";
-			this->cerrarToolStripMenuItem->Size = System::Drawing::Size(152, 22);
-			this->cerrarToolStripMenuItem->Text = L"Cerrar";
-			this->cerrarToolStripMenuItem->Click += gcnew System::EventHandler(this, &StansaAPPForm::cerrarToolStripMenuItem_Click);
+			this->modulosDeStansaToolStripMenuItem->Name = L"modulosDeStansaToolStripMenuItem";
+			this->modulosDeStansaToolStripMenuItem->Size = System::Drawing::Size(183, 22);
+			this->modulosDeStansaToolStripMenuItem->Text = L"Modulos de Stansa";
+			this->modulosDeStansaToolStripMenuItem->Click += gcnew System::EventHandler(this, &StansaAPPForm::modulosDeStansaToolStripMenuItem_Click);
 			// 
 			// StansaAPPForm
 			// 
@@ -199,7 +209,26 @@ namespace StansaGUI {
 		}
 #pragma endregion
 	public: static ModuloStansa^ moduloStansaLocal = gcnew ModuloStansa();
-			static Staff^ staffLocal = gcnew Staff();
+	public: static Staff^ staffLocal = gcnew Staff();
+	public: System::Void ActualizarModuloyStaff(ModuloStansa^ modulo, Staff^ staff){
+		moduloStansaLocal->id = modulo->id;
+		moduloStansaLocal->name = modulo->name;
+		moduloStansaLocal->place = modulo->place;
+		moduloStansaLocal->MaquinasOperativas = modulo->MaquinasOperativas;
+
+		staffLocal->id = staff->id;
+		staffLocal->dni = staff->dni;
+		staffLocal->name = staff->name;
+		staffLocal->apellido_Paterno = staff->apellido_Paterno;
+		staffLocal->apellido_Materno = staff->apellido_Materno;
+		staffLocal->sexo = staff->sexo;
+		staffLocal->username = staff->username;
+		staffLocal->password = staff->password;
+		staffLocal->hora_entrada = staff->hora_entrada;
+		staffLocal->hora_salida = staff->hora_salida;
+		staffLocal->puesto = staff->puesto;
+	}
+
 	private: System::Void lectorPruebaToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 		Lector_PruebaForm^ pForm = gcnew Lector_PruebaForm();
 		pForm->MdiParent = this;
@@ -220,6 +249,8 @@ private: System::Void StansaAPPForm_Load(System::Object^  sender, System::EventA
 private: System::Void menuStrip1_ItemClicked(System::Object^  sender, System::Windows::Forms::ToolStripItemClickedEventArgs^  e) {
 }
 private: System::Void staffToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	String^ msg = "" + staffLocal->name + staffLocal->apellido_Paterno + staffLocal->dni;
+	MessageBox::Show(msg);
 	if ( String::Equals(staffLocal->puesto, "Gerente") ){
 		StaffForm^ pForm = gcnew StaffForm();
 		pForm->MdiParent = this;
@@ -229,6 +260,16 @@ private: System::Void staffToolStripMenuItem_Click(System::Object^  sender, Syst
 }//Fin del Metodo
 private: System::Void cerrarToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	Application::Exit();
+}
+private: System::Void modulosDeStansaToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	String^ msg = "" + staffLocal->name + staffLocal->apellido_Paterno + staffLocal->dni;
+	MessageBox::Show(msg);
+	if (String::Equals(staffLocal->puesto, "Gerente")){
+		ModuloStansaForm^ pForm = gcnew ModuloStansaForm();
+		pForm->MdiParent = this;
+		pForm->Show();
+	}
+	else MessageBox::Show("No tienes acceso a esta Ventana. Solo un Gerente puede editar el Personal");
 }
 };
 }

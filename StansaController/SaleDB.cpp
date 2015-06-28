@@ -56,52 +56,36 @@ void SaleDB::SaveSale(Sale ^sale){
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
 	comm->CommandText = "INSERT INTO Sale_DB " +
-		"(id, total, status, idCustomer) VALUES (@p1,@p2,@p3,@p4); " +
-		//, idModStansa, idStaff, idAttention
+		"( total, status, idAttention) VALUES (@p1,@p2,@p3); " +
 		"SELECT  SCOPE_IDENTITY()";
+	
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
-		System::Data::SqlDbType::Int);
-	SqlParameter^ p2 = gcnew SqlParameter("@p2",
 		System::Data::SqlDbType::Float);
-	SqlParameter^ p3 = gcnew SqlParameter("@p3",
+	SqlParameter^ p2 = gcnew SqlParameter("@p2",
 		System::Data::SqlDbType::Char, 1);
-	SqlParameter^ p4 = gcnew SqlParameter("@p4",
+	SqlParameter^ p3 = gcnew SqlParameter("@p3",
 		System::Data::SqlDbType::Int);
-//	SqlParameter^ p5 = gcnew SqlParameter("@p5",
-	//	System::Data::SqlDbType::Int);
-	//SqlParameter^ p5 = gcnew SqlParameter("@p5",
-		//System::Data::SqlDbType::Int);
-	//SqlParameter^ p6 = gcnew SqlParameter("@p6",
-		//System::Data::SqlDbType::Int);
 
-	p1->Value = sale->id;
-	p2->Value = sale->total;
-	p3->Value = sale->status;
-	p4->Value = sale->customer->id;
-//	p5->Value = sale->modstansa->id;
-//	p5->Value = sale->staff->id;
-//	p6->Value = sale->attention->id;
-
+	p1->Value = sale->total;
+	p2->Value = sale->status;
+	p3->Value = sale->attention->id;
+	
 	comm->Parameters->Add(p1);
 	comm->Parameters->Add(p2);
 	comm->Parameters->Add(p3);
-	comm->Parameters->Add(p4);
-	//comm->Parameters->Add(p5);
-	//comm->Parameters->Add(p5);
-	//comm->Parameters->Add(p6);
 
 	//Paso 3: Ejecución de la sentencia
 	//comm->ExecuteNonQuery();
 	conn->Open();
-	Int32 newSaleId = Int32::Parse(comm->ExecuteScalar()->ToString());
+	int newSaleId = Int32::Parse(comm->ExecuteScalar()->ToString());
 
 	if (conn->State == System::Data::ConnectionState::Open) conn->Close();
-
 
 	for (int i = 0; i < sale->details->Count; i++){
 		SaleDetail(newSaleId, sale->details[i]);
 	}
 	return;
 }
+
 
 

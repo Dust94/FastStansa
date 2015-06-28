@@ -46,9 +46,13 @@ Staff^ StansaManager::QueryStaffById(int id){
 Staff^ StansaManager::QueryStaffByDni(String^ dni){
 	return staffDB->QueryByDni(dni);
 }
+Staff^ StansaManager::QueryStaffByUsernameAndPassWord(String^ username, String^ password){
+	return staffDB->QueryByUsernameAndPassWord(username, password);
+}
 List<Staff^>^ StansaManager::QueryAllStaff(){
 	return staffDB->QueryAll();
 }
+
 
 //metodos de clase globlales para Product
 void StansaManager::AddProduct(Product^ p){
@@ -112,11 +116,17 @@ void StansaManager::DeleteAttention(int id){
 Attention^ StansaManager::QueryAttentionById(int id){ 
 	return attentionDB->QueryById(id);
 }
+Attention^ StansaManager::QueryByFechaNorderModuloStansa(DateTime^ fecha, int n_order, int idModuloStansa){
+	return attentionDB->QueryByFechaNorderModuloStansa(fecha, n_order, idModuloStansa);
+}
 List<Attention^>^ StansaManager::QueryAllAttention(){ 
 	return attentionDB->QueryAll();
 }
 List<Attention^>^ StansaManager::QueryAllAttentionByModuloStansa(ModuloStansa^ modulo){
 	return attentionDB->QueryAllByModuloStansa(modulo);
+}
+List<Attention^>^ StansaManager::QueryAllAttentionByModuloStansaStatus(int idModuloStansa, String^ estadoCustomer){
+	return attentionDB->QueryAllByModuloStansaStatus(idModuloStansa, estadoCustomer);
 }
 List<Attention^>^ StansaManager::QueryAllAttentionByModuloStansaAndCustomer(ModuloStansa^ modulo, Customer^ customer){
 	return attentionDB->QueryAllByModuloStansaAndCustomer(modulo, customer);

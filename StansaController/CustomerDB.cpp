@@ -235,7 +235,7 @@ Customer^ CustomerDB::QueryByDni(String^ dni){
 			c->password = safe_cast<String ^>(dr["password"]);
 		if (dr["codigoPUCP"] != System::DBNull::Value)
 			c->codigoPUCP = safe_cast<String ^>(dr["codePUCP"]);
-		if (dr["facultad"] != System::DBNull::Value)
+		if (dr["academicUnit"] != System::DBNull::Value)
 			c->facultad = safe_cast<String ^>(dr["academicUnit"]);
 	}
 	//Paso 4: Cerramos el dataReader y la conexión con la BD

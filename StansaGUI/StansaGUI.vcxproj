@@ -88,6 +88,7 @@
   <ItemGroup>
     <ClCompile Include="AcessFormh.cpp" />
     <ClCompile Include="Lector_PruebaForm.cpp" />
+    <ClCompile Include="ModuloStansaForm.cpp" />
     <ClCompile Include="ProductForm.cpp" />
     <ClCompile Include="ProductSearchForm.cpp" />
     <ClCompile Include="SaleForm.cpp" />
@@ -99,6 +100,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Lector_PruebaForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ModuloStansaForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ProductForm.h">
@@ -123,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Lector_PruebaForm.resx">
       <DependentUpon>Lector_PruebaForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModuloStansaForm.resx">
+      <DependentUpon>ModuloStansaForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProductForm.resx">
       <DependentUpon>ProductForm.h</DependentUpon>

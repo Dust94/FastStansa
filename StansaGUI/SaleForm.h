@@ -307,10 +307,27 @@ namespace StansaGUI {
 #pragma endregion
 		public:  static Staff^ staffLocal = gcnew Staff();
 				 static ModuloStansa^ moduloStansaLocal = gcnew ModuloStansa();
+		public: System::Void ActualizarModuloyStaff(ModuloStansa^ modulo, Staff^ staff){
+			moduloStansaLocal->id = modulo->id;
+			moduloStansaLocal->name = modulo->name;
+			moduloStansaLocal->place = modulo->place;
+			moduloStansaLocal->MaquinasOperativas = modulo->MaquinasOperativas;
+
+			staffLocal->id = staff->id;
+			staffLocal->dni = staff->dni;
+			staffLocal->name = staff->name;
+			staffLocal->apellido_Paterno = staff->apellido_Paterno;
+			staffLocal->apellido_Materno = staff->apellido_Materno;
+			staffLocal->sexo = staff->sexo;
+			staffLocal->username = staff->username;
+			staffLocal->password = staff->password;
+			staffLocal->hora_entrada = staff->hora_entrada;
+			staffLocal->hora_salida = staff->hora_salida;
+			staffLocal->puesto = staff->puesto;
+		}
 
 public: void RefreshDGVProducts(){
 			List<Product^>^ productList =  StansaManager::QueryAllProduct();
-			//lstProducts->Items->Clear();
 			dgvVenta->Rows->Clear();
 			for (int i = 0; i < productList->Count; i++){
 				dgvVenta->Rows->Add(gcnew array<String^>{
@@ -320,8 +337,8 @@ public: void RefreshDGVProducts(){
 						"" + productList[i]->price});
 			}
 }
-		
-		public: System::Void AddProductToDetails(Product ^p){
+
+	public: System::Void AddProductToDetails(Product ^p){
 			dgvVenta->Rows->Add(gcnew array<String^>{"" + p->id,
 				p->name,
 				"" + p->price,
@@ -333,26 +350,29 @@ public: void RefreshDGVProducts(){
 			txttotal->Text = "" + total;
 		}
 
-
-
 	private: System::Void SaleForm_Load(System::Object^  sender, System::EventArgs^  e) {
 		cmbCostumer->Items->Clear();
-		
-			List <Customer^> ^customerList = StansaManager::QueryAllCustomer();
-			for (int i = 0; i < customerList->Count; i++){
-				cmbCostumer->Items->Add(customerList[i]->id + " - " +
-					customerList[i]->name + " " +
-					customerList[i]->apellido_Paterno);
-			}
-		
-		
-			List <Staff^> ^StaffList = StansaManager::QueryAllStaff();
-			for (int i = 0; i < StaffList->Count; i++){
-				 cmbStaff->Items->Add(StaffList[i]->id + " - " +
-					 StaffList[i]->name + " " + 
-					 StaffList[i]->apellido_Paterno);
-			}
-		}	 
+		List <Attention^ >^ listAttention = StansaManager::QueryAllAttentionByModuloStansaStatus(moduloStansaLocal->id, "Esperando");
+		List <Customer^ >^ listCustomer = gcnew List<Customer^>();
+
+		for (int i = 0; i < listAttention->Count; i++){
+			listCustomer->Add( StansaManager::QueryCustomerById(listAttention[i]->customer->id));
+		}
+				 
+		for (int i = 0; i < listCustomer->Count; i++){
+				cmbCostumer->Items->Add(listCustomer[i]->id + " - " +
+					listCustomer[i]->name + " " +
+					listCustomer[i]->apellido_Paterno
+					);
+		}
+
+		List <Staff^> ^StaffList = StansaManager::QueryAllStaff();
+		for (int i = 0; i < StaffList->Count; i++){
+			 cmbStaff->Items->Add(StaffList[i]->id + " - " +
+				 StaffList[i]->name + " " + 
+				 StaffList[i]->apellido_Paterno);
+		}//FIn del For
+	}//Fin del Metodo Load	 
 
 private: System::Void dgvVenta_CellValueChanged(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
 
@@ -398,24 +418,43 @@ public: System::Void dgvVenta_CellContentClick(System::Object^  sender, System::
 	
 }
 private: System::Void btnSale_Click(System::Object^  sender, System::EventArgs^  e) {
-	DateTime fecha = DateTime::Now;
-	//txtTotal->Text = fecha.ToString("yyyy/MM/dd");
-	Staff ^salesman = gcnew Staff();
-	int idsale = 1;
-	salesman->id = idsale;
-	int whitePos = cmbCostumer->Items[cmbCostumer->SelectedIndex]->ToString()->IndexOf(" -");
-	int customerId = Int32::Parse(cmbCostumer->Items[cmbCostumer->SelectedIndex]
-		->ToString()->Substring(0, whitePos));
-	Customer^ cust = gcnew Customer(); //
-	
-	cust = StansaManager::QueryCustomerById(customerId); // Esto no debería
+	Staff^ salesman = gcnew Staff(); //Staff que va esta atendiendo
+	Customer^ customer = gcnew Customer(); // Customer que esta siendo atendido
 
+	bool staffSeleccionado = String::Equals(cmbStaff->Text, "");//true si son iguales. true si esta vacio
+	bool customerSelecionado = String::Equals(cmbCostumer->Text, "");//true si son iguales. true si esta vacio
+	if (staffSeleccionado && customerSelecionado)
+		MessageBox::Show("Por favor, seleccione el cliente en atención y al personal atendiendo");
+
+	if (!staffSeleccionado){ //Si no esta vacio
+		int whitePos = cmbStaff->Items[cmbStaff->SelectedIndex]->ToString()->IndexOf(" -");
+		int staffId = Int32::Parse(cmbStaff->Items[cmbStaff->SelectedIndex]
+			->ToString()->Substring(0, whitePos));
+		salesman = StansaManager::QueryStaffById(staffId);
+	}
+	else MessageBox::Show("Por favor, seleccione al personal atendiendo");
+
+	if (!customerSelecionado){ //Si no esta vacio
+		int whitePos = cmbCostumer->Items[cmbCostumer->SelectedIndex]->ToString()->IndexOf(" -");
+		int customerId = Int32::Parse(cmbCostumer->Items[cmbCostumer->SelectedIndex]
+			->ToString()->Substring(0, whitePos));
+		customer = StansaManager::QueryCustomerById(customerId);
+	}
+	else MessageBox::Show("Por favor, seleccione el cliente en atención");
+			 
+	DateTime fecha = DateTime::Now; 
 	Sale ^sale = gcnew Sale();
+	sale->attention = StansaManager::QueryByFechaNorderModuloStansa(fecha, 1, moduloStansaLocal->id);
+	sale->attention = gcnew Attention(); //Debo Jalar solo la atencion que se esta atendiendo con usuario
+	sale->attention->moduloStansa = gcnew ModuloStansa();
+	sale->attention->customer = gcnew Customer();
+	sale->attention->staff = gcnew Staff();
+
 	sale->date = fecha;
-//	sale->staff->id = idsale;
-	sale->customer = cust;
-//	sale->attention->fecha = fecha;
-	sale->status = 'P';
+	sale->attention->fecha = fecha;
+	sale->attention->estado = "Atentido";
+	sale->attention->moduloStansa->id = moduloStansaLocal->id;
+	sale->attention->hora_fin = fecha;
 	sale->total = Double::Parse(txttotal->Text);
 	sale->details = gcnew List<Saledetail^>();
 	for (int i = 0; i < dgvVenta->Rows->Count - 1; i++){
@@ -425,10 +464,8 @@ private: System::Void btnSale_Click(System::Object^  sender, System::EventArgs^ 
 		detail->quantity = Int32::Parse(dgvVenta->Rows[i]->Cells[3]->Value->ToString());
 		detail->subTotal = Double::Parse(dgvVenta->Rows[i]->Cells[4]->Value->ToString());
 		sale->details->Add(detail);
-	}
+	} //Fin de For
 	StansaManager::RegisterSaveSale(sale);
-
-
-}
+} //Fin de Metodo de Agregar Venta
 };
 }
