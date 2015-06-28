@@ -148,7 +148,6 @@ namespace StansaGUI {
 			// combModuloStansa
 			// 
 			this->combModuloStansa->FormattingEnabled = true;
-			this->combModuloStansa->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Arquitectura", L"Arte", L"Ciencias" });
 			this->combModuloStansa->Location = System::Drawing::Point(149, 25);
 			this->combModuloStansa->Name = L"combModuloStansa";
 			this->combModuloStansa->Size = System::Drawing::Size(153, 21);
@@ -284,9 +283,7 @@ private: System::Void txtpsw_TextChanged(System::Object^  sender, System::EventA
 private: System::Void AcessFormh_Load(System::Object^  sender, System::EventArgs^  e) {
 			 List <ModuloStansa^> ^ modstansaList = StansaManager::QueryAllModuloStansa();
 			 for (int i = 0; i < modstansaList->Count; i++){
-				 combModuloStansa->Items->Add(
-					 modstansaList[i]->name + " " +
-					 modstansaList[i]->place);
+				 combModuloStansa->Items->Add(modstansaList[i]->place);
 			 }
 			 
 }

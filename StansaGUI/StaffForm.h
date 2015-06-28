@@ -114,6 +114,8 @@ namespace StansaGUI {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Horasalida;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  puesto;
 	private: System::Windows::Forms::Label^  lblPrueba2;
+	private: System::Windows::Forms::Label^  label11;
+	private: System::Windows::Forms::ComboBox^  combModuloStansa;
 
 
 
@@ -180,6 +182,8 @@ namespace StansaGUI {
 			this->dTPHoraSalida = (gcnew System::Windows::Forms::DateTimePicker());
 			this->lblPrueba = (gcnew System::Windows::Forms::Label());
 			this->lblPrueba2 = (gcnew System::Windows::Forms::Label());
+			this->label11 = (gcnew System::Windows::Forms::Label());
+			this->combModuloStansa = (gcnew System::Windows::Forms::ComboBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvStaff))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -508,11 +512,31 @@ namespace StansaGUI {
 			this->lblPrueba2->Size = System::Drawing::Size(2, 15);
 			this->lblPrueba2->TabIndex = 29;
 			// 
+			// label11
+			// 
+			this->label11->AutoSize = true;
+			this->label11->Location = System::Drawing::Point(659, 23);
+			this->label11->Name = L"label11";
+			this->label11->Size = System::Drawing::Size(93, 13);
+			this->label11->TabIndex = 31;
+			this->label11->Text = L"Modulo de Stansa";
+			// 
+			// combModuloStansa
+			// 
+			this->combModuloStansa->FormattingEnabled = true;
+			this->combModuloStansa->Location = System::Drawing::Point(662, 49);
+			this->combModuloStansa->Name = L"combModuloStansa";
+			this->combModuloStansa->Size = System::Drawing::Size(153, 21);
+			this->combModuloStansa->TabIndex = 30;
+			this->combModuloStansa->SelectedIndexChanged += gcnew System::EventHandler(this, &StaffForm::combModuloStansa_SelectedIndexChanged);
+			// 
 			// StaffForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(798, 501);
+			this->ClientSize = System::Drawing::Size(864, 501);
+			this->Controls->Add(this->label11);
+			this->Controls->Add(this->combModuloStansa);
 			this->Controls->Add(this->lblPrueba2);
 			this->Controls->Add(this->lblPrueba);
 			this->Controls->Add(this->dTPHoraSalida);
@@ -574,7 +598,7 @@ namespace StansaGUI {
 public:  int idStaff;
 		 static ModuloStansa^ moduloStansaLocal = gcnew ModuloStansa();
 		 static Staff^ staffLocal = gcnew Staff();
-		 int idModuloStansa;
+
 public: System::Void ActualizarModuloyStaff(ModuloStansa^ modulo, Staff^ staff){
 			 moduloStansaLocal->id = modulo->id;
 			 moduloStansaLocal->name = modulo->name;
@@ -613,6 +637,9 @@ public: System::Void ActualizarModuloyStaff(ModuloStansa^ modulo, Staff^ staff){
 		lblPrueba->Text = horaEntrada->ToString("hh:mm:ss");
 		lblPrueba2->Text = puesto;
 
+		String^ ModuloStansaPlace = combModuloStansa->Text; //Eligo el Modulo de Stansa al que estoy accediendo
+		ModuloStansa^ moduloStansa = StansaManager::QueryModuloStansaLikePlace(ModuloStansaPlace);
+
 		Staff^ s = gcnew Staff();
 		s->dni = dni;
 		s->name = name;
@@ -624,7 +651,7 @@ public: System::Void ActualizarModuloyStaff(ModuloStansa^ modulo, Staff^ staff){
 		s->hora_entrada = horaEntrada;
 		s->hora_salida = horaSalida;
 		s->puesto = puesto;
-		StansaManager::AddStaff(s, moduloStansaLocal->id); //Cogo el Id del ModuloStansa Local
+		StansaManager::AddStaff(s, moduloStansa->id); //EL Gerente puede agregar un Staff a cualquier Modulo Stansa
 		RefreshDGVStaff();
 	}
 	
@@ -642,6 +669,9 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 	DateTime^ horaSalida = dTPHoraSalida->Value;
 	String^ puesto = combStaffPuesto->Text;
 
+	String^ ModuloStansaPlace = combModuloStansa->Text; //Eligo el Modulo de Stansa al que estoy accediendo
+	ModuloStansa^ moduloStansa = StansaManager::QueryModuloStansaLikePlace(ModuloStansaPlace);
+
 	Staff ^ s = StansaManager::QueryStaffById(idStaff);
 	s->dni = dni;
 	s->name = name;
@@ -653,7 +683,7 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 	s->hora_entrada = horaEntrada;
 	s->hora_salida = horaSalida;
 	s->puesto = puesto;
-	StansaManager::UpdateStaff(s, moduloStansaLocal->id);
+	StansaManager::UpdateStaff(s, moduloStansa->id); //EL Gerente puede agregar un Staff a cualquier Modulo Stansa
 	RefreshDGVStaff();
 }
 
@@ -669,6 +699,12 @@ private: System::Void radioButton2_CheckedChanged(System::Object^  sender, Syste
 }
 
 private: System::Void StaffForm_Load(System::Object^  sender, System::EventArgs^  e) {
+	List <ModuloStansa^> ^ modstansaList = StansaManager::QueryAllModuloStansa();
+	for (int i = 0; i < modstansaList->Count; i++){
+		combModuloStansa->Items->Add(modstansaList[i]->place);
+	}
+}
+private: System::Void combModuloStansa_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 }

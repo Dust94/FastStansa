@@ -207,7 +207,12 @@ List<ModuloStansa^>^ ModuloStansaDB::QueryAll(){
 	while (dr->Read()){
 		ModuloStansa^m = gcnew ModuloStansa();
 		m->id = (int)dr["id"];
-						
+		if (dr["name"] != System::DBNull::Value)
+			m->name = safe_cast<String ^>(dr["name"]);
+		if (dr["place"] != System::DBNull::Value)
+			m->place = safe_cast<String ^>(dr["place"]);
+		if (dr["operativeMachines"] != System::DBNull::Value)
+			m->MaquinasOperativas = safe_cast<int>(dr["operativeMachines"]);						
 		ModStansaList->Add(m);
 	}
 	//Paso 4: Cerramos el dataReader y la conexión con la BD
