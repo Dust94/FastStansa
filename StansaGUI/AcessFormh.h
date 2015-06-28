@@ -4,6 +4,7 @@
 #include "ProductForm.h"
 #include "ProductSearchForm.h"
 #include "SaleForm.h"
+#include "ModuloStansaForm.h"
 
 namespace StansaGUI {
 
@@ -26,6 +27,8 @@ namespace StansaGUI {
 		Form^ staffForm; //Creo un Form para acceder a "StaffForm.h"
 		Form^ productForm; //Creo un Form para acceder a "ProductForm.h"
 		Form^ productSearchForm; //Creo un Form para acceder a "ProductSearchForm.h"
+		Form^ moduloStansaForm; //Creo un Form para acceder a "ModuloStansaForm.h"
+
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::TextBox^  txtStaffUsername;
 	private: System::Windows::Forms::TextBox^  txtStaffPassword;
@@ -271,6 +274,7 @@ private: System::Void btnOk_Click(System::Object^  sender, System::EventArgs^  e
 				 ((ProductForm^)productForm)->ActualizarModuloyStaff(moduloStansa, s);
 				 ((ProductSearchForm^)productSearchForm)->ActualizarModuloyStaff(moduloStansa, s);
 				 ((SaleForm^)saleForm)->ActualizarModuloyStaff(moduloStansa, s);
+				 ((ModuloStansaForm^)moduloStansaForm)->ActualizarModuloyStaff(moduloStansa, s);
 				 
 				 StansaAPPForm^ pForm = gcnew StansaAPPForm();
 				 pForm->Show();

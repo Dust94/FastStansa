@@ -102,20 +102,39 @@ namespace StansaGUI {
 	private: System::Windows::Forms::DateTimePicker^  dTPHoraEntrada;
 	private: System::Windows::Forms::DateTimePicker^  dTPHoraSalida;
 	private: System::Windows::Forms::Label^  lblPrueba;
+
+
+
+
+
+
+
+
+
+
+
+	private: System::Windows::Forms::Label^  lblPrueba2;
+	private: System::Windows::Forms::Label^  label11;
+	private: System::Windows::Forms::ComboBox^  combModuloStansa;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Id;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  DNI;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Nombre;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  ApellidoPaterno;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  ApellidoMateno;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Sexo;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  username;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  password;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  HoraEntrada;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Horasalida;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  puesto;
-	private: System::Windows::Forms::Label^  lblPrueba2;
-	private: System::Windows::Forms::Label^  label11;
-	private: System::Windows::Forms::ComboBox^  combModuloStansa;
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -152,17 +171,6 @@ namespace StansaGUI {
 			this->txtStaffApellidoPat = (gcnew System::Windows::Forms::TextBox());
 			this->txtStaffApellidoMat = (gcnew System::Windows::Forms::TextBox());
 			this->dgvStaff = (gcnew System::Windows::Forms::DataGridView());
-			this->Id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->DNI = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Nombre = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->ApellidoPaterno = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->ApellidoMateno = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Sexo = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->username = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->password = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->HoraEntrada = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Horasalida = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->puesto = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->btnStaffAdd = (gcnew System::Windows::Forms::Button());
 			this->btnStaffUpdate = (gcnew System::Windows::Forms::Button());
 			this->btnStaffDelete = (gcnew System::Windows::Forms::Button());
@@ -184,6 +192,15 @@ namespace StansaGUI {
 			this->lblPrueba2 = (gcnew System::Windows::Forms::Label());
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->combModuloStansa = (gcnew System::Windows::Forms::ComboBox());
+			this->Id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->DNI = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Nombre = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->ApellidoPaterno = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->ApellidoMateno = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Sexo = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->HoraEntrada = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Horasalida = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->puesto = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvStaff))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -255,79 +272,15 @@ namespace StansaGUI {
 			// 
 			this->dgvStaff->AccessibleName = L"dgvStaff";
 			this->dgvStaff->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dgvStaff->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(11) {
+			this->dgvStaff->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(9) {
 				this->Id, this->DNI,
-					this->Nombre, this->ApellidoPaterno, this->ApellidoMateno, this->Sexo, this->username, this->password, this->HoraEntrada, this->Horasalida,
-					this->puesto
+					this->Nombre, this->ApellidoPaterno, this->ApellidoMateno, this->Sexo, this->HoraEntrada, this->Horasalida, this->puesto
 			});
 			this->dgvStaff->Location = System::Drawing::Point(46, 278);
 			this->dgvStaff->Name = L"dgvStaff";
 			this->dgvStaff->Size = System::Drawing::Size(740, 150);
 			this->dgvStaff->TabIndex = 8;
 			this->dgvStaff->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &StaffForm::dgvStaff_CellContentClick);
-			// 
-			// Id
-			// 
-			this->Id->HeaderText = L"Id";
-			this->Id->Name = L"Id";
-			this->Id->Width = 40;
-			// 
-			// DNI
-			// 
-			this->DNI->HeaderText = L"DNI";
-			this->DNI->Name = L"DNI";
-			this->DNI->Width = 60;
-			// 
-			// Nombre
-			// 
-			this->Nombre->HeaderText = L"Nombre";
-			this->Nombre->Name = L"Nombre";
-			// 
-			// ApellidoPaterno
-			// 
-			this->ApellidoPaterno->HeaderText = L"Apellido Paterno";
-			this->ApellidoPaterno->Name = L"ApellidoPaterno";
-			// 
-			// ApellidoMateno
-			// 
-			this->ApellidoMateno->HeaderText = L"Apellido Materno";
-			this->ApellidoMateno->Name = L"ApellidoMateno";
-			// 
-			// Sexo
-			// 
-			this->Sexo->HeaderText = L"Sexo";
-			this->Sexo->Name = L"Sexo";
-			this->Sexo->Width = 40;
-			// 
-			// username
-			// 
-			this->username->HeaderText = L"Nombre de Usuario";
-			this->username->Name = L"username";
-			this->username->Width = 80;
-			// 
-			// password
-			// 
-			this->password->HeaderText = L"Contraseña";
-			this->password->Name = L"password";
-			this->password->Width = 80;
-			// 
-			// HoraEntrada
-			// 
-			this->HoraEntrada->HeaderText = L"Hora Entrada";
-			this->HoraEntrada->Name = L"HoraEntrada";
-			this->HoraEntrada->Width = 60;
-			// 
-			// Horasalida
-			// 
-			this->Horasalida->HeaderText = L"Hora Salida";
-			this->Horasalida->Name = L"Horasalida";
-			this->Horasalida->Width = 60;
-			// 
-			// puesto
-			// 
-			this->puesto->HeaderText = L"Puesto";
-			this->puesto->Name = L"puesto";
-			this->puesto->Width = 80;
 			// 
 			// btnStaffAdd
 			// 
@@ -530,6 +483,57 @@ namespace StansaGUI {
 			this->combModuloStansa->TabIndex = 30;
 			this->combModuloStansa->SelectedIndexChanged += gcnew System::EventHandler(this, &StaffForm::combModuloStansa_SelectedIndexChanged);
 			// 
+			// Id
+			// 
+			this->Id->HeaderText = L"Id";
+			this->Id->Name = L"Id";
+			this->Id->Width = 40;
+			// 
+			// DNI
+			// 
+			this->DNI->HeaderText = L"DNI";
+			this->DNI->Name = L"DNI";
+			this->DNI->Width = 60;
+			// 
+			// Nombre
+			// 
+			this->Nombre->HeaderText = L"Nombre";
+			this->Nombre->Name = L"Nombre";
+			// 
+			// ApellidoPaterno
+			// 
+			this->ApellidoPaterno->HeaderText = L"Apellido Paterno";
+			this->ApellidoPaterno->Name = L"ApellidoPaterno";
+			// 
+			// ApellidoMateno
+			// 
+			this->ApellidoMateno->HeaderText = L"Apellido Materno";
+			this->ApellidoMateno->Name = L"ApellidoMateno";
+			// 
+			// Sexo
+			// 
+			this->Sexo->HeaderText = L"Sexo";
+			this->Sexo->Name = L"Sexo";
+			this->Sexo->Width = 40;
+			// 
+			// HoraEntrada
+			// 
+			this->HoraEntrada->HeaderText = L"Hora Entrada";
+			this->HoraEntrada->Name = L"HoraEntrada";
+			this->HoraEntrada->Width = 60;
+			// 
+			// Horasalida
+			// 
+			this->Horasalida->HeaderText = L"Hora Salida";
+			this->Horasalida->Name = L"Horasalida";
+			this->Horasalida->Width = 60;
+			// 
+			// puesto
+			// 
+			this->puesto->HeaderText = L"Puesto";
+			this->puesto->Name = L"puesto";
+			this->puesto->Width = 80;
+			// 
 			// StaffForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -587,8 +591,6 @@ namespace StansaGUI {
 						listStaff[i]->apellido_Paterno,
 						listStaff[i]->apellido_Materno,
 						Convert::ToString(listStaff[i]->sexo),
-						listStaff[i]->username,
-						listStaff[i]->password,
 						listStaff[i]->hora_entrada->ToString("hh:mm:ss"),
 						listStaff[i]->hora_salida->ToString("hh:mm:ss"),
 						listStaff[i]->puesto});
@@ -703,6 +705,7 @@ private: System::Void StaffForm_Load(System::Object^  sender, System::EventArgs^
 	for (int i = 0; i < modstansaList->Count; i++){
 		combModuloStansa->Items->Add(modstansaList[i]->place);
 	}
+	combModuloStansa->SelectedIndex = (moduloStansaLocal->id - 1); //Seteo el Valor por defecto del ComBox al id del moduloStansaLocal
 }
 private: System::Void combModuloStansa_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 }

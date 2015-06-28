@@ -366,12 +366,6 @@ public: void RefreshDGVProducts(){
 					);
 		}
 
-		/*for (int i = 0; i < listAttention->Count; i++){ //De esta manera tengo los custoemr pero no los nombres. Usar Arte Como modulo
-			cmbCostumer->Items->Add(listAttention[i]->customer->id + " - " +
-				listAttention[i]->customer->name + " " +
-				listAttention[i]->customer->apellido_Paterno);
-		}*/
-
 		List <Staff^> ^StaffList = StansaManager::QueryAllStaff();
 		for (int i = 0; i < StaffList->Count; i++){
 			 cmbStaff->Items->Add(StaffList[i]->id + " - " +
