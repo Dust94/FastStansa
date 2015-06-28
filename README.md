@@ -6,5 +6,7 @@ Proyecto para mejorar Stansa
 <p>Las variables de las GUI se pueden definir en espanol, mayusculas o en espanol si se desea. </p>
 <p>Es Recomendable utilizar el "ReBuild" en lugar de "Build" para evitar errores de compilacion</p>
 <p>Se debe colocar un nombre representativo a las variables. No deben existir nombres como "textbox1", "textbox2"</p>
+<p>Los Atributos de Clase y Campos del Sql en DateTime. Solo desde la GUI se hacen los Parse y se obtiene el formato de string que se desee.</p>
+
 <h3>Comenten todo el codigo que sea posible para que el resto pueda entender lo que estan haciendo.</h3>
 
