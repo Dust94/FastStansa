@@ -46,6 +46,11 @@ namespace StansaGUI {
 	private: System::Windows::Forms::Button^  btnUpdate;
 	private: System::Windows::Forms::Button^  btnDelete;
 	private: System::Windows::Forms::Button^  btnAdd;
+	private: System::Windows::Forms::DataGridView^  dgvModuloStansa;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  id;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  name;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  place;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  MachinesOperatives;
 	protected:
 
 	private:
@@ -70,12 +75,18 @@ namespace StansaGUI {
 			this->btnUpdate = (gcnew System::Windows::Forms::Button());
 			this->btnDelete = (gcnew System::Windows::Forms::Button());
 			this->btnAdd = (gcnew System::Windows::Forms::Button());
+			this->dgvModuloStansa = (gcnew System::Windows::Forms::DataGridView());
+			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->place = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->MachinesOperatives = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvModuloStansa))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(29, 42);
+			this->label1->Location = System::Drawing::Point(48, 26);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(44, 13);
 			this->label1->TabIndex = 0;
@@ -84,7 +95,7 @@ namespace StansaGUI {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(29, 79);
+			this->label2->Location = System::Drawing::Point(48, 63);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(34, 13);
 			this->label2->TabIndex = 1;
@@ -93,7 +104,7 @@ namespace StansaGUI {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(29, 121);
+			this->label3->Location = System::Drawing::Point(48, 105);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(63, 13);
 			this->label3->TabIndex = 2;
@@ -101,28 +112,28 @@ namespace StansaGUI {
 			// 
 			// txtModStansaName
 			// 
-			this->txtModStansaName->Location = System::Drawing::Point(116, 42);
+			this->txtModStansaName->Location = System::Drawing::Point(135, 26);
 			this->txtModStansaName->Name = L"txtModStansaName";
 			this->txtModStansaName->Size = System::Drawing::Size(100, 20);
 			this->txtModStansaName->TabIndex = 3;
 			// 
 			// txtModStansaPlace
 			// 
-			this->txtModStansaPlace->Location = System::Drawing::Point(116, 79);
+			this->txtModStansaPlace->Location = System::Drawing::Point(135, 63);
 			this->txtModStansaPlace->Name = L"txtModStansaPlace";
 			this->txtModStansaPlace->Size = System::Drawing::Size(100, 20);
 			this->txtModStansaPlace->TabIndex = 4;
 			// 
 			// txtModStansaMachines
 			// 
-			this->txtModStansaMachines->Location = System::Drawing::Point(116, 118);
+			this->txtModStansaMachines->Location = System::Drawing::Point(135, 102);
 			this->txtModStansaMachines->Name = L"txtModStansaMachines";
 			this->txtModStansaMachines->Size = System::Drawing::Size(100, 20);
 			this->txtModStansaMachines->TabIndex = 5;
 			// 
 			// btnUpdate
 			// 
-			this->btnUpdate->Location = System::Drawing::Point(199, 159);
+			this->btnUpdate->Location = System::Drawing::Point(197, 139);
 			this->btnUpdate->Name = L"btnUpdate";
 			this->btnUpdate->Size = System::Drawing::Size(75, 23);
 			this->btnUpdate->TabIndex = 6;
@@ -131,7 +142,7 @@ namespace StansaGUI {
 			// 
 			// btnDelete
 			// 
-			this->btnDelete->Location = System::Drawing::Point(338, 159);
+			this->btnDelete->Location = System::Drawing::Point(336, 139);
 			this->btnDelete->Name = L"btnDelete";
 			this->btnDelete->Size = System::Drawing::Size(75, 23);
 			this->btnDelete->TabIndex = 7;
@@ -140,7 +151,7 @@ namespace StansaGUI {
 			// 
 			// btnAdd
 			// 
-			this->btnAdd->Location = System::Drawing::Point(63, 159);
+			this->btnAdd->Location = System::Drawing::Point(61, 139);
 			this->btnAdd->Name = L"btnAdd";
 			this->btnAdd->Size = System::Drawing::Size(75, 23);
 			this->btnAdd->TabIndex = 8;
@@ -148,11 +159,46 @@ namespace StansaGUI {
 			this->btnAdd->UseVisualStyleBackColor = true;
 			this->btnAdd->Click += gcnew System::EventHandler(this, &ModuloStansaForm::btnAdd_Click);
 			// 
+			// dgvModuloStansa
+			// 
+			this->dgvModuloStansa->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgvModuloStansa->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
+				this->id, this->name,
+					this->place, this->MachinesOperatives
+			});
+			this->dgvModuloStansa->Location = System::Drawing::Point(32, 179);
+			this->dgvModuloStansa->Name = L"dgvModuloStansa";
+			this->dgvModuloStansa->Size = System::Drawing::Size(386, 150);
+			this->dgvModuloStansa->TabIndex = 9;
+			// 
+			// id
+			// 
+			this->id->HeaderText = L"Id";
+			this->id->Name = L"id";
+			this->id->Width = 60;
+			// 
+			// name
+			// 
+			this->name->HeaderText = L"Nombre";
+			this->name->Name = L"name";
+			// 
+			// place
+			// 
+			this->place->HeaderText = L"Lugar";
+			this->place->Name = L"place";
+			// 
+			// MachinesOperatives
+			// 
+			this->MachinesOperatives->HeaderText = L"Maquinas Operativas";
+			this->MachinesOperatives->Name = L"MachinesOperatives";
+			this->MachinesOperatives->Width = 80;
+			// 
 			// ModuloStansaForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(514, 316);
+			this->ClientSize = System::Drawing::Size(445, 350);
+			this->Controls->Add(this->dgvModuloStansa);
 			this->Controls->Add(this->btnAdd);
 			this->Controls->Add(this->btnDelete);
 			this->Controls->Add(this->btnUpdate);
@@ -164,6 +210,8 @@ namespace StansaGUI {
 			this->Controls->Add(this->label1);
 			this->Name = L"ModuloStansaForm";
 			this->Text = L"ModuloStansaForm";
+			this->Load += gcnew System::EventHandler(this, &ModuloStansaForm::ModuloStansaForm_Load);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvModuloStansa))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -190,6 +238,19 @@ namespace StansaGUI {
 			staffLocal->puesto = staff->puesto;
 		}
 
+			void RefreshDGVModuloStaff(){
+				List<ModuloStansa^>^ listModStansa = StansaManager::QueryAllModuloStansa();
+				dgvModuloStansa->Rows->Clear(); //Limpio la Grilla
+
+				for (int i = 0; i < listModStansa->Count; i++){
+					dgvModuloStansa->Rows->Add(gcnew array<String^>{
+						"" + listModStansa[i]->id,
+							listModStansa[i]->name,
+							listModStansa[i]->place,
+						"" + listModStansa[i]->MaquinasOperativas});
+				} //Fin del For
+			}//Fin del Metodo RefreshDGVModuloStaff
+
 	private: System::Void btnAdd_Click(System::Object^  sender, System::EventArgs^  e) {
 		String^ nombre = txtModStansaName->Text;
 		String^ lugar = txtModStansaPlace->Text;
@@ -200,7 +261,11 @@ namespace StansaGUI {
 		modulo->place = lugar;
 		modulo->MaquinasOperativas = maquinas;
 		StansaManager::AddModuloStansa(modulo);	
+		RefreshDGVModuloStaff();
 
 	} //Fin del Metodo Add
+private: System::Void ModuloStansaForm_Load(System::Object^  sender, System::EventArgs^  e) {
+	RefreshDGVModuloStaff();
+}
 };
 }
