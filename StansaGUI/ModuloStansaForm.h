@@ -139,6 +139,7 @@ namespace StansaGUI {
 			this->btnUpdate->TabIndex = 6;
 			this->btnUpdate->Text = L"Actualizar";
 			this->btnUpdate->UseVisualStyleBackColor = true;
+			this->btnUpdate->Click += gcnew System::EventHandler(this, &ModuloStansaForm::btnUpdate_Click);
 			// 
 			// btnDelete
 			// 
@@ -170,6 +171,7 @@ namespace StansaGUI {
 			this->dgvModuloStansa->Name = L"dgvModuloStansa";
 			this->dgvModuloStansa->Size = System::Drawing::Size(386, 150);
 			this->dgvModuloStansa->TabIndex = 9;
+			this->dgvModuloStansa->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &ModuloStansaForm::dgvModuloStansa_CellContentClick);
 			// 
 			// id
 			// 
@@ -219,6 +221,7 @@ namespace StansaGUI {
 #pragma endregion
 	public:  static Staff^ staffLocal = gcnew Staff();
 			 static ModuloStansa^ moduloStansaLocal = gcnew ModuloStansa();
+	public:  int idModStansaGrilla;
 	public: System::Void ActualizarModuloyStaff(ModuloStansa^ modulo, Staff^ staff){
 			moduloStansaLocal->id = modulo->id;
 			moduloStansaLocal->name = modulo->name;
@@ -262,10 +265,24 @@ namespace StansaGUI {
 		modulo->MaquinasOperativas = maquinas;
 		StansaManager::AddModuloStansa(modulo);	
 		RefreshDGVModuloStaff();
-
 	} //Fin del Metodo Add
+
 private: System::Void ModuloStansaForm_Load(System::Object^  sender, System::EventArgs^  e) {
 	RefreshDGVModuloStaff();
 }
+private: System::Void dgvModuloStansa_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e);
+private: System::Void btnUpdate_Click(System::Object^  sender, System::EventArgs^  e) {
+	String^ nombre = txtModStansaName->Text;
+	String^ lugar = txtModStansaPlace->Text;
+	int maquinas = Int32::Parse(txtModStansaMachines->Text);
+
+	ModuloStansa^ modulo = StansaManager::QueryModuloStansaById(idModStansaGrilla);
+	modulo->name = nombre;
+	modulo->place = lugar;
+	modulo->MaquinasOperativas = maquinas;
+
+	StansaManager::UpdateModuloStansa(modulo);
+	RefreshDGVModuloStaff();
+}//Fin del Metodo Update
 };
 }
