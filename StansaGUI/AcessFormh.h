@@ -144,6 +144,7 @@ namespace StansaGUI {
 			// txtStaffDni
 			// 
 			this->txtStaffDni->Location = System::Drawing::Point(470, 97);
+			this->txtStaffDni->MaxLength = 8;
 			this->txtStaffDni->Name = L"txtStaffDni";
 			this->txtStaffDni->Size = System::Drawing::Size(153, 20);
 			this->txtStaffDni->TabIndex = 4;
@@ -262,6 +263,14 @@ public: bool Validacion(){
 	}
 }// Fin de Metodo Validacion
 private: System::Void btnOk_Click(System::Object^  sender, System::EventArgs^  e) {	 
+
+			 String^ dni = txtStaffDni->Text->Trim();
+			 if (dni->Length != 8){
+				 MessageBox::Show("Campo DNI solicitado incompleto." +
+					 " Recuerde que los lo Números DNI se definen de 8 numeros");
+				 return;
+			 }
+
 			 String^ ModuloStansaPlace = combModuloStansa->Text; //Eligo el Modulo de Stansa al que estoy accediendo
 			 ModuloStansa^ moduloStansa = StansaManager::QueryModuloStansaLikePlace(ModuloStansaPlace);
 			 if (Validacion())

@@ -128,7 +128,7 @@ List<Attention^>^ StansaManager::QueryAllAttentionByModuloStansa(ModuloStansa^ m
 List<Attention^>^ StansaManager::QueryAllAttentionByModuloStansaStatus(int idModuloStansa, String^ estadoCustomer){
 	return attentionDB->QueryAllByModuloStansaStatus(idModuloStansa, estadoCustomer);
 }
-List<Attention^>^ StansaManager::QueryAllAttentionByModuloStansaAndCustomer(ModuloStansa^ modulo, Customer^ customer){
+Attention^ StansaManager::QueryAllAttentionByModuloStansaAndCustomer(ModuloStansa^ modulo, Customer^ customer){
 	return attentionDB->QueryAllByModuloStansaAndCustomer(modulo, customer);
 }
 List<Attention^>^ StansaManager::QueryAllAttentionByModuloStansaAndStaff(ModuloStansa^ modulo, Staff^ staff){

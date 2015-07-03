@@ -420,6 +420,7 @@ public: System::Void dgvVenta_CellContentClick(System::Object^  sender, System::
 private: System::Void btnSale_Click(System::Object^  sender, System::EventArgs^  e) {
 	Staff^ salesman = gcnew Staff(); //Staff que va esta atendiendo
 	Customer^ customer = gcnew Customer(); // Customer que esta siendo atendido
+	
 
 	bool staffSeleccionado = String::Equals(cmbStaff->Text, "");//true si son iguales. true si esta vacio
 	bool customerSelecionado = String::Equals(cmbCostumer->Text, "");//true si son iguales. true si esta vacio
@@ -444,12 +445,13 @@ private: System::Void btnSale_Click(System::Object^  sender, System::EventArgs^ 
 			 
 	DateTime fecha = DateTime::Now; 
 	Sale ^sale = gcnew Sale();
-	sale->attention = StansaManager::QueryByFechaNorderModuloStansa(fecha, 1, moduloStansaLocal->id);
+	
 	sale->attention = gcnew Attention(); //Debo Jalar solo la atencion que se esta atendiendo con usuario
 	sale->attention->moduloStansa = gcnew ModuloStansa();
 	sale->attention->customer = gcnew Customer();
 	sale->attention->staff = gcnew Staff();
-
+	sale->attention = StansaManager::QueryAllAttentionByModuloStansaAndCustomer(moduloStansaLocal, customer);
+	
 	sale->date = fecha;
 	sale->attention->fecha = fecha;
 	sale->attention->estado = "Atentido";

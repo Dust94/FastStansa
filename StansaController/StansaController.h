@@ -72,7 +72,7 @@ namespace StansaController {
 			List<Attention^>^ QueryAll();
 			List<Attention^>^ QueryAllByModuloStansa(ModuloStansa^ modulo);
 			List<Attention^>^ QueryAllByModuloStansaStatus(int idModuloStansa, String^ estadoCustomer);
-			List<Attention^>^ QueryAllByModuloStansaAndCustomer(ModuloStansa^ modulo, Customer^ customer);
+			Attention^ QueryAllByModuloStansaAndCustomer(ModuloStansa^ modulo, Customer^ customer);
 			List<Attention^>^ QueryAllByModuloStansaAndStaff(ModuloStansa^ modulo, Staff^ staff);
 			List<Attention^>^ QueryAllByModuloStansaAndFecha(ModuloStansa^ modulo, String^ fecha);
 			List<Attention^>^ QueryAllByModuloStansaFechaAndCustomer(ModuloStansa^ modulo, String^ fecha, Customer^ customer);
@@ -145,7 +145,7 @@ namespace StansaController {
 			static List<Attention^>^ QueryAllAttention();
 			static List<Attention^>^ QueryAllAttentionByModuloStansa(ModuloStansa^ modulo);
 			static List<Attention^>^ QueryAllAttentionByModuloStansaStatus(int idModuloStansa, String^ estadoCustomer);
-			static List<Attention^>^ QueryAllAttentionByModuloStansaAndCustomer(ModuloStansa^ modulo, Customer^ customer);
+			static Attention^ QueryAllAttentionByModuloStansaAndCustomer(ModuloStansa^ modulo, Customer^ customer);
 			static List<Attention^>^ QueryAllAttentionByModuloStansaAndStaff(ModuloStansa^ modulo, Staff^ staff);
 			static List<Attention^>^ QueryAllAttentionByModuloStansaAndFecha(ModuloStansa^ modulo, String^ fecha);
 			static List<Attention^>^ QueryAllAttentionByModuloStansaFechaAndCustomer(ModuloStansa^ modulo, String^ fecha, Customer^ customer);
