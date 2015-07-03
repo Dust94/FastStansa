@@ -285,10 +285,12 @@ private: System::Void btnOk_Click(System::Object^  sender, System::EventArgs^  e
 private: System::Void txtpsw_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 }
 private: System::Void AcessFormh_Load(System::Object^  sender, System::EventArgs^  e) {
-			 List <ModuloStansa^> ^ modstansaList = StansaManager::QueryAllModuloStansa();
+	
+	List <ModuloStansa^> ^ modstansaList = StansaManager::QueryAllModuloStansa();
 			 for (int i = 0; i < modstansaList->Count; i++){
 				 combModuloStansa->Items->Add(modstansaList[i]->place);
 			 }
+			 
 			 
 }
 private: System::Void btnregister_Click(System::Object^  sender, System::EventArgs^  e) {
