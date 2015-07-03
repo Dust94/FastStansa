@@ -233,7 +233,7 @@ Customer^ CustomerDB::QueryByDni(String^ dni){
 			c->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
 			c->password = safe_cast<String ^>(dr["password"]);
-		if (dr["codigoPUCP"] != System::DBNull::Value)
+		if (dr["codePUCP"] != System::DBNull::Value)
 			c->codigoPUCP = safe_cast<String ^>(dr["codePUCP"]);
 		if (dr["academicUnit"] != System::DBNull::Value)
 			c->facultad = safe_cast<String ^>(dr["academicUnit"]);
